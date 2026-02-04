@@ -5,26 +5,15 @@ export function InitialLoader() {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Check if this is the initial load
-    const hasLoaded = sessionStorage.getItem('hasLoaded');
-    
-    if (hasLoaded) {
-      setIsVisible(false);
-      return;
-    }
-
-    // Mark as loaded
-    sessionStorage.setItem('hasLoaded', 'true');
-
-    // Start fade out after a delay
+    // Start fade out after content has loaded
     const fadeTimer = setTimeout(() => {
       setIsFading(true);
-    }, 800);
+    }, 1200);
 
-    // Remove loader after fade
+    // Remove loader after fade animation
     const removeTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 1200);
+    }, 1700);
 
     return () => {
       clearTimeout(fadeTimer);
