@@ -39,7 +39,20 @@ export function SolutionModal({ open, onOpenChange, data }: SolutionModalProps) 
             background: 'rgb(255, 255, 255)'
           }}
         >
-          <DialogHeader className="mb-6">
+          {/* Close button - top right */}
+          <div className="absolute top-4 right-4 lg:top-6 lg:right-6">
+            <button
+              onClick={() => onOpenChange(false)}
+              className="px-4 py-2 text-white text-sm font-medium rounded-[10px] hover:opacity-80 transition-opacity"
+              style={{ 
+                backgroundColor: '#274B41'
+              }}
+            >
+              FECHAR
+            </button>
+          </div>
+
+          <DialogHeader className="mb-6 pr-24">
             <DialogTitle 
               className="text-left"
               style={{ 
@@ -117,20 +130,6 @@ export function SolutionModal({ open, onOpenChange, data }: SolutionModalProps) 
               </ul>
             </div>
           )}
-
-          {/* Close button - inside content */}
-          <div className="mt-6 flex justify-end">
-            <button
-              onClick={() => onOpenChange(false)}
-              className="px-6 py-3 text-white text-sm font-medium rounded-[10px] hover:opacity-80 transition-opacity"
-              style={{ 
-                backgroundColor: '#274B41',
-                minHeight: '48px'
-              }}
-            >
-              FECHAR
-            </button>
-          </div>
         </div>
       </DialogContent>
     </Dialog>
