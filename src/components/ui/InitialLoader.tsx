@@ -7,8 +7,10 @@ export function InitialLoader() {
   useEffect(() => {
     const startFade = () => {
       if (isFading) return;
-      setIsFading(true);
-      setTimeout(() => setIsVisible(false), 500);
+      setTimeout(() => {
+        setIsFading(true);
+        setTimeout(() => setIsVisible(false), 500);
+      }, 2000);
     };
 
     const waitForImages = () => {
