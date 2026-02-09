@@ -10,7 +10,7 @@ export function InitialLoader() {
       setTimeout(() => {
         setIsFading(true);
         setTimeout(() => setIsVisible(false), 500);
-      }, 1000);
+      }, 1500);
     };
 
     const waitForImages = () => {

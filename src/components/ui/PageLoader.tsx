@@ -15,7 +15,7 @@ export function PageLoader() {
         setTimeout(() => {
           if (!cancelled) setIsVisible(false);
         }, 500);
-      }, 1000);
+      }, 1500);
     };
 
     const waitForImages = () => {
