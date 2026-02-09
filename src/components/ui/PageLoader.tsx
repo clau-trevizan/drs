@@ -1,21 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export function PageLoader() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
+  // Don't show on home page (InitialLoader handles it)
   useEffect(() => {
+    if (isHome) return;
+
+    setIsVisible(true);
+    setIsFading(false);
     let cancelled = false;
 
     const startFade = () => {
-      if (cancelled || isFading) return;
+      if (cancelled) return;
+      // Extra 1s delay after all images loaded
       setTimeout(() => {
         if (cancelled) return;
         setIsFading(true);
         setTimeout(() => {
           if (!cancelled) setIsVisible(false);
         }, 500);
-      }, 1500);
+      }, 1000);
     };
 
     const waitForImages = () => {
@@ -28,7 +37,7 @@ export function PageLoader() {
       }
 
       if (images.length === 0) {
-        return;
+        return; // No images yet, keep polling
       }
 
       let loaded = 0;
@@ -44,6 +53,7 @@ export function PageLoader() {
       });
     };
 
+    // Poll until images appear, then wait for them
     let attempts = 0;
     const poll = setInterval(() => {
       attempts++;
@@ -67,9 +77,9 @@ export function PageLoader() {
       clearInterval(poll);
       clearTimeout(fallback);
     };
-  }, []);
+  }, [location.pathname]);
 
-  if (!isVisible) return null;
+  if (!isVisible || isHome) return null;
 
   return (
     <div
