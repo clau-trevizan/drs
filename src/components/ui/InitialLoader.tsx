@@ -5,42 +5,62 @@ export function InitialLoader() {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    const checkImagesLoaded = () => {
-      const images = Array.from(document.images);
-      if (images.length === 0) {
-        startFade();
-        return;
-      }
-      const allLoaded = images.every((img) => img.complete && img.naturalHeight !== 0);
-      if (allLoaded) {
-        startFade();
-      } else {
-        const promises = images
-          .filter((img) => !img.complete)
-          .map(
-            (img) =>
-              new Promise<void>((resolve) => {
-                img.addEventListener('load', () => resolve(), { once: true });
-                img.addEventListener('error', () => resolve(), { once: true });
-              })
-          );
-        Promise.all(promises).then(startFade);
-      }
-    };
-
     const startFade = () => {
+      if (isFading) return;
       setIsFading(true);
       setTimeout(() => setIsVisible(false), 500);
     };
 
-    // Wait for DOM to be ready, then check images
-    const timer = setTimeout(checkImagesLoaded, 100);
+    const waitForImages = () => {
+      const images = Array.from(document.images);
+      const unloaded = images.filter((img) => !img.complete || img.naturalHeight === 0);
 
-    // Fallback: max 6 seconds
-    const fallback = setTimeout(startFade, 6000);
+      if (unloaded.length === 0 && images.length > 0) {
+        startFade();
+        return;
+      }
+
+      if (images.length === 0) {
+        // No images yet — DOM may not be ready, retry
+        return;
+      }
+
+      let loaded = 0;
+      const total = unloaded.length;
+
+      unloaded.forEach((img) => {
+        const onDone = () => {
+          loaded++;
+          if (loaded >= total) startFade();
+        };
+        img.addEventListener('load', onDone, { once: true });
+        img.addEventListener('error', onDone, { once: true });
+      });
+    };
+
+    // Poll until images appear in the DOM, then wait for them
+    let attempts = 0;
+    const poll = setInterval(() => {
+      attempts++;
+      const images = Array.from(document.images);
+      if (images.length > 0) {
+        clearInterval(poll);
+        waitForImages();
+      } else if (attempts > 50) {
+        // After 5s with no images, just show the page
+        clearInterval(poll);
+        startFade();
+      }
+    }, 100);
+
+    // Hard fallback: 15 seconds max
+    const fallback = setTimeout(() => {
+      clearInterval(poll);
+      startFade();
+    }, 15000);
 
     return () => {
-      clearTimeout(timer);
+      clearInterval(poll);
       clearTimeout(fallback);
     };
   }, []);
