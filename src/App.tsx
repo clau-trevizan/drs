@@ -3,9 +3,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { InitialLoader } from "@/components/ui/InitialLoader";
+import { PageLoader } from "@/components/ui/PageLoader";
 
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import Index from "./pages/Index";
@@ -28,38 +28,55 @@ const PoliticaPrivacidade = lazy(() => import("./pages/PoliticaPrivacidade"));
 const queryClient = new QueryClient();
 
 
+const App = () => {
+  useEffect(() => {
+    const onPageLoad = () => {
+      console.log('Page is fully loaded!');
+    };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <InitialLoader />
-      <SmoothScroll />
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <LanguageProvider>
-          <ScrollToTop />
-          <Suspense fallback={<div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ backgroundColor: '#16493C' }}><div className="animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent" /></div>}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/solucoes" element={<Solucoes />} />
-              <Route path="/areas/cts" element={<CTS />} />
-              <Route path="/areas/pcs" element={<PCS />} />
-              <Route path="/areas/tis" element={<TIS />} />
-              <Route path="/drs-360" element={<DRS360 />} />
-              <Route path="/grupo-drs" element={<GrupoDRS />} />
-              <Route path="/insights" element={<Insights />} />
-              <Route path="/insights/:slug" element={<InsightPost />} />
-              <Route path="/contato" element={<Contato />} />
-              <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-          <CookieConsent />
-        </LanguageProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+    if (document.readyState === 'complete') {
+      onPageLoad();
+    } else {
+      window.addEventListener('load', onPageLoad);
+    }
+
+    return () => {
+      window.removeEventListener('load', onPageLoad);
+    };
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <SmoothScroll />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <LanguageProvider>
+            <ScrollToTop />
+            <PageLoader />
+            <Suspense fallback={null}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/solucoes" element={<Solucoes />} />
+                <Route path="/areas/cts" element={<CTS />} />
+                <Route path="/areas/pcs" element={<PCS />} />
+                <Route path="/areas/tis" element={<TIS />} />
+                <Route path="/drs-360" element={<DRS360 />} />
+                <Route path="/grupo-drs" element={<GrupoDRS />} />
+                <Route path="/insights" element={<Insights />} />
+                <Route path="/insights/:slug" element={<InsightPost />} />
+                <Route path="/contato" element={<Contato />} />
+                <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+            <CookieConsent />
+          </LanguageProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
