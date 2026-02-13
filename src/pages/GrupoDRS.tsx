@@ -286,160 +286,150 @@ export default function GrupoDRS() {
         </div>
       </section>
 
-      {/* Section 3: Impacto e Capacidade Carousel Section */}
-      <section className="py-8 bg-white">
+      {/* Section 3: Impacto e Capacidade - Carousel like Home Section 3 */}
+      <section className="py-8 md:py-12 bg-background">
         <div className="drs-container">
-          <div className="grid grid-cols-12">
-            {/* Tag - spans 10 cols starting at 2 */}
-            <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-              <span
-                style={{
-                  color: '#000',
-                  fontSize: '20px',
-                  fontStyle: 'normal',
-                  fontWeight: 400,
-                  lineHeight: '40px',
-                  borderRadius: '30px',
-                  background: '#69C0AC',
-                  padding: '3px 30px',
-                  display: 'inline-block',
-                  textTransform: 'uppercase',
-                  marginLeft: '10%'
+          <div className="grid grid-cols-12 gap-8 items-center">
+            {/* Left side - Swiper content box - 5 cols on desktop, skip 2 */}
+            <div 
+              className="col-span-12 lg:col-start-3 lg:col-span-5 relative min-h-[470px] lg:min-h-[550px] flex flex-wrap justify-center items-center p-[4rem_1rem_4rem_2rem] lg:p-0 carousel-container-offset"
+            >
+              {/* Mobile background */}
+              <div 
+                className="absolute inset-0 lg:hidden"
+                style={{ 
+                  backgroundImage: 'url(/images/fundo_mobile.svg)',
+                  backgroundPosition: 'top left',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: '100%'
                 }}
+              ></div>
+              {/* Desktop background */}
+              <div 
+                className="absolute inset-0 hidden lg:block"
+                style={{ 
+                  backgroundImage: 'url(/images/fundo2.svg)',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'contain'
+                }}
+              ></div>
+              
+              <Swiper
+                modules={[Navigation]}
+                onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; }}
+                onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+                spaceBetween={24}
+                slidesPerView={1}
+                className="drs360-swiper h-full w-full mt-0 lg:mt-[-100px] relative z-10"
               >
-                Impacto e Capacidade
-              </span>
-            </div>
-
-            {/* Carousel - 12 cols on desktop */}
-            <div className="col-span-12">
-              {/* Carousel with 3 items per view */}
-              <div className="relative mt-8">
-                <Swiper
-                  modules={[Navigation, Pagination]}
-                  onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; }}
-                  onSlideChange={(swiper) => setActiveSlide(Math.floor(swiper.activeIndex / 3))}
-                  spaceBetween={24}
-                  slidesPerView={3}
-                  slidesPerGroup={3}
-                  className="benefits-carousel"
-                  breakpoints={{
-                    0: {
-                      slidesPerView: 1,
-                      slidesPerGroup: 1
-                    },
-                    768: {
-                      slidesPerView: 2,
-                      slidesPerGroup: 2
-                    },
-                    1024: {
-                      slidesPerView: 3,
-                      slidesPerGroup: 3
-                    }
-                  }}
-                >
-                  {/* Slide 1 - +30 mil pacientes */}
-                  <SwiperSlide>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
-                      <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
-                      <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">+30</text>
-                      <text className="titulo2" x="168" y="116" fontSize="35" fontWeight="400" fill="#274B41">mil</text>
-                      <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">pacientes</text>
-                      <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">atendidos com suporte clínico e</text>
-                      <text className="botao" x="57" y="220" fontSize="20" fontWeight="400" fill="#008C79">logístico</text>
-                    </svg>
-                  </SwiperSlide>
-
-                  {/* Slide 2 - +400 estudos clínicos */}
-                  <SwiperSlide>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
-                      <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
-                      <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">+400</text>
-                      <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">estudos clínicos</text>
-                      <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">apoiados em todas as fases</text>
-                    </svg>
-                  </SwiperSlide>
-
-                  {/* Slide 3 - +50 mil kits clínicos */}
-                  <SwiperSlide>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
-                      <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
-                      <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">+50</text>
-                      <text className="titulo2" x="168" y="116" fontSize="35" fontWeight="400" fill="#274B41">mil</text>
-                      <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">kits clínicos</text>
-                      <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">montados e rastreados</text>
-                    </svg>
-                  </SwiperSlide>
-
-                  {/* Slide 4 - Cópia do Slide 1 */}
-                  <SwiperSlide>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
-                      <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
-                      <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">+30</text>
-                      <text className="titulo2" x="168" y="116" fontSize="35" fontWeight="400" fill="#274B41">mil</text>
-                      <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">pacientes</text>
-                      <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">atendidos com suporte clínico e</text>
-                      <text className="botao" x="57" y="220" fontSize="20" fontWeight="400" fill="#008C79">logístico</text>
-                    </svg>
-                  </SwiperSlide>
-
-                  {/* Slide 5 - Cópia do Slide 2 */}
-                  <SwiperSlide>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
-                      <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
-                      <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">+400</text>
-                      <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">estudos clínicos</text>
-                      <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">apoiados em todas as fases</text>
-                    </svg>
-                  </SwiperSlide>
-
-                  {/* Slide 6 - Cópia do Slide 3 */}
-                  <SwiperSlide>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
-                      <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
-                      <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">+50</text>
-                      <text className="titulo2" x="168" y="116" fontSize="35" fontWeight="400" fill="#274B41">mil</text>
-                      <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">kits clínicos</text>
-                      <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">montados e rastreados</text>
-                    </svg>
-                  </SwiperSlide>
-                </Swiper>
-
-                {/* Navigation - prev, dots, next in a row */}
-                <div className="flex items-center justify-center gap-4 mt-8">
-                  <button
-                    onClick={() => benefitsCarouselRef.current?.slidePrev()}
-                    className="hover:opacity-80 transition-opacity rotate-180"
-                  >
-                    <img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" />
-                  </button>
-
-                  {/* Dots */}
-                  <div className="flex gap-2">
-                    {[0, 1].map((dotIndex) => (
-                      <button
-                        key={dotIndex}
-                        onClick={() => {
-                          benefitsCarouselRef.current?.slideTo(dotIndex * 3);
-                          setActiveSlide(dotIndex);
-                        }}
-                        className="w-3 h-3 hover:opacity-80 transition-opacity"
-                        style={{
-                          borderRadius: '5px',
-                          backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC'
-                        }}
-                      />
-                    ))}
+                <SwiperSlide>
+                  <div className="h-full flex flex-col p-4 lg:p-0">
+                    <span
+                      className="text-[14px] lg:text-[16px] mb-4"
+                      style={{
+                        color: '#69C0AC',
+                        fontWeight: 400,
+                        lineHeight: '40px',
+                        textTransform: 'uppercase',
+                        borderRadius: '30px',
+                        border: '1px solid #69C0AC',
+                        padding: '0px 20px',
+                        display: 'inline-block',
+                        width: 'fit-content',
+                      }}
+                    >
+                      Impacto e Capacidade
+                    </span>
+                    <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
+                      +30 mil pacientes atendidos
+                    </h3>
+                    <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
+                      Com suporte clínico e logístico integrado para garantir a melhor experiência.
+                    </p>
                   </div>
-
-                  <button
-                    onClick={() => benefitsCarouselRef.current?.slideNext()}
-                    className="hover:opacity-80 transition-opacity"
-                  >
-                    <img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" />
-                  </button>
-                </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="h-full flex flex-col p-4 lg:p-0">
+                    <span
+                      className="text-[14px] lg:text-[16px] mb-4"
+                      style={{
+                        color: '#69C0AC',
+                        fontWeight: 400,
+                        lineHeight: '40px',
+                        textTransform: 'uppercase',
+                        borderRadius: '30px',
+                        border: '1px solid #69C0AC',
+                        padding: '0px 20px',
+                        display: 'inline-block',
+                        width: 'fit-content',
+                      }}
+                    >
+                      Impacto e Capacidade
+                    </span>
+                    <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
+                      +400 estudos clínicos
+                    </h3>
+                    <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
+                      Apoiados em todas as fases de pesquisa clínica.
+                    </p>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="h-full flex flex-col p-4 lg:p-0">
+                    <span
+                      className="text-[14px] lg:text-[16px] mb-4"
+                      style={{
+                        color: '#69C0AC',
+                        fontWeight: 400,
+                        lineHeight: '40px',
+                        textTransform: 'uppercase',
+                        borderRadius: '30px',
+                        border: '1px solid #69C0AC',
+                        padding: '0px 20px',
+                        display: 'inline-block',
+                        width: 'fit-content',
+                      }}
+                    >
+                      Impacto e Capacidade
+                    </span>
+                    <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
+                      +50 mil kits clínicos
+                    </h3>
+                    <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
+                      Montados e rastreados com total controle de qualidade.
+                    </p>
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+              
+              {/* Custom navigation buttons */}
+              <div className="flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0">
+                <button 
+                  onClick={() => benefitsCarouselRef.current?.slidePrev()}
+                  className="transition-opacity rotate-180"
+                  style={{ opacity: activeSlide === 0 ? 0.6 : 1 }}
+                >
+                  <img src={arrowSlide} alt="Previous" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" />
+                </button>
+                <button 
+                  onClick={() => benefitsCarouselRef.current?.slideNext()}
+                  className="transition-opacity"
+                  style={{ opacity: activeSlide === 2 ? 0.6 : 1 }}
+                >
+                  <img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" />
+                </button>
               </div>
+            </div>
+            
+            {/* Right side - Fixed image - 3 cols on desktop */}
+            <div className="col-span-12 lg:col-span-3 hidden lg:flex justify-center h-full pb-4 lg:pb-[70px]">
+              <img 
+                src={imgSlide} 
+                alt="DRS 360 App" 
+                className="rounded-3xl self-end"
+                style={{ maxWidth: '90%' }}
+              />
             </div>
           </div>
         </div>
