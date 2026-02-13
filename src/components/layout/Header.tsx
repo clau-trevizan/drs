@@ -53,7 +53,6 @@ export function Header() {
       ],
     },
     { name: t('nav.grupo'), href: '/grupo-drs' },
-    { name: t('nav.insights'), href: '/insights' },
   ];
 
   useEffect(() => {
