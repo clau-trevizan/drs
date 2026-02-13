@@ -5,7 +5,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { sendToRDStation } from '@/services/rdstation';
 import heroContato from '@/assets/hero-contato.png';
 import flutuante2 from '@/assets/flutuante2.svg';
 
@@ -29,12 +28,8 @@ export default function Contato() {
     }
   }, [showSuccessModal]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Send to RD Station (non-blocking - form UX works regardless)
-    sendToRDStation(formData);
-    
     // Clear form
     setFormData({
       nome: '',
