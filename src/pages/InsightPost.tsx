@@ -30,7 +30,7 @@ const allInsights = [
 export default function InsightPost() {
   const { slug } = useParams();
   const post = allInsights.find(i => i.slug === slug) || allInsights[0];
-  
+
   // Similar insights: same categories
   const similarInsights = allInsights
     .filter(i => i.slug !== post.slug && i.categories.some(c => post.categories.includes(c)))
@@ -48,9 +48,9 @@ export default function InsightPost() {
       {/* Section 1: Hero - Privacy Policy style */}
       <section className="politica-section1 bg-background">
         <div className="drs-container">
-          <div 
+          <div
             className="politica-green-box rounded-[24px] lg:rounded-[40px]"
-            style={{ 
+            style={{
               backgroundColor: '#69C0AC',
               backgroundImage: 'url(/images/topo_pp.png)',
               backgroundPosition: 'top left',
@@ -58,13 +58,13 @@ export default function InsightPost() {
             }}
           >
             <div className="grid grid-cols-12">
-              <div className="col-span-12 lg:col-start-3 lg:col-span-10">
+              <div className="col-span-12 lg:col-start-2 lg:col-span-11">
                 {/* Category tags */}
                 <div className="flex gap-2 mb-4">
                   {post.categories.map(cat => (
-                    <span 
+                    <span
                       key={cat}
-                      style={{ 
+                      style={{
                         color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px',
                         padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41'
                       }}
@@ -75,13 +75,13 @@ export default function InsightPost() {
                 </div>
 
                 {/* Title + Share */}
-                <div className="grid grid-cols-12 gap-4 items-start">
-                  <div className="col-span-12 lg:col-span-8">
+                <div className="d-flex gap-4 items-start">
+                  <div className="col-60">
                     <h1 style={{ color: '#000', fontSize: '35px', fontStyle: 'normal', fontWeight: 900, lineHeight: '40px' }}>
                       {post.title}
                     </h1>
                   </div>
-                  <div className="col-span-12 lg:col-span-4 flex items-center gap-3 lg:justify-end">
+                  <div className="col-20 items-center gap-3">
                     <span style={{ color: '#000', fontSize: '14px', fontWeight: 400 }}>Compartilhar</span>
                     <a href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
                       <img src={iconX} alt="X" className="h-[50px] w-auto" />
@@ -111,8 +111,8 @@ export default function InsightPost() {
         <div className="drs-container">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-              <div 
-                className="prose prose-lg max-w-none" 
+              <div
+                className="prose prose-lg max-w-none"
                 style={{ color: '#000', fontSize: '18px', lineHeight: '1.6' }}
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
@@ -197,9 +197,9 @@ export default function InsightPost() {
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {insight.categories.map((category) => (
-                        <span 
+                        <span
                           key={category}
-                          style={{ 
+                          style={{
                             color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px',
                             padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41'
                           }}
