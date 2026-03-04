@@ -61,21 +61,19 @@ export default function InsightPost() {
   const authorName = post.author?.name || '';
   const rawContent = post.blocks?.map((b: any) => b.body || '').join('\n') || post.description || '';
   
-  // Convert plain text with \n to HTML paragraphs, preserving inline HTML tags
+  // Convert plain text with \n to HTML, preserving inline HTML tags like <img>
   const content = rawContent
-    .split(/\n\n+/)
-    .map(block => {
-      const trimmed = block.trim();
-      if (!trimmed) return '';
-      // If it already starts with an HTML tag, keep as-is
-      if (/^<(img|figure|figcaption|div|ul|ol|table|blockquote|h[1-6])/i.test(trimmed)) {
+    .split('\n')
+    .map(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return '<br>';
+      // If it's an HTML tag line, keep as-is
+      if (/^<\/?[a-z]/i.test(trimmed)) {
         return trimmed;
       }
-      // Convert single \n within a block to <br>
-      const withBreaks = trimmed.replace(/\n/g, '<br>');
-      return `<p>${withBreaks}</p>`;
+      return `<p>${trimmed}</p>`;
     })
-    .join('\n');
+    .join('');
 
   // Similar insights: same category, fallback to recent posts
   const otherPosts = (allInsightsData?.data || []).filter((i: any) => i.slug !== slug && i.slug);
