@@ -23,17 +23,6 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Play } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
-const stats = [
-  { title: '+500 protocolos sob gestão', description: 'Atuação em diferentes fases clínicas e terapias.' },
-  { title: '+100 clientes ativos', description: 'Biofarmacêuticas, CRO\'s, Centros de Pesquisa, Operadoras e Logística.' },
-  { title: '+200.000 pacientes atendidos por ano', description: 'Fazemos a diferença, seja conectando a pesquisa clínica ou viabilizando os tratamentos.' },
-];
-
-const services = [
-  { name: 'Clinical Trial Services - CTS', href: '/areas/cts' },
-  { name: 'Patient Centric Services - PCS', href: '/areas/pcs' },
-  { name: 'Thermo Integrated Services - TIS', href: '/areas/tis' },
-];
 
 const Index = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -63,7 +52,7 @@ const Index = () => {
               <button 
                 onClick={() => setIsVideoOpen(true)}
                 className="relative block w-full h-full cursor-pointer group"
-                aria-label="Assistir ao vídeo"
+                aria-label={t('home.hero.video.ariaLabel')}
               >
               {/* Overlay image top left */}
                 <img 
@@ -119,8 +108,8 @@ const Index = () => {
       <Dialog open={isVideoOpen} onOpenChange={handleVideoDialogChange}>
         <DialogContent className="max-w-4xl w-[90vw] p-0 bg-black border-none">
           <VisuallyHidden>
-            <DialogTitle>Vídeo Institucional DRS</DialogTitle>
-            <DialogDescription>Vídeo institucional da DRS</DialogDescription>
+            <DialogTitle>{t('home.hero.video.title')}</DialogTitle>
+            <DialogDescription>{t('home.hero.video.description')}</DialogDescription>
           </VisuallyHidden>
           <div className="relative aspect-video">
             <video
@@ -302,18 +291,18 @@ const Index = () => {
             <div className="lg:col-span-8 hidden lg:block">
               <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 847 564" fill="none" className="w-full h-auto">
                 <path d="M775.139 204.7L813.274 204.696C831.902 204.696 847 189.612 847 171.004L847 37.1558C847 16.638 830.349 -3.62957e-05 809.806 -3.53978e-05L142.416 0.000298951C123.477 0.000299778 108.127 15.3338 108.127 34.2543L108.127 58.6092C108.127 76.6171 93.5132 91.2114 75.4921 91.2114L34.0006 91.2114C15.2243 91.2114 1.0519e-05 106.416 1.13392e-05 125.178L0.000146699 526.773C0.000147596 547.29 16.6508 563.929 37.1938 563.929L705.852 563.929C725.989 563.929 742.313 547.621 742.313 527.504L742.313 397.172L742.313 237.493C742.313 219.383 757.011 204.7 775.139 204.7Z" fill="#F39325"/>
-                <text className="titulos" x="100" y="173" fontSize="35" fontWeight="900" fill="#000000">Soluções inteligentes para</text>
-                <text className="titulos" x="100" y="213" fontSize="35" fontWeight="900" fill="#000000">cada etapa na cadeia de saúde</text>
-                <text className="botao" x="100" y="260" fontSize="20" fontWeight="900" fill="#000000">Combinamos inovação, tecnologia e cuidado para </text>
-                <text className="botao" x="100" y="288" fontSize="20" fontWeight="900" fill="#000000">impulsionar projetos essenciais da saúde.</text>
-                <text className="botao" x="100" y="335" fontSize="20" fontWeight="900" fill="#000000">Atuamos em três áreas complementares, conectadas pela</text>
-                <text className="botao" x="100" y="365" fontSize="20" fontWeight="900" fill="#000000">nossa plataforma proprietária DRS 360 e guiadas por um</text>
-                <text className="botao" x="100" y="390" fontSize="20" fontWeight="900" fill="#000000">propósito comum: tornar os estudos clínicos possíveis e </text>
-                <text className="botao" x="100" y="420" fontSize="20" fontWeight="900" fill="#000000">assegurar que cada tratamento chegue a quem precisa.</text>
+                <text className="titulos" x="100" y="173" fontSize="35" fontWeight="900" fill="#000000">{t('home.solutions.svg.title1')}</text>
+                <text className="titulos" x="100" y="213" fontSize="35" fontWeight="900" fill="#000000">{t('home.solutions.svg.title2')}</text>
+                <text className="botao" x="100" y="260" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.desc1')}</text>
+                <text className="botao" x="100" y="288" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.desc2')}</text>
+                <text className="botao" x="100" y="335" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.desc3')}</text>
+                <text className="botao" x="100" y="365" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.desc4')}</text>
+                <text className="botao" x="100" y="390" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.desc5')}</text>
+                <text className="botao" x="100" y="420" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.desc6')}</text>
                 <Link to="/solucoes">
                   <rect x="104" y="447.081" width="175" height="50" rx="10" fill="#274B41" style={{ cursor: 'pointer' }}/>
                   <path d="M143.112 465.807L148.645 471.294L148.691 471.337C148.876 471.52 148.984 471.762 149 472.048L148.999 472.145C148.986 472.371 148.899 472.588 148.728 472.782L148.664 472.848L143.112 478.354C142.701 478.762 142.037 478.762 141.627 478.354C141.213 477.945 141.213 477.279 141.627 476.869L145.46 473.067L130.052 473.068C129.472 473.068 129 472.599 129 472.02C129 471.44 129.472 470.972 130.052 470.972L145.336 470.971L141.627 467.292C141.213 466.883 141.213 466.217 141.627 465.807C142.037 465.4 142.701 465.4 143.112 465.807Z" fill="white"/>
-                  <text className="botao" x="165" y="478" fontSize="20" fontWeight="900" fill="#fff">Saiba mais</text>
+                  <text className="botao" x="165" y="478" fontSize="20" fontWeight="900" fill="#fff">{t('home.solutions.svg.cta')}</text>
                 </Link>
               </svg>
             </div>
@@ -322,31 +311,35 @@ const Index = () => {
             <div className="lg:hidden w-full">
               <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 408 841" fill="none" className="w-full h-auto">
                 <path d="M56.1159 783.209L56.1121 813.78C56.1121 828.713 44.0226 840.816 29.1075 840.816H-14.2189C-30.6643 840.816 -44 827.468 -44 811L-44 114.169C-44 98.9857 -31.7099 86.6802 -16.5447 86.6802H2.9762C17.4098 86.6802 29.1075 74.9651 29.1075 60.5184V27.2567C29.1075 12.2046 41.2941 0 56.3324 0L378.218 9.44393e-05C394.663 9.44393e-05 408 13.3482 408 29.8165L408 727.664C408 743.808 394.929 756.894 378.804 756.894L210.385 756.894H82.4003C67.8846 756.894 56.1159 768.676 56.1159 783.209Z" fill="#F39325"/>
-                <text className="titulos" x="41" y="176" fontSize="35" fontWeight="900" fill="#000000">Soluções</text>
-                <text className="titulos" x="41" y="216" fontSize="35" fontWeight="900" fill="#000000">inteligentes para</text>
-                <text className="titulos" x="41" y="255" fontSize="35" fontWeight="900" fill="#000000">cada elo da</text>
-                <text className="titulos" x="41" y="296" fontSize="35" fontWeight="900" fill="#000000">cadeia da saúde</text>
-                <text className="botao" x="41" y="355" fontSize="20" fontWeight="900" fill="#000000">Oferecemos muito mais do que</text>
-                <text className="botao" x="41" y="383" fontSize="20" fontWeight="900" fill="#000000">logística: atuamos como um parceiro</text>
-                <text className="botao" x="41" y="411" fontSize="20" fontWeight="900" fill="#000000">estratégico na jornada da saúde.</text>
-                <text className="botao" x="41" y="439" fontSize="20" fontWeight="900" fill="#000000"> Atuamos em três áreas</text>
-                <text className="botao" x="41" y="467" fontSize="20" fontWeight="900" fill="#000000">complementares, conectadas por</text>
-                <text className="botao" x="41" y="495" fontSize="20" fontWeight="900" fill="#000000">tecnologia própria, DRS360, e por um</text>
-                <text className="botao" x="41" y="523" fontSize="20" fontWeight="900" fill="#000000">compromisso comum: entregar</text>
-                <text className="botao" x="41" y="551" fontSize="20" fontWeight="900" fill="#000000">inteligência, confiança e cuidado.</text>
+                <text className="titulos" x="41" y="176" fontSize="35" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.title1')}</text>
+                <text className="titulos" x="41" y="216" fontSize="35" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.title2')}</text>
+                <text className="titulos" x="41" y="255" fontSize="35" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.title3')}</text>
+                <text className="titulos" x="41" y="296" fontSize="35" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.title4')}</text>
+                <text className="botao" x="41" y="355" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc1')}</text>
+                <text className="botao" x="41" y="383" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc2')}</text>
+                <text className="botao" x="41" y="411" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc3')}</text>
+                <text className="botao" x="41" y="439" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc4')}</text>
+                <text className="botao" x="41" y="467" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc5')}</text>
+                <text className="botao" x="41" y="495" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc6')}</text>
+                <text className="botao" x="41" y="523" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc7')}</text>
+                <text className="botao" x="41" y="551" fontSize="20" fontWeight="900" fill="#000000">{t('home.solutions.svg.mobile.desc8')}</text>
                 <Link to="/solucoes">
                   <rect x="41" y="613" width="200" height="50" rx="10" fill="#274B41" style={{ cursor: 'pointer' }}/>
                   <path d="M80.1116 631.726L85.6449 637.213L85.6911 637.256C85.8763 637.439 85.984 637.681 86 637.967L85.9991 638.063C85.9856 638.29 85.899 638.507 85.7284 638.701L85.6638 638.767L80.1116 644.273C79.701 644.681 79.0371 644.681 78.6265 644.273C78.2135 643.864 78.2135 643.198 78.6265 642.788L82.4601 638.986L67.0524 638.986C66.4721 638.986 66 638.518 66 637.939C66 637.359 66.4721 636.891 67.0523 636.891L82.3364 636.89L78.6265 633.211C78.2135 632.802 78.2135 632.136 78.6265 631.726C79.0371 631.319 79.701 631.319 80.1116 631.726Z" fill="white"/>
-                  <text className="botao" x="101" y="644" fontSize="16" fontWeight="900" fill="#fff">SAIBA MAIS</text>
+                  <text className="botao" x="101" y="644" fontSize="16" fontWeight="900" fill="#fff">{t('home.solutions.svg.mobile.cta')}</text>
                 </Link>
               </svg>
             </div>
             
             {/* Right side - 4 columns with button container adjustments */}
             <div className="lg:col-span-4 space-y-3 flex flex-col justify-center mt-[-80px] lg:mt-0 lg:ml-[-80px] lg:pt-[150px] pl-[60px] lg:pl-0">
-              {services.map((service) => (
+              {[
+                { name: t('home.solutions.cts'), href: '/areas/cts' },
+                { name: t('home.solutions.pcs'), href: '/areas/pcs' },
+                { name: t('home.solutions.tis'), href: '/areas/tis' },
+              ].map((service) => (
                 <Link
-                  key={service.name}
+                  key={service.href}
                   to={service.href}
                   className="flex items-center gap-4 p-4 rounded-xl transition-colors group"
                   style={{ backgroundColor: '#274B41', color: '#fff', fontSize: '20px', fontStyle: 'normal', fontWeight: 400, lineHeight: '28px' }}
@@ -386,7 +379,7 @@ const Index = () => {
               marginBottom: '1rem'
             }}
           >
-            DRS 360
+            {t('home.drs360section.tag')}
           </span>
           <h2 
             style={{ 
@@ -412,7 +405,7 @@ const Index = () => {
 
       {/* Nossa Rede Mundial Section with Map */}
       <DRS360Section 
-        tagText="nossa rede mundial"
+        tagText={t('home.worldmap.tag')}
         showTitle={false}
         hasLink={false}
         uppercaseTag={true}

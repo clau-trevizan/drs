@@ -1466,6 +1466,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [searchParams]);
 
+  // Add language class to body
+  useEffect(() => {
+    document.body.classList.remove('ingles', 'espanhol');
+    if (language === 'en') {
+      document.body.classList.add('ingles');
+    } else if (language === 'es') {
+      document.body.classList.add('espanhol');
+    }
+  }, [language]);
+
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
     const newParams = new URLSearchParams(searchParams);
