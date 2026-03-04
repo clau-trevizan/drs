@@ -59,7 +59,23 @@ export default function InsightPost() {
   const coverUrl = post.cover?.url;
   const featuredImage = coverUrl ? getStrapiMedia(coverUrl) : undefined;
   const authorName = post.author?.name || '';
-  const content = post.blocks?.map((b: any) => b.body || '').join('\n') || post.description || '';
+  const rawContent = post.blocks?.map((b: any) => b.body || '').join('\n') || post.description || '';
+  
+  // Convert plain text with \n to HTML paragraphs, preserving inline HTML tags
+  const content = rawContent
+    .split(/\n\n+/)
+    .map(block => {
+      const trimmed = block.trim();
+      if (!trimmed) return '';
+      // If it already starts with an HTML tag, keep as-is
+      if (/^<(img|figure|figcaption|div|ul|ol|table|blockquote|h[1-6])/i.test(trimmed)) {
+        return trimmed;
+      }
+      // Convert single \n within a block to <br>
+      const withBreaks = trimmed.replace(/\n/g, '<br>');
+      return `<p>${withBreaks}</p>`;
+    })
+    .join('\n');
 
   // Similar insights: same category, fallback to recent posts
   const otherPosts = (allInsightsData?.data || []).filter((i: any) => i.slug !== slug && i.slug);
