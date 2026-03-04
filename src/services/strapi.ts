@@ -35,7 +35,16 @@ async function fetchAPI<T>(
   });
 
   if (!response.ok) {
+    const errorBody = await response.text();
+    console.error(`Strapi API Error [${response.status}] ${url}:`, errorBody.substring(0, 300));
     throw new Error(`Strapi API Error: ${response.status} ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get('content-type');
+  if (!contentType?.includes('application/json')) {
+    const text = await response.text();
+    console.error('Strapi returned non-JSON:', contentType, text.substring(0, 200));
+    throw new Error(`Unexpected response format: ${contentType}`);
   }
 
   return response.json();
@@ -149,7 +158,7 @@ export async function getInsights(params?: {
     },
   });
   
-  return fetchAPI<StrapiResponse<Insight[]>>(`/insights${query}`);
+  return fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
 }
 
 export async function getInsight(slug: string): Promise<Insight> {
@@ -157,13 +166,13 @@ export async function getInsight(slug: string): Promise<Insight> {
     filters: { slug: { $eq: slug } },
     populate: ['featuredImage', 'categories'],
   });
-  const response = await fetchAPI<StrapiResponse<Insight[]>>(`/insights${query}`);
+  const response = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
   return response.data[0];
 }
 
 export async function getInsightCategories(): Promise<InsightCategory[]> {
   const response = await fetchAPI<StrapiResponse<InsightCategory[]>>(
-    '/insight-categories'
+    '/categories'
   );
   return response.data;
 }
