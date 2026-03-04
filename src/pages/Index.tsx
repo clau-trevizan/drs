@@ -433,18 +433,18 @@ const Index = () => {
                           {t('home.insights.tag')}
                         </span>
                         <span style={{ color: '#69C0AC', fontSize: '14px', fontWeight: 400, marginBottom: '1rem', display: 'block' }}>
-                          {new Date(insight.attributes?.publishedAt).toLocaleDateString(
+                          {new Date(insight.publishedAt).toLocaleDateString(
                             language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
                             { day: '2-digit', month: 'long', year: 'numeric' }
                           )}
                         </span>
                         <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
-                          {insight.attributes?.title}
+                          {insight.title}
                         </h3>
                         <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px] mb-4" style={{ color: '#69C0AC', fontWeight: 400 }}>
-                          {insight.attributes?.excerpt}
+                          {insight.description || insight.blocks?.[0]?.body?.substring(0, 120) || ''}
                         </p>
-                        <Link to={`/insights/${insight.attributes?.slug}`} className="drs-btn drs-btn-uppercase inline-flex w-fit mt-auto">
+                        <Link to={`/insights/${insight.slug}`} className="drs-btn drs-btn-uppercase inline-flex w-fit mt-auto">
                           <ArrowIcon className="w-4 h-3" />
                           {t('home.insights.readmore')}
                         </Link>
@@ -462,10 +462,10 @@ const Index = () => {
                 </div>
               </div>
               <div className="col-span-12 lg:col-span-3 hidden lg:flex justify-center h-full pb-4 lg:pb-[70px]">
-                {insights[insightsActiveSlide]?.attributes?.featuredImage?.data && (
+                {insights[insightsActiveSlide]?.cover?.url && (
                   <img
-                    src={getStrapiMedia(insights[insightsActiveSlide].attributes.featuredImage.data.attributes?.url)}
-                    alt={insights[insightsActiveSlide].attributes?.title}
+                    src={getStrapiMedia(insights[insightsActiveSlide].cover!.url)}
+                    alt={insights[insightsActiveSlide]?.title}
                     className="rounded-3xl self-end object-cover"
                     style={{ maxWidth: '90%', maxHeight: '400px' }}
                   />

@@ -25,26 +25,26 @@ export default function InsightPost() {
     );
   }
 
-  const attrs: any = post?.attributes || post || {};
-  const categories = (attrs.categories?.data || attrs.categories || []).map((c: any) => c?.attributes?.name || c?.name || '').filter(Boolean);
-  const featImg = attrs.featuredImage?.data || attrs.featuredImage;
-  const featuredImage = featImg ? getStrapiMedia(featImg?.attributes?.url || featImg?.url) : undefined;
+  // Strapi v5: data is flat (no .attributes wrapper)
+  const categoryName = post.category?.name || '';
+  const coverUrl = post.cover?.url;
+  const featuredImage = coverUrl ? getStrapiMedia(coverUrl) : undefined;
+  const authorName = post.author?.name || '';
+  const content = post.blocks?.map((b: any) => b.body || '').join('\n') || post.description || '';
 
-  // Similar insights: same categories
+  // Similar insights: same category
   const similarInsights = (allInsightsData?.data || [])
     .filter((i: any) => {
-      const iAttrs = i?.attributes || i || {};
-      const iCats = (iAttrs.categories?.data || iAttrs.categories || []).map((c: any) => c?.attributes?.name || c?.name || '');
-      return iAttrs.slug !== slug && iCats.some((c: string) => categories.includes(c));
+      return i.slug !== slug && i.category?.name === categoryName;
     })
     .slice(0, 2);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareText = encodeURIComponent(attrs.title);
+  const shareText = encodeURIComponent(post.title || '');
   const shareUrl = encodeURIComponent(currentUrl);
-  const categoryParams = categories.map(c => `cat=${encodeURIComponent(c)}`).join('&');
+  const categoryParams = categoryName ? `cat=${encodeURIComponent(categoryName)}` : '';
 
-  const formattedDate = new Date(attrs.publishedAt).toLocaleDateString(
+  const formattedDate = new Date(post.publishedAt).toLocaleDateString(
     language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
     { day: '2-digit', month: 'long', year: 'numeric' }
   );
@@ -57,14 +57,14 @@ export default function InsightPost() {
           <div className="politica-green-box rounded-[24px] lg:rounded-[40px]" style={{ backgroundColor: '#69C0AC', backgroundImage: 'url(/images/topo_pp.png)', backgroundPosition: 'top left', backgroundRepeat: 'no-repeat' }}>
             <div className="grid grid-cols-12">
               <div className="col-span-12 lg:col-start-2 lg:col-span-11">
-                <div className="flex gap-2 mb-4">
-                  {categories.map(cat => (
-                    <span key={cat} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{cat}</span>
-                  ))}
-                </div>
+                {categoryName && (
+                  <div className="flex gap-2 mb-4">
+                    <span style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{categoryName}</span>
+                  </div>
+                )}
                 <div className="d-flex gap-4 items-start">
                   <div className="col-60">
-                    <h1 style={{ color: '#000', fontSize: '35px', fontStyle: 'normal', fontWeight: 900, lineHeight: '40px' }}>{attrs.title}</h1>
+                    <h1 style={{ color: '#000', fontSize: '35px', fontStyle: 'normal', fontWeight: 900, lineHeight: '40px' }}>{post.title}</h1>
                   </div>
                   <div className="col-20 flex items-center gap-3">
                     <span style={{ color: '#000', fontSize: '14px', fontWeight: 400, width: '100%' }}>{t('insights.share')}</span>
@@ -81,7 +81,7 @@ export default function InsightPost() {
                 </div>
                 <div className="mt-4" style={{ color: '#000', fontSize: '16px', fontWeight: 400, lineHeight: '21px' }}>
                   <span>{formattedDate}</span>
-                  {attrs.author && <span> - {language === 'pt' ? 'por' : language === 'es' ? 'por' : 'by'} {attrs.author}</span>}
+                  {authorName && <span> - {language === 'pt' ? 'por' : language === 'es' ? 'por' : 'by'} {authorName}</span>}
                 </div>
               </div>
             </div>
@@ -95,9 +95,9 @@ export default function InsightPost() {
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
               {featuredImage && (
-                <img src={featuredImage} alt={attrs.title} className="w-full rounded-2xl mb-8" />
+                <img src={featuredImage} alt={post.title} className="w-full rounded-2xl mb-8" />
               )}
-              <div className="prose prose-lg max-w-none" style={{ color: '#000', fontSize: '18px', lineHeight: '1.6' }} dangerouslySetInnerHTML={{ __html: attrs.content }} />
+              <div className="prose prose-lg max-w-none" style={{ color: '#000', fontSize: '18px', lineHeight: '1.6' }} dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           </div>
         </div>
@@ -138,28 +138,28 @@ export default function InsightPost() {
                   </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {similarInsights.map((insight) => {
-                    const iAttrs = insight.attributes;
-                    const iCategories = iAttrs.categories?.data?.map(c => c.attributes.name) || [];
-                    const iImage = iAttrs.featuredImage?.data ? getStrapiMedia(iAttrs.featuredImage.data.attributes.url) : undefined;
+                  {similarInsights.map((insight: any) => {
+                    const iCategoryName = insight.category?.name || '';
+                    const iCoverUrl = insight.cover?.url;
+                    const iImage = iCoverUrl ? getStrapiMedia(iCoverUrl) : undefined;
                     return (
-                      <Link key={iAttrs.slug} to={`/insights/${iAttrs.slug}`} className="group block" style={{ marginBottom: '50px' }}>
+                      <Link key={insight.slug || insight.id} to={`/insights/${insight.slug}`} className="group block" style={{ marginBottom: '50px' }}>
                         <div className="aspect-video rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: '#e5e5e5' }}>
                           {iImage ? (
-                            <img src={iImage} alt={iAttrs.title} className="w-full h-full object-cover" />
+                            <img src={iImage} alt={insight.title} className="w-full h-full object-cover" />
                           ) : (
                             <div className="w-full h-full" style={{ background: 'linear-gradient(135deg, rgba(105,192,172,0.2), rgba(243,147,37,0.2))' }} />
                           )}
                         </div>
                         <p style={{ color: '#012025', fontSize: '16px', fontWeight: 400, lineHeight: '21px', marginBottom: '8px' }}>
-                          {new Date(iAttrs.publishedAt).toLocaleDateString(language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+                          {new Date(insight.publishedAt).toLocaleDateString(language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
                         </p>
-                        <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{iAttrs.title}</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {iCategories.map((category) => (
-                            <span key={category} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{category}</span>
-                          ))}
-                        </div>
+                        <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{insight.title}</h3>
+                        {iCategoryName && (
+                          <div className="flex flex-wrap gap-2">
+                            <span style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{iCategoryName}</span>
+                          </div>
+                        )}
                       </Link>
                     );
                   })}
