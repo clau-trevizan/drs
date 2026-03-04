@@ -1,4 +1,6 @@
 import { useMemo, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Layout } from '@/components/layout';
 import { ArrowIcon } from '@/components/ui/ArrowIcon';
@@ -59,21 +61,7 @@ export default function InsightPost() {
   const coverUrl = post.cover?.url;
   const featuredImage = coverUrl ? getStrapiMedia(coverUrl) : undefined;
   const authorName = post.author?.name || '';
-  const rawContent = post.blocks?.map((b: any) => b.body || '').join('\n') || post.description || '';
-  
-  // Convert plain text with \n to HTML, preserving inline HTML tags like <img>
-  const content = rawContent
-    .split('\n')
-    .map(line => {
-      const trimmed = line.trim();
-      if (!trimmed) return '<br>';
-      // If it's an HTML tag line, keep as-is
-      if (/^<\/?[a-z]/i.test(trimmed)) {
-        return trimmed;
-      }
-      return `<p>${trimmed}</p>`;
-    })
-    .join('');
+  const content = post.blocks?.map((b: any) => b.body || '').join('\n\n') || post.description || '';
 
   // Similar insights: same category, fallback to recent posts
   const otherPosts = (allInsightsData?.data || []).filter((i: any) => i.slug !== slug && i.slug);
@@ -137,7 +125,11 @@ export default function InsightPost() {
         <div className="drs-container">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-              <div className="prose prose-lg max-w-none" style={{ color: '#000', fontSize: '18px', lineHeight: '1.6' }} dangerouslySetInnerHTML={{ __html: content }} />
+              <div className="prose prose-lg max-w-none [&_img]:rounded-2xl [&_img]:my-6 [&_img]:w-full [&_figcaption]:text-sm [&_figcaption]:text-gray-500 [&_figcaption]:mt-2 [&_figcaption]:mb-6" style={{ color: '#000', fontSize: '18px', lineHeight: '1.8' }}>
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {content}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         </div>
