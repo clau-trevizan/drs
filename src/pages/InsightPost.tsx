@@ -123,9 +123,6 @@ export default function InsightPost() {
         <div className="drs-container">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-              {featuredImage && (
-                <img src={featuredImage} alt={post.title} className="w-full rounded-2xl mb-8" />
-              )}
               <div className="prose prose-lg max-w-none" style={{ color: '#000', fontSize: '18px', lineHeight: '1.6' }} dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           </div>
