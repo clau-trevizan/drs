@@ -150,8 +150,8 @@ const Index = () => {
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
               <div className="flex items-start justify-between mb-12">
                 <h2 style={{ color: '#000', fontSize: '40px', fontStyle: 'normal', fontWeight: 900, lineHeight: '45px' }}>
-                  Resultados que importam.<br/>
-                  Soluções que transformam.
+                  {t('home.stats.title.line1')}<br/>
+                  {t('home.stats.title.line2')}
                 </h2>
               </div>
               
@@ -160,11 +160,11 @@ const Index = () => {
                 {/* Card 1 */}
                 <div className="flex justify-center home-section2-card1">
                   <svg width="100%" height="100%" viewBox="0 0 330 336" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-                    <text className="titulos" x="34" y="77" fontSize="35" fontWeight="900" fill="#274B41">+500</text>
-                    <text className="titulos" x="34" y="111" fontSize="35" fontWeight="900" fill="#274B41">protocolos</text>
-                    <text className="titulos" x="34" y="145" fontSize="35" fontWeight="900" fill="#274B41">sob gestão</text>
-                    <text className="botao" x="34" y="189" fontSize="20" fontWeight="400" fill="#008C79">Atuação em diferentes fases</text>
-                    <text className="botao" x="34" y="214" fontSize="20" fontWeight="400" fill="#008C79">clínicas e terapias.</text>
+                  <text className="titulos" x="34" y="77" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card1.number')}</text>
+                    <text className="titulos" x="34" y="111" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card1.line1')}</text>
+                    <text className="titulos" x="34" y="145" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card1.line2')}</text>
+                    <text className="botao" x="34" y="189" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card1.desc1')}</text>
+                    <text className="botao" x="34" y="214" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card1.desc2')}</text>
                     <path d="M23.8594 0.5H249.622C261.393 0.500256 270.933 10.0575 270.933 21.8457V48.5039C270.933 60.3576 280.527 69.9715 292.367 69.9717H308.007C319.879 69.9718 329.503 79.6091 329.503 91.502V312.104C329.503 325.027 319.042 335.5 306.144 335.5H180.311C168.638 335.5 159.176 326.024 159.176 314.331V289.329H159.167C158.901 277.637 149.354 268.239 137.615 268.239H23.3896C10.7488 268.239 0.500132 257.975 0.5 245.312V23.8965C0.500217 10.9732 10.9583 0.5 23.8594 0.5Z" stroke="#274B41"/>
                   </svg>
                 </div>
@@ -172,12 +172,12 @@ const Index = () => {
                 {/* Card 2 */}
                 <div className="flex justify-center mt-0 lg:mt-[150px] home-section2-card2">
                   <svg width="100%" height="100%" viewBox="0 0 330 336" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-                    <text className="titulos" x="34" y="77" fontSize="35" fontWeight="900" fill="#274B41">+100</text>
-                    <text className="titulos" x="34" y="111" fontSize="35" fontWeight="900" fill="#274B41">clientes</text>
-                    <text className="titulos" x="34" y="145" fontSize="35" fontWeight="900" fill="#274B41">ativos</text>
-                    <text className="botao" x="34" y="189" fontSize="20" fontWeight="400" fill="#008C79">Biofarmacêuticas, CRO's,</text>
-                    <text className="botao" x="34" y="214" fontSize="20" fontWeight="400" fill="#008C79">Centros de Pesquisa,</text>
-                    <text className="botao" x="34" y="239" fontSize="20" fontWeight="400" fill="#008C79">Operadoras e Logística.</text>
+                    <text className="titulos" x="34" y="77" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card2.number')}</text>
+                    <text className="titulos" x="34" y="111" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card2.line1')}</text>
+                    <text className="titulos" x="34" y="145" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card2.line2')}</text>
+                    <text className="botao" x="34" y="189" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card2.desc1')}</text>
+                    <text className="botao" x="34" y="214" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card2.desc2')}</text>
+                    <text className="botao" x="34" y="239" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card2.desc3')}</text>
                     <path d="M23.8594 0.5H249.622C261.393 0.500256 270.933 10.0575 270.933 21.8457V48.5039C270.933 60.3576 280.527 69.9715 292.367 69.9717H308.007C319.879 69.9718 329.503 79.6091 329.503 91.502V312.104C329.503 325.027 319.042 335.5 306.144 335.5H180.311C168.638 335.5 159.176 326.024 159.176 314.331V289.329H159.167C158.901 277.637 149.354 268.239 137.615 268.239H23.3896C10.7488 268.239 0.500132 257.975 0.5 245.312V23.8965C0.500217 10.9732 10.9583 0.5 23.8594 0.5Z" stroke="#274B41"/>
                     <path d="M261.07 295.23H245.386C242.097 295.23 239.43 297.899 239.43 301.192V316.892C239.43 320.184 242.097 322.854 245.386 322.854H261.07C264.36 322.854 267.026 320.184 267.026 316.892V301.192C267.026 297.899 264.36 295.23 261.07 295.23Z" fill="#F19425"/>
                     <path d="M161.741 250H139.272C134.56 250 130.741 253.823 130.741 258.54V281.031C130.741 285.748 134.56 289.571 139.272 289.571H161.741C166.453 289.571 170.272 285.748 170.272 281.031V258.54C170.272 253.823 166.453 250 161.741 250Z" fill="#16493C"/>
@@ -187,13 +187,13 @@ const Index = () => {
                 {/* Card 3 */}
                 <div className="flex justify-center mt-0 lg:mt-[300px] home-section2-card3">
                   <svg width="100%" height="100%" viewBox="0 0 330 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-                    <text className="titulos" x="34" y="77" fontSize="35" fontWeight="900" fill="#274B41">+200.000</text>
-                    <text className="titulos" x="34" y="111" fontSize="35" fontWeight="900" fill="#274B41">pacientes</text>
-                    <text className="titulos" x="34" y="145" fontSize="35" fontWeight="900" fill="#274B41">atendidos</text>
-                    <text className="titulos" x="34" y="179" fontSize="35" fontWeight="900" fill="#274B41">por ano</text>
-                    <text className="botao" x="34" y="223" fontSize="20" fontWeight="400" fill="#008C79">Fazemos a diferença, seja</text>
-                    <text className="botao" x="34" y="248" fontSize="20" fontWeight="400" fill="#008C79">conectando a pesquisa clínica</text>
-                    <text className="botao" x="34" y="273" fontSize="20" fontWeight="400" fill="#008C79">ou viabilizando os tratamentos.</text>
+                    <text className="titulos" x="34" y="77" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card3.number')}</text>
+                    <text className="titulos" x="34" y="111" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card3.line1')}</text>
+                    <text className="titulos" x="34" y="145" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card3.line2')}</text>
+                    <text className="titulos" x="34" y="179" fontSize="35" fontWeight="900" fill="#274B41">{t('home.stats.card3.line3')}</text>
+                    <text className="botao" x="34" y="223" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card3.desc1')}</text>
+                    <text className="botao" x="34" y="248" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card3.desc2')}</text>
+                    <text className="botao" x="34" y="273" fontSize="20" fontWeight="400" fill="#008C79">{t('home.stats.card3.desc3')}</text>
                     <path d="M23.8594 0.5H249.622C261.393 0.500256 270.933 10.0575 270.933 21.8457V48.5039C270.933 60.3576 280.527 69.9715 292.367 69.9717H308.007C319.879 69.9718 329.503 79.6098 329.503 91.5029V366.603C329.503 379.526 319.042 390 306.144 390H180.311C168.638 390 159.176 380.524 159.176 368.831V343.829H159.167C158.902 332.137 149.354 322.738 137.615 322.738H23.3896C10.7488 322.738 0.500231 312.475 0.5 299.812V23.8965C0.500238 10.9732 10.9583 0.5 23.8594 0.5Z" stroke="#274B41"/>
                   </svg>
                 </div>
@@ -243,21 +243,21 @@ const Index = () => {
                 <SwiperSlide>
                   <div className="h-full flex flex-col p-4 lg:p-0">
                     <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
-                      DRS360: Visibilidade 24/7 em tempo real
-                    </h3>
-                    <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
-                      Plataforma proprietária com rastreabilidade e dashboards por estudo.
-                    </p>
+                       {t('home.drs360.slide1.title')}
+                     </h3>
+                     <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
+                       {t('home.drs360.slide1.description')}
+                     </p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="h-full flex flex-col p-4 lg:p-0">
                     <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
-                      Controle total da sua operação
-                    </h3>
-                    <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
-                      Gerencie todos os processos de forma integrada e eficiente.
-                    </p>
+                       {t('home.drs360.slide2.title')}
+                     </h3>
+                     <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px]" style={{ color: '#69C0AC', fontWeight: 400 }}>
+                       {t('home.drs360.slide2.description')}
+                     </p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -398,7 +398,7 @@ const Index = () => {
               marginBottom: '2rem'
             }}
           >
-            Planejamento, controle, rastreabilidade e decisões em tempo real - tudo em um só lugar
+            {t('home.drs360section.title')}
           </h2>
           <Link to="/drs-360">
             <img 
