@@ -22,6 +22,9 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Play } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useInsights } from '@/hooks/useStrapi';
+import { getStrapiMedia } from '@/services/strapi';
+
 
 
 const Index = () => {
@@ -29,7 +32,11 @@ const Index = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const insightsSwiperRef = useRef<SwiperType | null>(null);
+  const [insightsActiveSlide, setInsightsActiveSlide] = useState(0);
+  const { data: insightsData } = useInsights({ pageSize: 3 });
+  const insights = insightsData?.data || [];
 
   // Stop video when dialog closes
   const handleVideoDialogChange = (open: boolean) => {
@@ -402,6 +409,72 @@ const Index = () => {
           </Link>
         </div>
       </section>
+
+      {/* Insights Carousel Section */}
+      {insights.length > 0 && (
+        <section className="py-8 md:py-12 bg-background">
+          <div className="drs-container">
+            <div className="grid grid-cols-12 gap-8 items-center">
+              <div className="col-span-12 lg:col-start-3 lg:col-span-5 relative min-h-[470px] lg:min-h-[550px] flex flex-wrap justify-center items-center p-[4rem_1rem_4rem_2rem] lg:p-0 carousel-container-offset">
+                <div className="absolute inset-0 lg:hidden" style={{ backgroundImage: 'url(/images/fundo_mobile.svg)', backgroundPosition: 'top left', backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}></div>
+                <div className="absolute inset-0 hidden lg:block" style={{ backgroundImage: 'url(/images/fundo2.svg)', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div>
+                <Swiper
+                  modules={[Navigation]}
+                  onSwiper={(swiper) => { insightsSwiperRef.current = swiper; }}
+                  onSlideChange={(swiper) => setInsightsActiveSlide(swiper.activeIndex)}
+                  spaceBetween={24}
+                  slidesPerView={1}
+                  className="drs360-swiper h-full w-full mt-0 lg:mt-[-100px] relative z-10"
+                >
+                  {insights.map((insight, index) => (
+                    <SwiperSlide key={insight.id || index}>
+                      <div className="h-full flex flex-col p-4 lg:p-0">
+                        <span style={{ color: '#69C0AC', fontSize: '14px', fontWeight: 400, marginBottom: '0.5rem', display: 'block', textTransform: 'uppercase' }}>
+                          {t('home.insights.tag')}
+                        </span>
+                        <span style={{ color: '#69C0AC', fontSize: '14px', fontWeight: 400, marginBottom: '1rem', display: 'block' }}>
+                          {new Date(insight.attributes?.publishedAt).toLocaleDateString(
+                            language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
+                            { day: '2-digit', month: 'long', year: 'numeric' }
+                          )}
+                        </span>
+                        <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
+                          {insight.attributes?.title}
+                        </h3>
+                        <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px] mb-4" style={{ color: '#69C0AC', fontWeight: 400 }}>
+                          {insight.attributes?.excerpt}
+                        </p>
+                        <Link to={`/insights/${insight.attributes?.slug}`} className="drs-btn drs-btn-uppercase inline-flex w-fit mt-auto">
+                          <ArrowIcon className="w-4 h-3" />
+                          {t('home.insights.readmore')}
+                        </Link>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                <div className="flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0">
+                  <button onClick={() => insightsSwiperRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: insightsActiveSlide === 0 ? 0.6 : 1 }}>
+                    <img src={arrowSlide} alt="Previous" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" />
+                  </button>
+                  <button onClick={() => insightsSwiperRef.current?.slideNext()} className="transition-opacity" style={{ opacity: insightsActiveSlide >= insights.length - 1 ? 0.6 : 1 }}>
+                    <img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" />
+                  </button>
+                </div>
+              </div>
+              <div className="col-span-12 lg:col-span-3 hidden lg:flex justify-center h-full pb-4 lg:pb-[70px]">
+                {insights[insightsActiveSlide]?.attributes?.featuredImage?.data && (
+                  <img
+                    src={getStrapiMedia(insights[insightsActiveSlide].attributes.featuredImage.data.attributes?.url)}
+                    alt={insights[insightsActiveSlide].attributes?.title}
+                    className="rounded-3xl self-end object-cover"
+                    style={{ maxWidth: '90%', maxHeight: '400px' }}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Nossa Rede Mundial Section with Map */}
       <DRS360Section 
