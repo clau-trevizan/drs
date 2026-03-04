@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Layout } from '@/components/layout';
 import { ArrowIcon } from '@/components/ui/ArrowIcon';
@@ -14,27 +14,35 @@ export default function InsightPost() {
   const navigate = useNavigate();
   const { t, language } = useTranslation();
   const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
-  const prevLocaleRef = useRef(strapiLocale);
-  
-  // Always fetch PT-BR version first to get localizations, then resolve correct slug
-  const { data: basePtPost } = useInsight(slug || '', 'pt-BR');
-  
-  // If locale changed, try to find the correct slug from localizations
-  const resolvedSlug = useMemo(() => {
-    if (!basePtPost || strapiLocale === 'pt-BR') return slug || '';
-    const localization = basePtPost.localizations?.find((l: any) => l.locale === strapiLocale);
-    return localization?.slug || slug || '';
-  }, [basePtPost, strapiLocale, slug]);
 
-  // Redirect if the slug differs for this locale
+  // Fetch all articles in current locale (includes localizations array)
+  const { data: allInsightsData } = useInsights({ pageSize: 50, locale: strapiLocale });
+
+  // Resolve the correct slug for the current locale
+  const resolvedSlug = useMemo(() => {
+    if (!slug || !allInsightsData?.data) return slug || '';
+    
+    // Check if any article in current locale already has this slug
+    const directMatch = allInsightsData.data.find((a: any) => a.slug === slug);
+    if (directMatch) return slug;
+
+    // If not, search localizations for this slug and return the current-locale article's slug
+    for (const article of allInsightsData.data) {
+      const locMatch = article.localizations?.find((l: any) => l.slug === slug);
+      if (locMatch) return article.slug; // article.slug is already in current locale
+    }
+    
+    return slug;
+  }, [slug, allInsightsData, strapiLocale]);
+
+  // Redirect if the resolved slug differs from current URL slug
   useEffect(() => {
-    if (resolvedSlug && resolvedSlug !== slug && basePtPost) {
+    if (resolvedSlug && resolvedSlug !== slug && allInsightsData?.data) {
       navigate(`/insights/${resolvedSlug}${window.location.search}`, { replace: true });
     }
-  }, [resolvedSlug, slug, navigate, basePtPost]);
+  }, [resolvedSlug, slug, navigate, allInsightsData]);
 
   const { data: post, isLoading } = useInsight(resolvedSlug, strapiLocale);
-  const { data: allInsightsData } = useInsights({ pageSize: 50, locale: strapiLocale });
 
   if (isLoading || !post) {
     return (
