@@ -43,7 +43,7 @@ export default function Insights() {
     search: search.trim() || undefined,
   });
 
-  const categories = categoriesData?.map(c => c.attributes.name) || [];
+  const categories = (categoriesData || []).map((c: any) => c?.attributes?.name || c?.name || '').filter(Boolean);
 
   useEffect(() => {
     const catParams = searchParams.getAll('cat');
@@ -128,10 +128,11 @@ export default function Insights() {
                 <p className="text-center py-8">{t('insights.search')}...</p>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {insights.map((insight) => {
-                    const attrs = insight.attributes;
-                    const insightCategories = attrs.categories?.data?.map(c => c.attributes.name) || [];
-                    const image = attrs.featuredImage?.data ? getStrapiMedia(attrs.featuredImage.data.attributes.url) : undefined;
+                  {insights.map((insight: any) => {
+                    const attrs = insight?.attributes || insight || {};
+                    const insightCategories = (attrs.categories?.data || attrs.categories || []).map((c: any) => c?.attributes?.name || c?.name || '').filter(Boolean);
+                    const featImg = attrs.featuredImage?.data || attrs.featuredImage;
+                    const image = featImg ? getStrapiMedia(featImg?.attributes?.url || featImg?.url) : undefined;
                     const date = new Date(attrs.publishedAt).toLocaleDateString(
                       language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
                       { day: '2-digit', month: 'long', year: 'numeric' }
