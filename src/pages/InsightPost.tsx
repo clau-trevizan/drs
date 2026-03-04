@@ -25,13 +25,18 @@ export default function InsightPost() {
     );
   }
 
-  const attrs = post.attributes;
-  const categories = attrs.categories?.data?.map(c => c.attributes.name) || [];
-  const featuredImage = attrs.featuredImage?.data ? getStrapiMedia(attrs.featuredImage.data.attributes.url) : undefined;
+  const attrs: any = post?.attributes || post || {};
+  const categories = (attrs.categories?.data || attrs.categories || []).map((c: any) => c?.attributes?.name || c?.name || '').filter(Boolean);
+  const featImg = attrs.featuredImage?.data || attrs.featuredImage;
+  const featuredImage = featImg ? getStrapiMedia(featImg?.attributes?.url || featImg?.url) : undefined;
 
   // Similar insights: same categories
   const similarInsights = (allInsightsData?.data || [])
-    .filter(i => i.attributes.slug !== slug && i.attributes.categories?.data?.some(c => categories.includes(c.attributes.name)))
+    .filter((i: any) => {
+      const iAttrs = i?.attributes || i || {};
+      const iCats = (iAttrs.categories?.data || iAttrs.categories || []).map((c: any) => c?.attributes?.name || c?.name || '');
+      return iAttrs.slug !== slug && iCats.some((c: string) => categories.includes(c));
+    })
     .slice(0, 2);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
