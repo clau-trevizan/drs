@@ -43,7 +43,7 @@ export default function Insights() {
     search: search.trim() || undefined,
   });
 
-  const categories = (categoriesData || []).map((c: any) => c?.attributes?.name || c?.name || '').filter(Boolean);
+  const categories = (categoriesData || []).map((c: any) => c?.name || '').filter(Boolean);
 
   useEffect(() => {
     const catParams = searchParams.getAll('cat');
@@ -129,30 +129,29 @@ export default function Insights() {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {insights.map((insight: any) => {
-                    const attrs = insight?.attributes || insight || {};
-                    const insightCategories = (attrs.categories?.data || attrs.categories || []).map((c: any) => c?.attributes?.name || c?.name || '').filter(Boolean);
-                    const featImg = attrs.featuredImage?.data || attrs.featuredImage;
-                    const image = featImg ? getStrapiMedia(featImg?.attributes?.url || featImg?.url) : undefined;
-                    const date = new Date(attrs.publishedAt).toLocaleDateString(
+                    const categoryName = insight.category?.name || '';
+                    const coverUrl = insight.cover?.url;
+                    const image = coverUrl ? getStrapiMedia(coverUrl) : undefined;
+                    const date = new Date(insight.publishedAt).toLocaleDateString(
                       language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
                       { day: '2-digit', month: 'long', year: 'numeric' }
                     );
                     return (
-                      <Link key={attrs.slug} to={`/insights/${attrs.slug}`} className="group block" style={{ marginBottom: '50px' }}>
+                      <Link key={insight.slug || insight.id} to={`/insights/${insight.slug}`} className="group block" style={{ marginBottom: '50px' }}>
                         <div className="aspect-video rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: '#e5e5e5' }}>
                           {image ? (
-                            <img src={image} alt={attrs.title} className="w-full h-full object-cover" />
+                            <img src={image} alt={insight.title} className="w-full h-full object-cover" />
                           ) : (
                             <div className="w-full h-full bg-gradient-to-br" style={{ background: 'linear-gradient(135deg, rgba(105,192,172,0.2), rgba(243,147,37,0.2))' }} />
                           )}
                         </div>
                         <p style={{ color: '#012025', fontSize: '16px', fontWeight: 400, lineHeight: '21px', marginBottom: '8px' }}>{date}</p>
-                        <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{attrs.title}</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {insightCategories.map((category) => (
-                            <span key={category} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{category}</span>
-                          ))}
-                        </div>
+                        <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{insight.title}</h3>
+                        {categoryName && (
+                          <div className="flex flex-wrap gap-2">
+                            <span style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{categoryName}</span>
+                          </div>
+                        )}
                       </Link>
                     );
                   })}

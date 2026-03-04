@@ -128,13 +128,13 @@ export async function getInsights(params?: {
   const filters: Record<string, unknown> = {};
   
   if (params?.category) {
-    filters.categories = { slug: { $eq: params.category } };
+    filters.category = { slug: { $eq: params.category } };
   }
   
   if (params?.search) {
     filters.$or = [
       { title: { $containsi: params.search } },
-      { excerpt: { $containsi: params.search } },
+      { description: { $containsi: params.search } },
     ];
   }
   
@@ -148,35 +148,20 @@ export async function getInsights(params?: {
     },
   });
   
-  const result = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
-  console.log('[Strapi] articles response:', JSON.stringify(result).substring(0, 1000));
-  return result;
+  return fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
 }
 
 export async function getInsight(slug: string): Promise<Insight> {
-  // Try fetching by slug filter first
   const query = buildQuery({
     filters: { slug: { $eq: slug } },
     populate: '*',
   });
   const response = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
-  console.log('[Strapi] getInsight response for slug:', slug, JSON.stringify(response).substring(0, 500));
   
   if (response.data && response.data.length > 0) {
     return response.data[0];
   }
   
-  // Fallback: try without slug filter and match manually
-  const allQuery = buildQuery({ populate: '*' });
-  const allResponse = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${allQuery}`);
-  console.log('[Strapi] all articles:', JSON.stringify(allResponse).substring(0, 1000));
-  
-  const match = allResponse.data?.find((item: any) => {
-    const attrs = item?.attributes || item || {};
-    return attrs.slug === slug;
-  });
-  
-  if (match) return match;
   throw new Error(`Insight not found: ${slug}`);
 }
 
