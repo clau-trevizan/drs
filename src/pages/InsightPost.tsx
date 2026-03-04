@@ -125,8 +125,22 @@ export default function InsightPost() {
         <div className="drs-container">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-              <div className="prose prose-lg max-w-none [&_img]:rounded-2xl [&_img]:my-6 [&_img]:w-full [&_figcaption]:text-sm [&_figcaption]:text-gray-500 [&_figcaption]:mt-2 [&_figcaption]:mb-6" style={{ color: '#000', fontSize: '18px', lineHeight: '1.8' }}>
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              <div className="prose prose-lg max-w-none [&_p]:mb-6 [&_img]:rounded-2xl [&_img]:my-8 [&_img]:w-full [&_img]:block [&_figcaption]:text-sm [&_figcaption]:text-gray-500 [&_figcaption]:mt-2 [&_figcaption]:mb-8" style={{ color: '#000', fontSize: '18px', lineHeight: '1.8' }}>
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  components={{
+                    p: ({ children, ...props }) => {
+                      // If paragraph contains an img or figcaption, render as div to avoid nesting block elements in <p>
+                      const hasBlock = Array.isArray(children)
+                        ? children.some((child: any) => child?.type === 'img' || child?.type === 'figcaption')
+                        : (children as any)?.type === 'img' || (children as any)?.type === 'figcaption';
+                      if (hasBlock) {
+                        return <div {...props}>{children}</div>;
+                      }
+                      return <p {...props}>{children}</p>;
+                    }
+                  }}
+                >
                   {content}
                 </ReactMarkdown>
               </div>
