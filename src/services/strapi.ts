@@ -1,4 +1,5 @@
 // Strapi API Service
+import qs from 'qs';
 import type {
   StrapiResponse,
   HomePage,
@@ -52,19 +53,8 @@ async function fetchAPI<T>(
 
 // Helper to build query params
 function buildQuery(params: Record<string, unknown>): string {
-  const query = new URLSearchParams();
-  
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined && value !== null) {
-      if (typeof value === 'object') {
-        query.append(key, JSON.stringify(value));
-      } else {
-        query.append(key, String(value));
-      }
-    }
-  });
-  
-  return query.toString() ? `?${query.toString()}` : '';
+  const queryString = qs.stringify(params, { encodeValuesOnly: true });
+  return queryString ? `?${queryString}` : '';
 }
 
 // Helper to get full image URL
