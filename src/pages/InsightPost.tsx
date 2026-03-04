@@ -32,12 +32,12 @@ export default function InsightPost() {
   const authorName = post.author?.name || '';
   const content = post.blocks?.map((b: any) => b.body || '').join('\n') || post.description || '';
 
-  // Similar insights: same category
-  const similarInsights = (allInsightsData?.data || [])
-    .filter((i: any) => {
-      return i.slug !== slug && i.category?.name === categoryName;
-    })
-    .slice(0, 2);
+  // Similar insights: same category, fallback to recent posts
+  const otherPosts = (allInsightsData?.data || []).filter((i: any) => i.slug !== slug && i.slug);
+  const sameCategoryPosts = categoryName
+    ? otherPosts.filter((i: any) => i.category?.name === categoryName)
+    : [];
+  const similarInsights = (sameCategoryPosts.length > 0 ? sameCategoryPosts : otherPosts).slice(0, 2);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = encodeURIComponent(post.title || '');
