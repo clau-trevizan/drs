@@ -36,14 +36,19 @@ export default function Insights() {
   const { t, language } = useTranslation();
 
   const { data: categoriesData } = useInsightCategories();
+  const categorySlugsMap = (categoriesData || []).reduce((acc: Record<string, string>, c: any) => {
+    if (c?.name && c?.slug) acc[c.name] = c.slug;
+    return acc;
+  }, {} as Record<string, string>);
+
   const { data: insightsData, isLoading } = useInsights({
     page: currentPage,
     pageSize: PAGE_SIZE,
-    category: selectedCategories.length === 1 ? selectedCategories[0] : undefined,
+    category: selectedCategories.length > 0 ? categorySlugsMap[selectedCategories[0]] : undefined,
     search: search.trim() || undefined,
   });
 
-  const categories = (categoriesData || []).map((c: any) => c?.name || '').filter(Boolean);
+  const categories = Object.keys(categorySlugsMap);
 
   useEffect(() => {
     const catParams = searchParams.getAll('cat');
@@ -52,7 +57,11 @@ export default function Insights() {
     }
   }, [searchParams, categoriesData]);
 
-  const insights = insightsData?.data || [];
+  const allInsights = insightsData?.data || [];
+  // Client-side filter for multiple categories
+  const insights = selectedCategories.length > 1
+    ? allInsights.filter((i: any) => selectedCategories.includes(i.category?.name || ''))
+    : allInsights;
   const totalPages = Math.max(1, Math.ceil((insightsData?.meta?.pagination?.total || 0) / PAGE_SIZE));
 
   const handleCategoryToggle = (cat: string) => {
