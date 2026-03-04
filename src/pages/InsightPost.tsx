@@ -125,7 +125,7 @@ export default function InsightPost() {
         <div className="drs-container">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-              <div className="prose prose-lg max-w-none [&_p]:mb-6 [&_img]:!rounded-none [&_img]:!mb-[5px] [&_img]:mt-8 [&_img]:w-full [&_img]:block [&_figcaption]:text-sm [&_figcaption]:text-[#15AF97] [&_figcaption]:mt-0 [&_figcaption]:mb-8" style={{ color: '#000', fontSize: '18px', lineHeight: '1.8' }}>
+              <div className="prose prose-lg max-w-none [&_p]:mb-6 [&_img]:!rounded-none [&_img]:!mb-[5px] [&_img]:mt-8 [&_img]:w-full [&_img]:block [&_figcaption]:text-base [&_figcaption]:text-[#15AF97] [&_figcaption]:mt-0 [&_figcaption]:mb-8" style={{ color: '#000', fontSize: '18px', lineHeight: '1.8' }}>
                 <ReactMarkdown
                   rehypePlugins={[rehypeRaw]}
                   components={{
