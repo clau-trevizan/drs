@@ -1,34 +1,11 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '@/components/layout';
 import { Link, useSearchParams } from 'react-router-dom';
 import imgInsights from '@/assets/img-insights.jpg';
 import iconPageArrow from '@/assets/icon-page-arrow.svg';
 import { useTranslation } from '@/hooks/useTranslation';
-
-const categories = ['Tecnologia', 'Logística', 'Transporte', 'Entrevistas'];
-
-const allInsights = [
-  { title: 'Sai Pátria, entra Vinci: após rearranjo societário, DRS avança no exterior', date: '08 outubro, 2025', slug: 'sai-patria-entra-vinci', categories: ['Logística', 'Tecnologia'] },
-  { title: 'Mobilidade inteligente no setor logístico', date: '7 março, 2025', slug: 'mobilidade-inteligente', categories: ['Transporte'] },
-  { title: 'Como a Inteligência Artificial está transformando a logística moderna', date: '17 junho, 2025', slug: 'ia-logistica', categories: ['Logística', 'Tecnologia'] },
-  { title: 'Inovações em cold chain para o setor farmacêutico', date: '22 maio, 2025', slug: 'inovacoes-cold-chain', categories: ['Tecnologia', 'Logística'] },
-  { title: 'Entrevista exclusiva com o CEO do Grupo DRS', date: '15 abril, 2025', slug: 'entrevista-ceo', categories: ['Entrevistas'] },
-  { title: 'O futuro do transporte refrigerado no Brasil', date: '03 abril, 2025', slug: 'futuro-transporte-refrigerado', categories: ['Transporte', 'Tecnologia'] },
-  { title: 'Sustentabilidade na cadeia de suprimentos de saúde', date: '28 março, 2025', slug: 'sustentabilidade-cadeia', categories: ['Logística'] },
-  { title: 'Como garantir a integridade de amostras biológicas no transporte', date: '20 fevereiro, 2025', slug: 'integridade-amostras', categories: ['Logística', 'Tecnologia'] },
-  { title: 'O papel da tecnologia na pesquisa clínica', date: '14 fevereiro, 2025', slug: 'tecnologia-pesquisa-clinica', categories: ['Tecnologia', 'Entrevistas'] },
-  { title: 'Novas regulamentações para transporte de medicamentos', date: '05 janeiro, 2025', slug: 'regulamentacoes-transporte', categories: ['Transporte', 'Logística'] },
-  { title: 'Tendências de logística para 2025', date: '28 dezembro, 2024', slug: 'tendencias-logistica-2025', categories: ['Logística', 'Tecnologia'] },
-  { title: 'DRS Group expande operações na Europa', date: '15 dezembro, 2024', slug: 'drs-expande-europa', categories: ['Entrevistas'] },
-  { title: 'Data loggers: tecnologia essencial para a cadeia fria', date: '10 novembro, 2024', slug: 'data-loggers-essencial', categories: ['Tecnologia'] },
-  { title: 'Entrevista: o impacto da IA na logística de saúde', date: '01 novembro, 2024', slug: 'entrevista-ia-logistica', categories: ['Entrevistas', 'Tecnologia'] },
-  { title: 'Desafios do transporte de vacinas no Brasil', date: '20 outubro, 2024', slug: 'desafios-transporte-vacinas', categories: ['Transporte', 'Logística'] },
-  { title: 'Embalagens térmicas sustentáveis: o caminho para o futuro', date: '12 outubro, 2024', slug: 'embalagens-sustentaveis', categories: ['Tecnologia', 'Logística'] },
-  { title: 'Como o DRS 360 revoluciona a gestão de operações', date: '05 setembro, 2024', slug: 'drs360-revoluciona', categories: ['Tecnologia'] },
-  { title: 'Parceria estratégica para pesquisa clínica global', date: '25 agosto, 2024', slug: 'parceria-pesquisa-global', categories: ['Entrevistas', 'Logística'] },
-];
-
-const PAGE_SIZE = 6;
+import { useInsights, useInsightCategories } from '@/hooks/useStrapi';
+import { getStrapiMedia } from '@/services/strapi';
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
@@ -49,34 +26,34 @@ const SearchIcon = () => (
   </svg>
 );
 
+const PAGE_SIZE = 6;
+
 export default function Insights() {
   const [searchParams] = useSearchParams();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+
+  const { data: categoriesData } = useInsightCategories();
+  const { data: insightsData, isLoading } = useInsights({
+    page: currentPage,
+    pageSize: PAGE_SIZE,
+    category: selectedCategories.length === 1 ? selectedCategories[0] : undefined,
+    search: search.trim() || undefined,
+  });
+
+  const categories = categoriesData?.map(c => c.attributes.name) || [];
 
   useEffect(() => {
     const catParams = searchParams.getAll('cat');
     if (catParams.length > 0) {
       setSelectedCategories(catParams.filter(c => categories.includes(c)));
     }
-  }, [searchParams]);
+  }, [searchParams, categoriesData]);
 
-  const filteredInsights = useMemo(() => {
-    let results = allInsights;
-    if (selectedCategories.length > 0) {
-      results = results.filter(insight => insight.categories.some(cat => selectedCategories.includes(cat)));
-    }
-    if (search.trim()) {
-      const searchLower = search.toLowerCase();
-      results = results.filter(insight => insight.title.toLowerCase().includes(searchLower));
-    }
-    return results;
-  }, [selectedCategories, search]);
-
-  const totalPages = Math.max(1, Math.ceil(filteredInsights.length / PAGE_SIZE));
-  const paginatedInsights = filteredInsights.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+  const insights = insightsData?.data || [];
+  const totalPages = Math.max(1, Math.ceil((insightsData?.meta?.pagination?.total || 0) / PAGE_SIZE));
 
   const handleCategoryToggle = (cat: string) => {
     setCurrentPage(1);
@@ -125,11 +102,11 @@ export default function Insights() {
                   value={search} 
                   onChange={(e) => handleSearchChange(e.target.value)}
                   className="w-full outline-none focus:ring-0"
-                  style={{ borderRadius: '8px', border: '1px solid #274B41', padding: '10px 12px 10px 36px', color: '#15AF97', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal' }}
+                  style={{ borderRadius: '8px', border: '1px solid #274B41', padding: '10px 12px 10px 36px', color: '#15AF97', fontSize: '16px', fontWeight: 400 }}
                 />
               </div>
               <div>
-                <h3 style={{ color: '#000', fontSize: '20px', fontStyle: 'normal', fontWeight: 400, lineHeight: '34px' }}>
+                <h3 style={{ color: '#000', fontSize: '20px', fontWeight: 400, lineHeight: '34px' }}>
                   {t('insights.categories')}
                 </h3>
                 <div className="space-y-2 mt-2">
@@ -138,7 +115,7 @@ export default function Insights() {
                       <span className="w-[18px] h-[13px] flex items-center justify-center flex-shrink-0">
                         {selectedCategories.includes(cat) && <CheckIcon />}
                       </span>
-                      <span style={{ color: '#274B41', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px' }}>{cat}</span>
+                      <span style={{ color: '#274B41', fontSize: '16px', fontWeight: 400, lineHeight: '24px' }}>{cat}</span>
                     </label>
                   ))}
                 </div>
@@ -147,22 +124,39 @@ export default function Insights() {
 
             {/* Grid */}
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {paginatedInsights.map((insight) => (
-                  <Link key={insight.slug} to={`/insights/${insight.slug}`} className="group block" style={{ marginBottom: '50px' }}>
-                    <div className="aspect-video rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: '#e5e5e5' }}>
-                      <div className="w-full h-full bg-gradient-to-br" style={{ background: 'linear-gradient(135deg, rgba(105,192,172,0.2), rgba(243,147,37,0.2))' }} />
-                    </div>
-                    <p style={{ color: '#012025', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '21px', marginBottom: '8px' }}>{insight.date}</p>
-                    <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontStyle: 'normal', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{insight.title}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {insight.categories.map((category) => (
-                        <span key={category} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{category}</span>
-                      ))}
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              {isLoading ? (
+                <p className="text-center py-8">{t('insights.search')}...</p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {insights.map((insight) => {
+                    const attrs = insight.attributes;
+                    const insightCategories = attrs.categories?.data?.map(c => c.attributes.name) || [];
+                    const image = attrs.featuredImage?.data ? getStrapiMedia(attrs.featuredImage.data.attributes.url) : undefined;
+                    const date = new Date(attrs.publishedAt).toLocaleDateString(
+                      language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
+                      { day: '2-digit', month: 'long', year: 'numeric' }
+                    );
+                    return (
+                      <Link key={attrs.slug} to={`/insights/${attrs.slug}`} className="group block" style={{ marginBottom: '50px' }}>
+                        <div className="aspect-video rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: '#e5e5e5' }}>
+                          {image ? (
+                            <img src={image} alt={attrs.title} className="w-full h-full object-cover" />
+                          ) : (
+                            <div className="w-full h-full bg-gradient-to-br" style={{ background: 'linear-gradient(135deg, rgba(105,192,172,0.2), rgba(243,147,37,0.2))' }} />
+                          )}
+                        </div>
+                        <p style={{ color: '#012025', fontSize: '16px', fontWeight: 400, lineHeight: '21px', marginBottom: '8px' }}>{date}</p>
+                        <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{attrs.title}</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {insightCategories.map((category) => (
+                            <span key={category} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{category}</span>
+                          ))}
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Pagination */}
               {totalPages > 1 && (
@@ -170,7 +164,7 @@ export default function Insights() {
                   <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="transition-opacity" style={{ opacity: currentPage === 1 ? 0.3 : 1, transform: 'rotate(180deg)' }}>
                     <img src={iconPageArrow} alt="" className="h-[50px] w-auto" />
                   </button>
-                  <span style={{ color: '#012025', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '21px' }}>{currentPage} / {totalPages}</span>
+                  <span style={{ color: '#012025', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '21px' }}>{currentPage} / {totalPages}</span>
                   <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="transition-opacity" style={{ opacity: currentPage === totalPages ? 0.3 : 1 }}>
                     <img src={iconPageArrow} alt="" className="h-[50px] w-auto" />
                   </button>
