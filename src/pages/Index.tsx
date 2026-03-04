@@ -35,7 +35,8 @@ const Index = () => {
   const { t, language } = useTranslation();
   const insightsSwiperRef = useRef<SwiperType | null>(null);
   const [insightsActiveSlide, setInsightsActiveSlide] = useState(0);
-  const { data: insightsData } = useInsights({ pageSize: 3 });
+  const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
+  const { data: insightsData } = useInsights({ pageSize: 3, locale: strapiLocale });
   const insights = insightsData?.data || [];
 
   // Stop video when dialog closes
