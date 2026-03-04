@@ -140,7 +140,7 @@ export async function getInsights(params?: {
   
   const query = buildQuery({
     filters,
-    populate: ['featuredImage', 'categories'],
+    populate: '*',
     sort: ['publishedAt:desc'],
     pagination: {
       page: params?.page || 1,
@@ -148,13 +148,15 @@ export async function getInsights(params?: {
     },
   });
   
-  return fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
+  const result = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
+  console.log('[Strapi] articles response:', JSON.stringify(result).substring(0, 1000));
+  return result;
 }
 
 export async function getInsight(slug: string): Promise<Insight> {
   const query = buildQuery({
     filters: { slug: { $eq: slug } },
-    populate: ['featuredImage', 'categories'],
+    populate: '*',
   });
   const response = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
   return response.data[0];
