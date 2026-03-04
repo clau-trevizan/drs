@@ -1428,9 +1428,9 @@ export const translations: Translations = {
     'home.stats.card3.line1': 'pacientes',
     'home.stats.card3.line2': 'atendidos',
     'home.stats.card3.line3': 'por año',
-    'home.stats.card3.desc1': 'Hacemos la diferencia,',
-    'home.stats.card3.desc2': 'conectando la investigación clínica',
-    'home.stats.card3.desc3': 'o haciendo posibles los tratamientos.',
+    'home.stats.card3.desc1': 'Hacemos la diferencia, conectando ',
+    'home.stats.card3.desc2': 'la investigación clínica o haciendo ',
+    'home.stats.card3.desc3': 'posibles los tratamientos.',
 
     // Home - DRS 360 Carousel
     'home.drs360.slide1.title': 'DRS360: Visibilidad 24/7 en tiempo real',
