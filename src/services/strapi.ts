@@ -13,8 +13,8 @@ import type {
 } from '@/types/strapi';
 
 // Strapi API Configuration
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
-const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_TOKEN || '';
+const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'https://strapi-backend-riol.onrender.com';
+const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_TOKEN || '05f0085882aae4bfb02dfc3c6c6e8f568c28c4fd25ef80b3684ed7c6205ddb3936dc380dbbe8df643b1a4acd0e68154b9aed1c1ef4e2c8b5df0fa6f656ad80e3d68666f2952131e55e247bb8e9b9357950cfdeaef7061a4ab556b90453366ff733bf51495cee7d670a43b0563326acbf7e25d8651a3a3551296123e16cfd98e2';
 
 // Base fetch function
 async function fetchAPI<T>(
