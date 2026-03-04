@@ -41,11 +41,14 @@ export default function Insights() {
     return acc;
   }, {} as Record<string, string>);
 
+  const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
+
   const { data: insightsData, isLoading } = useInsights({
     page: currentPage,
     pageSize: PAGE_SIZE,
     category: selectedCategories.length > 0 ? categorySlugsMap[selectedCategories[0]] : undefined,
     search: search.trim() || undefined,
+    locale: strapiLocale,
   });
 
   const categories = Object.keys(categorySlugsMap);
