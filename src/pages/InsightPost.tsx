@@ -1,4 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { useRef, useMemo, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Layout } from '@/components/layout';
 import { ArrowIcon } from '@/components/ui/ArrowIcon';
 import iconX from '@/assets/icon-x.svg';
@@ -10,10 +11,29 @@ import { getStrapiMedia } from '@/services/strapi';
 
 export default function InsightPost() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const { t, language } = useTranslation();
   const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
+  const prevLocaleRef = useRef(strapiLocale);
   
-  const { data: post, isLoading } = useInsight(slug || '', strapiLocale);
+  // Always fetch PT-BR version first to get localizations, then resolve correct slug
+  const { data: basePtPost } = useInsight(slug || '', 'pt-BR');
+  
+  // If locale changed, try to find the correct slug from localizations
+  const resolvedSlug = useMemo(() => {
+    if (!basePtPost || strapiLocale === 'pt-BR') return slug || '';
+    const localization = basePtPost.localizations?.find((l: any) => l.locale === strapiLocale);
+    return localization?.slug || slug || '';
+  }, [basePtPost, strapiLocale, slug]);
+
+  // Redirect if the slug differs for this locale
+  useEffect(() => {
+    if (resolvedSlug && resolvedSlug !== slug && basePtPost) {
+      navigate(`/insights/${resolvedSlug}${window.location.search}`, { replace: true });
+    }
+  }, [resolvedSlug, slug, navigate, basePtPost]);
+
+  const { data: post, isLoading } = useInsight(resolvedSlug, strapiLocale);
   const { data: allInsightsData } = useInsights({ pageSize: 50, locale: strapiLocale });
 
   if (isLoading || !post) {
