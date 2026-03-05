@@ -124,14 +124,7 @@ export default function InsightPost() {
       <section className="politica-section2 bg-white post-content">
         <div className="drs-container">
           <div className="grid grid-cols-12">
-<<<<<<< HEAD
             <div className="col-span-12 lg:col-start-3 lg:col-span-8">
-              {featuredImage && (
-                <img src={featuredImage} alt={post.title} className="w-full rounded-2xl mb-8" />
-              )}
-              <div className="prose prose-lg max-w-none" style={{ color: '#000', fontSize: '18px', lineHeight: '1.6' }} dangerouslySetInnerHTML={{ __html: content }} />
-=======
-            <div className="col-span-12 lg:col-start-2 lg:col-span-10">
               <div className="prose prose-lg max-w-none [&_p]:mb-6 [&_img]:!rounded-none [&_img]:!mb-[5px] [&_img]:mt-8 [&_img]:w-full [&_img]:block [&_figcaption]:text-base [&_figcaption]:text-[#15AF97] [&_figcaption]:mt-0 [&_figcaption]:mb-8" style={{ color: '#000', fontSize: '18px', lineHeight: '1.8' }}>
                 <ReactMarkdown
                   rehypePlugins={[rehypeRaw]}
@@ -151,7 +144,6 @@ export default function InsightPost() {
                   {content}
                 </ReactMarkdown>
               </div>
->>>>>>> dfb062dd971dc71047ab9a4576d9bd7ad8c1cdba
             </div>
           </div>
         </div>
