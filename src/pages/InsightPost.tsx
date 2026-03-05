@@ -21,7 +21,7 @@ export default function InsightPost() {
   // Resolve the correct slug for the current locale
   const resolvedSlug = useMemo(() => {
     if (!slug || !allInsightsData?.data) return slug || '';
-    
+
     // Check if any article in current locale already has this slug
     const directMatch = allInsightsData.data.find((a: any) => a.slug === slug);
     if (directMatch) return slug;
@@ -31,7 +31,7 @@ export default function InsightPost() {
       const locMatch = article.localizations?.find((l: any) => l.slug === slug);
       if (locMatch) return article.slug; // article.slug is already in current locale
     }
-    
+
     return slug;
   }, [slug, allInsightsData, strapiLocale]);
 
@@ -122,7 +122,7 @@ export default function InsightPost() {
       <section className="politica-section2 bg-white">
         <div className="drs-container">
           <div className="grid grid-cols-12">
-            <div className="col-span-12 lg:col-start-2 lg:col-span-10">
+            <div className="col-span-12 lg:col-start-3 lg:col-span-8">
               {featuredImage && (
                 <img src={featuredImage} alt={post.title} className="w-full rounded-2xl mb-8" />
               )}

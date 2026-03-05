@@ -14,8 +14,8 @@ import type {
 } from '@/types/strapi';
 
 // Strapi API Configuration
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'https://strapi-backend-riol.onrender.com';
-const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_TOKEN || '05f0085882aae4bfb02dfc3c6c6e8f568c28c4fd25ef80b3684ed7c6205ddb3936dc380dbbe8df643b1a4acd0e68154b9aed1c1ef4e2c8b5df0fa6f656ad80e3d68666f2952131e55e247bb8e9b9357950cfdeaef7061a4ab556b90453366ff733bf51495cee7d670a43b0563326acbf7e25d8651a3a3551296123e16cfd98e2';
+const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'https://strapi-backend-nkch.onrender.com/admin';
+const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_TOKEN || 'bf89a2767f04401f00fcab1170fe1ff5a442f6b3d8e9dc3b2ff6c00de1996dde85b2352e463873445c3e08d9e20df28b14a59ca72f9ea042e52999a7343b62f8c46ea476d374e292b3c46e082c076016d90211c36fe64eee2cb58bd8a921717ba349e25f8384c345a1cd8f60e28f6711ae63dca6d367a3669e25829544403c72';
 
 // Base fetch function
 async function fetchAPI<T>(
@@ -23,7 +23,7 @@ async function fetchAPI<T>(
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${STRAPI_URL}/api${endpoint}`;
-  
+
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     ...(STRAPI_TOKEN && { Authorization: `Bearer ${STRAPI_TOKEN}` }),
@@ -127,18 +127,18 @@ export async function getInsights(params?: {
   locale?: string;
 }): Promise<StrapiResponse<Insight[]>> {
   const filters: Record<string, unknown> = {};
-  
+
   if (params?.category) {
     filters.category = { slug: { $eq: params.category } };
   }
-  
+
   if (params?.search) {
     filters.$or = [
       { title: { $containsi: params.search } },
       { description: { $containsi: params.search } },
     ];
   }
-  
+
   const query = buildQuery({
     filters,
     populate: '*',
@@ -149,7 +149,7 @@ export async function getInsights(params?: {
       pageSize: params?.pageSize || 6,
     },
   });
-  
+
   return fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
 }
 
@@ -160,11 +160,11 @@ export async function getInsight(slug: string, locale?: string): Promise<Insight
     locale: locale || 'pt-BR',
   });
   const response = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
-  
+
   if (response.data && response.data.length > 0) {
     return response.data[0];
   }
-  
+
   throw new Error(`Insight not found: ${slug}`);
 }
 
