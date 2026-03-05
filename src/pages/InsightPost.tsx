@@ -119,7 +119,7 @@ export default function InsightPost() {
       </section>
 
       {/* Section 2: Post content */}
-      <section className="politica-section2 bg-white">
+      <section className="politica-section2 bg-white post-content">
         <div className="drs-container">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-start-3 lg:col-span-8">
@@ -158,7 +158,7 @@ export default function InsightPost() {
         <section className="py-16 bg-white" style={{ paddingBottom: '100px' }}>
           <div className="drs-container">
             <div className="grid grid-cols-12">
-              <div className="col-span-12 lg:col-start-2 lg:col-span-10">
+              <div className="col-span-12 lg:col-start-3 lg:col-span-8">
                 <div className="flex items-center justify-between mb-8">
                   <h2 style={{ color: '#000', fontSize: '24px', fontWeight: 700 }}>{t('insights.similar')}</h2>
                   <Link to={`/insights?${categoryParams}`} className="drs-btn" style={{ backgroundColor: '#274B41', width: 'fit-content' }}>
