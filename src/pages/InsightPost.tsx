@@ -67,7 +67,7 @@ export default function InsightPost() {
   // Similar insights: same category, fallback to recent posts
   const otherPosts = (allInsightsData?.data || []).filter((i: any) => i.slug !== slug && i.slug);
   const sameCategoryPosts = categoryName
-    ? otherPosts.filter((i: any) => i.category?.name === categoryName)
+    ? otherPosts.filter((i: any) => (i.categories || []).some((c: any) => c.name === categoryName))
     : [];
   const similarInsights = (sameCategoryPosts.length > 0 ? sameCategoryPosts : otherPosts).slice(0, 2);
 
