@@ -1062,4 +1062,7 @@ html, body {
     background-position: top left -115px !important;
     padding-top: 80px;
   }
+  .mobile-h3 {
+    font-size: 22px !important;
+  }
 }
