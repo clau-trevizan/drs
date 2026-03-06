@@ -57,7 +57,8 @@ export default function InsightPost() {
   }
 
   // Strapi v5: data is flat (no .attributes wrapper)
-  const categoryName = post.category?.name || '';
+  const postCategories = post.categories || [];
+  const categoryName = postCategories[0]?.name || '';
   const coverUrl = post.cover?.url;
   const featuredImage = coverUrl ? getStrapiMedia(coverUrl) : undefined;
   const authorName = post.author?.name || '';
