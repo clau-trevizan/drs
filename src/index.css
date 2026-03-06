@@ -1048,6 +1048,6 @@ html, body {
     }
 }
 .bg-insights{
-  background: url('./assets/blog.svg') no-repeat left top / 35%;
+  background: url('/images/blog.svg') no-repeat left top / 35%;
     padding-top: 100px;
 }
