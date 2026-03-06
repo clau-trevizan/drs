@@ -130,7 +130,7 @@ export async function getInsights(params?: {
   const filters: Record<string, unknown> = {};
 
   if (params?.category) {
-    filters.category = { slug: { $eq: params.category } };
+    filters.categories = { slug: { $eq: params.category } };
   }
 
   if (params?.search) {
