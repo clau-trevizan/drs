@@ -1057,4 +1057,9 @@ html, body {
     font-size: 24px !important;
     line-height: 30px !important;
   }
+  .bg-insights {
+    background-size: contain;
+    background-position: top left -115px !important;
+    padding-top: 80px;
+  }
 }
