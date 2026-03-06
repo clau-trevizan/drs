@@ -57,7 +57,8 @@ export default function InsightPost() {
   }
 
   // Strapi v5: data is flat (no .attributes wrapper)
-  const categoryName = post.category?.name || '';
+  const postCategories = post.categories || [];
+  const categoryName = postCategories[0]?.name || '';
   const coverUrl = post.cover?.url;
   const featuredImage = coverUrl ? getStrapiMedia(coverUrl) : undefined;
   const authorName = post.author?.name || '';
@@ -66,7 +67,7 @@ export default function InsightPost() {
   // Similar insights: same category, fallback to recent posts
   const otherPosts = (allInsightsData?.data || []).filter((i: any) => i.slug !== slug && i.slug);
   const sameCategoryPosts = categoryName
-    ? otherPosts.filter((i: any) => i.category?.name === categoryName)
+    ? otherPosts.filter((i: any) => (i.categories || []).some((c: any) => c.name === categoryName))
     : [];
   const similarInsights = (sameCategoryPosts.length > 0 ? sameCategoryPosts : otherPosts).slice(0, 2);
 
@@ -88,9 +89,11 @@ export default function InsightPost() {
           <div className="politica-green-box rounded-[24px] lg:rounded-[40px]" style={{ backgroundColor: '#69C0AC', backgroundImage: 'url(/images/topo_pp.png)', backgroundPosition: 'top left', backgroundRepeat: 'no-repeat' }}>
             <div className="grid grid-cols-12">
               <div className="col-span-12 lg:col-start-2 lg:col-span-11">
-                {categoryName && (
-                  <div className="flex gap-2 mb-4">
-                    <span style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{categoryName}</span>
+                {postCategories.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {postCategories.map((cat: any) => (
+                      <span key={cat.id || cat.name} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontStyle: 'normal', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{cat.name}</span>
+                    ))}
                   </div>
                 )}
                 <div className="d-flex gap-4 items-start">
