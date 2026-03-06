@@ -185,7 +185,7 @@ export default function InsightPost() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {similarInsights.map((insight: any) => {
-                    const iCategoryName = insight.category?.name || '';
+                    const iCategories = insight.categories || [];
                     const iCoverUrl = insight.cover?.url;
                     const iImage = iCoverUrl ? getStrapiMedia(iCoverUrl) : undefined;
                     return (
