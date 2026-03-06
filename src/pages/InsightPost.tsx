@@ -200,7 +200,7 @@ export default function InsightPost() {
                         <p style={{ color: '#012025', fontSize: '16px', fontWeight: 400, lineHeight: '21px', marginBottom: '8px' }}>
                           {new Date(insight.publishedAt).toLocaleDateString(language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
                         </p>
-                        <h3 className="group-hover:opacity-80 transition-opacity" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{insight.title}</h3>
+                        <h3 className="group-hover:opacity-80 transition-opacity insight-card-title" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{insight.title}</h3>
                         {iCategoryName && (
                           <div className="flex flex-wrap gap-2">
                             <span style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{iCategoryName}</span>

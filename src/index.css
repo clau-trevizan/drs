@@ -1051,3 +1051,10 @@ html, body {
   background: url('/images/blog.svg') no-repeat left top / 35%;
     padding-top: 100px;
 }
+
+@media (max-width: 1023px) {
+  .insight-card-title {
+    font-size: 24px !important;
+    line-height: 30px !important;
+  }
+}
