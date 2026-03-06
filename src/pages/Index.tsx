@@ -416,7 +416,7 @@ const Index = () => {
       {insights.length > 0 && (
         <section className="py-8 md:py-12 bg-background">
           <div className="drs-container">
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-12 gap-8 bg-insights">
               <div className="col-span-12 lg:col-span-12">
                 <Swiper
                   modules={[Navigation]}
