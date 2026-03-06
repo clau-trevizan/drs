@@ -63,7 +63,10 @@ export default function Insights() {
   const allInsights = insightsData?.data || [];
   // Client-side filter for multiple categories
   const insights = selectedCategories.length > 1
-    ? allInsights.filter((i: any) => selectedCategories.includes(i.category?.name || ''))
+    ? allInsights.filter((i: any) => {
+        const cats = i.categories || (i.category ? [i.category] : []);
+        return cats.some((c: any) => selectedCategories.includes(c.name));
+      })
     : allInsights;
   const totalPages = Math.max(1, Math.ceil((insightsData?.meta?.pagination?.total || 0) / PAGE_SIZE));
 
