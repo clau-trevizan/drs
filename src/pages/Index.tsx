@@ -36,8 +36,9 @@ const Index = () => {
   const insightsSwiperRef = useRef<SwiperType | null>(null);
   const [insightsActiveSlide, setInsightsActiveSlide] = useState(0);
   const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
-  const { data: insightsData } = useInsights({ pageSize: 3, locale: strapiLocale });
+  const { data: insightsData } = useInsights({ pageSize: 10, locale: strapiLocale });
   const insights = insightsData?.data || [];
+  const insightsTotalSlides = insights.length;
 
   // Stop video when dialog closes
   const handleVideoDialogChange = (open: boolean) => {
@@ -415,62 +416,69 @@ const Index = () => {
       {insights.length > 0 && (
         <section className="py-8 md:py-12 bg-background">
           <div className="drs-container">
-            <div className="grid grid-cols-12 gap-8 items-center">
-              <div className="col-span-12 lg:col-start-3 lg:col-span-5 relative min-h-[470px] lg:min-h-[550px] flex flex-wrap justify-center items-center p-[4rem_1rem_4rem_2rem] lg:p-0 carousel-container-offset">
-                <div className="absolute inset-0 lg:hidden" style={{ backgroundImage: 'url(/images/fundo_mobile.svg)', backgroundPosition: 'top left', backgroundRepeat: 'no-repeat', backgroundSize: '100%' }}></div>
-                <div className="absolute inset-0 hidden lg:block" style={{ backgroundImage: 'url(/images/fundo2.svg)', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div>
+            <div className="grid grid-cols-12 gap-8">
+              <div className="col-span-12 lg:col-start-2 lg:col-span-10">
                 <Swiper
                   modules={[Navigation]}
                   onSwiper={(swiper) => { insightsSwiperRef.current = swiper; }}
                   onSlideChange={(swiper) => setInsightsActiveSlide(swiper.activeIndex)}
                   spaceBetween={24}
-                  slidesPerView={1}
-                  className="drs360-swiper h-full w-full mt-0 lg:mt-[-100px] relative z-10"
+                  slidesPerView={1.15}
+                  breakpoints={{
+                    768: { slidesPerView: 1.3 },
+                    1024: { slidesPerView: 1.5 },
+                  }}
+                  className="w-full"
                 >
-                  {insights.map((insight, index) => (
-                    <SwiperSlide key={insight.id || index}>
-                      <div className="h-full flex flex-col p-4 lg:p-0">
-                        <span style={{ color: '#69C0AC', fontSize: '14px', fontWeight: 400, marginBottom: '0.5rem', display: 'block', textTransform: 'uppercase' }}>
-                          {t('home.insights.tag')}
-                        </span>
-                        <span style={{ color: '#69C0AC', fontSize: '14px', fontWeight: 400, marginBottom: '1rem', display: 'block' }}>
-                          {new Date(insight.publishedAt).toLocaleDateString(
-                            language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR',
-                            { day: '2-digit', month: 'long', year: 'numeric' }
+                  {insights.map((insight, index) => {
+                    const coverUrl = insight.cover?.url ? getStrapiMedia(insight.cover.url) : null;
+                    return (
+                      <SwiperSlide key={insight.id || index}>
+                        <div className="rounded-[24px] overflow-hidden flex flex-col md:flex-row" style={{ backgroundColor: '#69C0AC', minHeight: '320px' }}>
+                          {/* Image */}
+                          {coverUrl && (
+                            <div className="w-full md:w-1/2 h-[200px] md:h-auto p-4 md:p-5">
+                              <img
+                                src={coverUrl}
+                                alt={insight.title}
+                                className="w-full h-full object-cover rounded-[16px]"
+                              />
+                            </div>
                           )}
-                        </span>
-                        <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>
-                          {insight.title}
-                        </h3>
-                        <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-[22px] md:leading-[24px] lg:leading-[25px] mb-4" style={{ color: '#69C0AC', fontWeight: 400 }}>
-                          {insight.description || insight.blocks?.[0]?.body?.substring(0, 120) || ''}
-                        </p>
-                        <Link to={`/insights/${insight.slug}`} className="drs-btn drs-btn-uppercase inline-flex w-fit mt-auto">
-                          <ArrowIcon className="w-4 h-3" />
-                          {t('home.insights.readmore')}
-                        </Link>
-                      </div>
-                    </SwiperSlide>
-                  ))}
+                          {/* Content */}
+                          <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-8 md:pl-2">
+                            <h3 className="text-[20px] md:text-[24px] lg:text-[28px] leading-[26px] md:leading-[30px] lg:leading-[34px] mb-6" style={{ color: '#000', fontWeight: 900 }}>
+                              {insight.title}
+                            </h3>
+                            <Link to={`/insights/${insight.slug}`} className="drs-btn drs-btn-uppercase inline-flex w-fit">
+                              <ArrowIcon className="w-4 h-3" />
+                              {t('home.insights.readmore')}
+                            </Link>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
                 </Swiper>
-                <div className="flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0">
-                  <button onClick={() => insightsSwiperRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: insightsActiveSlide === 0 ? 0.6 : 1 }}>
-                    <img src={arrowSlide} alt="Previous" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" />
+                {/* Pagination dots + arrows */}
+                <div className="flex items-center justify-center gap-3 mt-8">
+                  <button onClick={() => insightsSwiperRef.current?.slidePrev()} className="transition-opacity w-[40px] h-[40px] flex items-center justify-center border border-[#274B41] rounded-[8px]" style={{ opacity: insightsActiveSlide === 0 ? 0.3 : 1 }}>
+                    <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#274B41" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </button>
-                  <button onClick={() => insightsSwiperRef.current?.slideNext()} className="transition-opacity" style={{ opacity: insightsActiveSlide >= insights.length - 1 ? 0.6 : 1 }}>
-                    <img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" />
+                  <div className="flex gap-2">
+                    {insights.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => insightsSwiperRef.current?.slideTo(i)}
+                        className="w-[10px] h-[10px] rounded-full transition-colors"
+                        style={{ backgroundColor: i === insightsActiveSlide ? '#274B41' : '#69C0AC' }}
+                      />
+                    ))}
+                  </div>
+                  <button onClick={() => insightsSwiperRef.current?.slideNext()} className="transition-opacity w-[40px] h-[40px] flex items-center justify-center border border-[#274B41] rounded-[8px]" style={{ opacity: insightsActiveSlide >= insightsTotalSlides - 1 ? 0.3 : 1 }}>
+                    <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M1.5 1L8.5 8L1.5 15" stroke="#274B41" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </button>
                 </div>
-              </div>
-              <div className="col-span-12 lg:col-span-3 hidden lg:flex justify-center h-full pb-4 lg:pb-[70px]">
-                {insights[insightsActiveSlide]?.cover?.url && (
-                  <img
-                    src={getStrapiMedia(insights[insightsActiveSlide].cover!.url)}
-                    alt={insights[insightsActiveSlide]?.title}
-                    className="rounded-3xl self-end object-cover"
-                    style={{ maxWidth: '90%', maxHeight: '400px' }}
-                  />
-                )}
               </div>
             </div>
           </div>
