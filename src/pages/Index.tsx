@@ -36,8 +36,9 @@ const Index = () => {
   const insightsSwiperRef = useRef<SwiperType | null>(null);
   const [insightsActiveSlide, setInsightsActiveSlide] = useState(0);
   const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
-  const { data: insightsData } = useInsights({ pageSize: 3, locale: strapiLocale });
+  const { data: insightsData } = useInsights({ pageSize: 10, locale: strapiLocale });
   const insights = insightsData?.data || [];
+  const insightsTotalSlides = insights.length;
 
   // Stop video when dialog closes
   const handleVideoDialogChange = (open: boolean) => {
