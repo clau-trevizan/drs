@@ -447,7 +447,7 @@ const Index = () => {
                           )}
                           {/* Content */}
                           <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-8 md:pl-2">
-                            <h3 className="text-[20px] md:text-[24px] lg:text-[28px] leading-[26px] md:leading-[30px] lg:leading-[34px] mb-6" style={{ color: '#000', fontWeight: 900 }}>
+                            <h3 className="text-[22px] md:text-[24px] lg:text-[28px] leading-[28px] md:leading-[30px] lg:leading-[34px] mb-6" style={{ color: '#000', fontWeight: 900 }}>
                               {insight.title}
                             </h3>
                             <Link to={`/insights/${insight.slug}`} className="drs-btn drs-btn-uppercase inline-flex w-fit">
