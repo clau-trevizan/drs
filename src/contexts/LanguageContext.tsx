@@ -365,6 +365,12 @@ export const translations: Translations = {
     'drs360.benefit2.line2': 'estudos clínicos',
     'drs360.benefit3.line1': 'Apoio à tomada de decisão em',
     'drs360.benefit3.line2': 'tempo real',
+    'drs360.benefit4.line1': 'Redução de perdas e desvios',
+    'drs360.benefit4.line2': 'logísticos ',
+    'drs360.benefit5.line1': 'Aumento da previsibilidade em',
+    'drs360.benefit5.line2': 'estudos clínicos',
+    'drs360.benefit6.line1': 'Apoio à tomada de decisão em',
+    'drs360.benefit6.line2': 'tempo real',
 
     // DRS360 Page - Security SVG
     'drs360.security.title': 'Segurança da informação',
