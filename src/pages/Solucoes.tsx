@@ -167,12 +167,10 @@ export default function Solucoes() {
                   <path d="M351.884 655.315L351.888 685.886C351.888 700.819 363.977 712.922 378.893 712.922H422.219C438.664 712.922 452 699.574 452 683.106L452 114.169C452 98.9857 439.71 86.6802 424.545 86.6802H405.024C390.59 86.6802 378.893 74.9651 378.893 60.5184V27.2567C378.893 12.2046 366.706 0 351.668 0L29.7819 9.44393e-05C13.3365 9.44393e-05 0.000244141 13.3482 0.000244141 29.8165L0 599.77C0 615.914 13.0712 629 29.1957 629L197.615 629H325.6C340.115 629 351.884 640.782 351.884 655.315Z" fill="#15AF97" />
                   <text className="titulos" x="22" y="150" fontSize="30" fontWeight="900" fill="#000000">Patient Centric </text>
                   <text className="titulos" x="22" y="185" fontSize="30" fontWeight="900" fill="#000000">Services - PCS</text>
-                  <text className="botao2" x="22" y="241" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.pcs.svg.desc1mob')}</text>
                   <rect x="21" y="530" width="347" height="70" rx="10" fill="#274B41"/>
-                  <text className="botao" x="90" y="498" fontSize="16" fontWeight="900" fill="#fff">{t('solucoes.pcs.svg.cta')}</text>
                   <path d="M65.1116 494.727L70.6449 500.213L70.6911 500.256C70.8763 500.439 70.984 500.682 71 500.968L70.9991 501.064C70.9856 501.29 70.899 501.507 70.7284 501.701L70.6638 501.767L65.1116 507.274C64.701 507.681 64.0371 507.681 63.6265 507.274C63.2135 506.864 63.2135 506.198 63.6265 505.789L67.4601 501.986L52.0524 501.987C51.4721 501.987 51 501.519 51 500.939C51 500.359 51.4721 499.891 52.0523 499.891L67.3364 499.89L63.6265 496.212C63.2135 495.802 63.2135 495.136 63.6265 494.727C64.0371 494.319 64.701 494.319 65.1116 494.727Z" fill="white" style={{ transform: 'translateY(62px)' }}/>
 
-                  <foreignObject x="20" y="250" width="380" height="100%">
+                  <foreignObject x="20" y="215" width="380" height="100%">
                   <div className="titulos" style={{ fontSize: '20px', color: '#000000', fontWeight: '900'}}>{t('solucoes.pcs.svg.subtitle1')} {t('solucoes.pcs.svg.subtitle2')}</div>
                   <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal'}}>{t('solucoes.pcs.svg.desc1mob')}</div>
                   </foreignObject>

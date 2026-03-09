@@ -265,7 +265,7 @@ export const translations: Translations = {
     'solucoes.pcs.diff.item3b': 'logística especializada.',
     'solucoes.pcs.diff.item4': '• Acompanhamento individualizado com',
     'solucoes.pcs.diff.item4b': 'DRS 360.',
-    'solucoes.pcs.svg.desc1mob': '\n\nServiços especializados que viabilizam o acesso e o suporte a terapias inovadoras e de alta complexidade.\n\nGestão integral de programas de suporte, atendimento e comercialização - unindo cuidado humanizado, profissionais de saúde, tecnologia e logística.',
+    'solucoes.pcs.svg.desc1mob': 'Serviços especializados que viabilizam o acesso e o suporte a terapias inovadoras e de alta complexidade.\nGestão integral de programas de suporte, atendimento e comercialização - unindo cuidado humanizado, profissionais de saúde, tecnologia e logística.',
     'solucoes.pcs.svg.desc1': 'Serviços especializados que viabilizam o acesso e o',
     'solucoes.pcs.svg.desc2': 'suporte a terapias inovadoras e de alta complexidade.',
     'solucoes.pcs.svg.desc3': 'Gestão integral de programas de suporte, atendimento',
