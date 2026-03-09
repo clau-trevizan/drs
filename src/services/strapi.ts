@@ -142,7 +142,7 @@ export async function getInsights(params?: {
 
   const query = buildQuery({
     filters,
-    populate: ['cover', 'categories', 'author', 'blocks'],
+    populate: ['cover', 'categories', 'author', 'blocks', 'localizations'],
     sort: ['publishedAt:desc', 'createdAt:desc'],
     locale: params?.locale || 'pt-BR',
     pagination: {
@@ -157,7 +157,7 @@ export async function getInsights(params?: {
 export async function getInsight(slug: string, locale?: string): Promise<Insight> {
   const query = buildQuery({
     filters: { slug: { $eq: slug } },
-    populate: '*',
+    populate: ['cover', 'categories', 'author', 'blocks', 'localizations'],
     locale: locale || 'pt-BR',
   });
   const response = await fetchAPI<StrapiResponse<Insight[]>>(`/articles${query}`);
