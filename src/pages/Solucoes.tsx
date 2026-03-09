@@ -100,10 +100,13 @@ export default function Solucoes() {
                   <path d="M84.1116 494.727L89.6449 500.213L89.6911 500.256C89.8763 500.439 89.984 500.682 90 500.968L89.9991 501.064C89.9856 501.29 89.899 501.507 89.7284 501.701L89.6638 501.767L84.1116 507.274C83.701 507.681 83.0371 507.681 82.6265 507.274C82.2135 506.864 82.2135 506.198 82.6265 505.789L86.4601 501.986L71.0524 501.987C70.4721 501.987 70 501.519 70 500.939C70 500.359 70.4721 499.891 71.0523 499.891L86.3364 499.89L82.6265 496.212C82.2135 495.802 82.2135 495.136 82.6265 494.727C83.0371 494.319 83.701 494.319 84.1116 494.727Z" fill="white"/>
                   <text className="titulos" x="40" y="150" fontSize="30" fontWeight="900" fill="#000000">Clinical Trial</text>
                   <text className="titulos" x="40" y="185" fontSize="30" fontWeight="900" fill="#000000">Services - CTS </text>
-                  <text className="botao2" x="40" y="240" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc1')}</text>
-                  <text className="botao2" x="40" y="270" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc2')}</text>
-                  <text className="botao2" x="40" y="312" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc3')}</text>
-                  <text className="botao2" x="40" y="340" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc4')}</text>
+                  <foreignObject x="70" y="240" width="250" height="100%">
+                  <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:20px;color: #008C79;line-height: 26px;">{t('solucoes.cts.svg.descmob')}</div>
+                  </foreignObject>
+                  // <text className="botao2" x="40" y="240" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc1')}</text>
+                  // <text className="botao2" x="40" y="270" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc2')}</text>
+                  // <text className="botao2" x="40" y="312" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc3')}</text>
+                  // <text className="botao2" x="40" y="340" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc4')}</text>
                   <text className="botao" x="110" y="497" fontSize="16" fontWeight="900" fill="#fff">{t('solucoes.cts.svg.cta')}</text>
                 </svg>
               </a>
