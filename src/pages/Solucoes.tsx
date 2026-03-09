@@ -102,7 +102,7 @@ export default function Solucoes() {
                   <text className="titulos" x="40" y="185" fontSize="30" fontWeight="900" fill="#000000">Services - CTS </text>
                   <foreignObject x="40" y="215" width="340" height="100%">
                   <div className="titulos" style={{ fontSize: '20px', color: '#000000', fontWeight: '900'}}>{t('solucoes.cts.svg.subtitle1')} {t('solucoes.cts.svg.subtitle2')}</div>
-                  <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal'}}>{t('solucoes.cts.svg.desc1mob')}</div>
+                  <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal', marginTop: '15px'}}>{t('solucoes.cts.svg.desc1mob')}</div>
                   </foreignObject>
                   <foreignObject x="110" y="520" width="230" height="100%">
                   <div className="botao" style={{ fontSize: '16px', color: '#ffffff', lineHeight: 'normal'}}>{t('solucoes.cts.svg.cta')}</div>
@@ -172,7 +172,7 @@ export default function Solucoes() {
 
                   <foreignObject x="20" y="215" width="380" height="100%">
                   <div className="titulos" style={{ fontSize: '20px', color: '#000000', fontWeight: '900'}}>{t('solucoes.pcs.svg.subtitle1')} {t('solucoes.pcs.svg.subtitle2')}</div>
-                  <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal'}}>{t('solucoes.pcs.svg.desc1mob')}</div>
+                  <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal', marginTop: '15px'}}>{t('solucoes.pcs.svg.desc1mob')}</div>
                   </foreignObject>
                   <foreignObject x="100" y="540" width="230" height="100%">
                   <div className="botao" style={{ fontSize: '16px', color: '#ffffff', lineHeight: 'normal'}}>{t('solucoes.pcs.svg.cta')}</div>
