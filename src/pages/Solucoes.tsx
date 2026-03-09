@@ -101,7 +101,8 @@ export default function Solucoes() {
                   <text className="titulos" x="40" y="150" fontSize="30" fontWeight="900" fill="#000000">Clinical Trial</text>
                   <text className="titulos" x="40" y="185" fontSize="30" fontWeight="900" fill="#000000">Services - CTS </text>
                   <foreignObject x="40" y="215" width="340" height="100%">
-                  <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal'}}>{t('solucoes.cts.svg.desc1mob')}</div>
+                  <div className="titulos" style={{ fontSize: '20px', color: '#000000', fontWeight: '900'}}>{t('solucoes.cts.svg.subtitle1')} {t('solucoes.cts.svg.subtitle2')}</div>
+                  <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal'}}>{t('solucoes.cts.svg.desc1mob')}</div>
                   </foreignObject>
                   // <text className="botao2" x="40" y="240" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc1')}</text>
                   // <text className="botao2" x="40" y="270" fontSize="20" fontWeight="400" fill="#000000">{t('solucoes.cts.svg.desc2')}</text>
