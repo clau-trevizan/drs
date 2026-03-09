@@ -212,13 +212,13 @@ export default function Solucoes() {
                   <text className="titulos" x="40" y="185" fontSize="30" fontWeight="900" fill="#000000">Services – TIS</text>
                   <rect x="40" y="520" width="347" height="70" rx="10" fill="#274B41"/>
                   <text className="botao" x="109" y="518" fontSize="16" fontWeight="400" fill="#fff"></text>
-                  <path d="M84.1116 494.726L89.6449 500.213L89.6911 500.256C89.8763 500.439 89.984 500.681 90 500.967L89.9991 501.063C89.9856 501.29 89.899 501.507 89.7284 501.701L89.6638 501.767L84.1116 507.273C83.701 507.681 83.0371 507.681 82.6265 507.273C82.2135 506.864 82.2135 506.198 82.6265 505.788L86.4601 501.986L71.0524 501.986C70.4721 501.986 70 501.518 70 500.939C70 500.359 70.4721 499.891 71.0523 499.891L86.3364 499.89L82.6265 496.211C82.2135 495.802 82.2135 495.136 82.6265 494.726C83.0371 494.319 83.701 494.319 84.1116 494.726Z" fill="white" style={{ transform: 'translateY(62px)' }}/>
+                  <path d="M84.1116 494.726L89.6449 500.213L89.6911 500.256C89.8763 500.439 89.984 500.681 90 500.967L89.9991 501.063C89.9856 501.29 89.899 501.507 89.7284 501.701L89.6638 501.767L84.1116 507.273C83.701 507.681 83.0371 507.681 82.6265 507.273C82.2135 506.864 82.2135 506.198 82.6265 505.788L86.4601 501.986L71.0524 501.986C70.4721 501.986 70 501.518 70 500.939C70 500.359 70.4721 499.891 71.0523 499.891L86.3364 499.89L82.6265 496.211C82.2135 495.802 82.2135 495.136 82.6265 494.726C83.0371 494.319 83.701 494.319 84.1116 494.726Z" fill="white" style={{ transform: 'translateY(52px)' }}/>
 
-                  <foreignObject x="20" y="195" width="380" height="100%">
+                  <foreignObject x="40" y="220" width="340" height="100%">
                   <div className="titulos" style={{ fontSize: '20px', color: '#000000', fontWeight: '900'}}>{t('solucoes.tis.svg.subtitle')}</div>
                   <div className="botao" style={{ fontSize: '20px', color: '#000000', lineHeight: 'normal', marginTop: '15px'}}>{t('solucoes.tis.svg.desc1mob')}</div>
                   </foreignObject>
-                  <foreignObject x="100" y="540" width="230" height="100%">
+                  <foreignObject x="110" y="530" width="230" height="100%">
                   <div className="botao" style={{ fontSize: '16px', color: '#ffffff', lineHeight: 'normal'}}>{t('solucoes.tis.svg.cta')}</div>
                   </foreignObject>
                 </svg>
