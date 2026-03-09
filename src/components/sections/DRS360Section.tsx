@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import drs360Banner from '@/assets/drs360-banner.png';
+import drs360BannerEn from '@/assets/drs360-banner_en.png';
+import drs360BannerEs from '@/assets/drs360-banner_es.png';
 import { WorldMap } from '@/components/ui/WorldMap';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface DRS360SectionProps {
   title?: string;
