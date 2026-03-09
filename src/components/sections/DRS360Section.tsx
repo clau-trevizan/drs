@@ -33,7 +33,10 @@ export function DRS360Section({
   useWorldMap = false,
 }: DRS360SectionProps) {
   const { t } = useTranslation();
-  const bannerImage = imageSrc || drs360Banner;
+  const { language } = useLanguage();
+  
+  const bannerByLang = { pt: drs360Banner, en: drs360BannerEn, es: drs360BannerEs };
+  const bannerImage = imageSrc || bannerByLang[language] || drs360Banner;
   
   const displayTagText = tagText || t('home.drs360section.tag');
   const displayTitle = title || t('home.drs360section.title');
