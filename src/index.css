@@ -1066,3 +1066,6 @@ html, body {
     font-size: 22px !important;
   }
 }
+.botao {
+      white-space: pre-wrap;
+}

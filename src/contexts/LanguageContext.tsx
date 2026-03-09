@@ -130,7 +130,7 @@ export const translations: Translations = {
     'solucoes.cts.svg.title': 'Clinical Trial Services - CTS',
     'solucoes.cts.svg.subtitle1': 'O sucesso dos estudos clínicos são viabilizados',
     'solucoes.cts.svg.subtitle2': 'por nossas soluções integradas.',
-    'solucoes.cts.svg.desc1mob': '\nConectamos a pesquisa clínica com soluções validadas, alta performance e conformidade internacional.\n\nGerenciamos cada etapa com precisão, garantindo uma logística segura, regulada e rastreável.',
+    'solucoes.cts.svg.desc1mob': '\nConectamos a pesquisa clínica com soluções validadas, alta performance e conformidade internacional.\nGerenciamos cada etapa com precisão, garantindo uma logística segura, regulada e rastreável.',
     'solucoes.cts.svg.desc1': 'Conectamos a pesquisa clínica com soluções validadas,',
     'solucoes.cts.svg.desc2': 'alta performance e conformidade internacional.',
     'solucoes.cts.svg.desc3': 'Gerenciamos cada etapa com precisão, garantindo uma',
