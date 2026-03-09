@@ -272,6 +272,7 @@ export const translations: Translations = {
     'solucoes.pcs.svg.desc4': 'e comercialização - unindo cuidado humanizado,',
     'solucoes.pcs.svg.desc5': 'profissionais de saúde, tecnologia e logística.',
     'solucoes.tis.svg.subtitle': 'Cadeia fria inteligente e sustentável.',
+    'solucoes.tis.svg.desc1mob': 'Asseguramos o transporte de produtos sensíveis com soluções de cadeia fria customizadas, monitoramento contínuo em tempo real e embalagens sustentáveis — unindo segurança, precisão e responsabilidade ambiental.',
     'solucoes.tis.svg.desc1': 'Asseguramos o transporte de produtos sensíveis com',
     'solucoes.tis.svg.desc2': 'soluções de cadeia fria customizadas, monitoramento',
     'solucoes.tis.svg.desc3': 'contínuo em tempo real e embalagens sustentáveis —',
