@@ -156,7 +156,7 @@ export async function getInsights(params?: {
       categories: true,
       blocks: true,
       localizations: true,
-      author: true,
+      authors: true,
     },
     sort: ['publishedAt:desc', 'createdAt:desc'],
     locale: params?.locale || 'pt-BR',
@@ -177,7 +177,7 @@ export async function getInsight(slug: string, locale?: string): Promise<Insight
       categories: true,
       blocks: true,
       localizations: true,
-      author: true,
+      authors: true,
     },
     locale: locale || 'pt-BR',
   });
