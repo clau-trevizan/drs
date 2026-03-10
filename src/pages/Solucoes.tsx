@@ -77,7 +77,7 @@ export default function Solucoes() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-8">
               {/* Desktop SVG */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 847 564" fill="none" className="hidden lg:block w-full h-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 847 564" fill="none" className="hidden lg:block w-full h-auto svg-desk-1">
                 <path d="M775.139 204.7L813.274 204.696C831.902 204.696 847 189.612 847 171.004L847 37.1558C847 16.638 830.349 -3.62957e-05 809.806 -3.53978e-05L142.416 0.000298951C123.477 0.000299778 108.127 15.3338 108.127 34.2543L108.127 58.6092C108.127 76.6171 93.5132 91.2114 75.4921 91.2114L34.0006 91.2114C15.2243 91.2114 1.0519e-05 106.416 1.13392e-05 125.178L0.000146699 526.773C0.000147596 547.29 16.6508 563.929 37.1938 563.929L705.852 563.929C725.989 563.929 742.313 547.621 742.313 527.504L742.313 397.172L742.313 237.493C742.313 219.383 757.011 204.7 775.139 204.7Z" fill="#F39325"/>
                 <text className="titulos" x="100" y="173" fontSize="35" fontWeight="900" fill="#000000">{t('solucoes.cts.svg.title')}</text>
                 <text className="titulos" x="100" y="230" fontSize="20" fontWeight="900" fill="#000000">{t('solucoes.cts.svg.subtitle1')}</text>
@@ -130,7 +130,7 @@ export default function Solucoes() {
         <div className="drs-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-4 flex flex-col justify-end order-2 lg:order-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 422 379" fill="none" className="block w-full h-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 422 379" fill="none" className="block w-full h-auto svg-desk-2">
                 <path d="M80.3811 377.761C68.6104 377.761 59.0706 368.204 59.0706 356.415V329.757C59.0704 317.903 49.476 308.29 37.636 308.289H21.9963C10.124 308.289 0.500487 298.652 0.500244 286.759V23.8967C0.500277 10.9733 10.9614 0.500244 23.8596 0.500244H149.693C161.365 0.500244 170.827 9.97586 170.827 21.6682V46.6702H170.836C171.101 58.3623 180.649 67.761 192.388 67.761H192.39L397.999 66.762C410.64 66.7626 420.888 77.0253 420.888 89.6877V353.365C420.888 366.288 410.43 376.761 397.529 376.761H397.527L80.3811 377.761Z" stroke="#15AF97"/>
                 <text className="corrido" x="80" y="115" fontSize="20" fontWeight="700" fill="#000000">{t('solucoes.pcs.diff.title')}</text>
                 <text className="corrido" x="81" y="152" fontSize="16" fontWeight="400" fill="#000000">{t('solucoes.pcs.diff.item1')}</text>
@@ -190,7 +190,7 @@ export default function Solucoes() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-8">
               {/* Desktop SVG */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 847 564" fill="none" className="hidden lg:block w-full h-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 847 564" fill="none" className="hidden lg:block w-full h-auto svg-desk-3">
                 <path d="M775.139 204.7L813.274 204.696C831.902 204.696 847 189.612 847 171.004L847 37.1558C847 16.638 830.349 -3.62957e-05 809.806 -3.53978e-05L142.416 0.000298951C123.477 0.000299778 108.127 15.3338 108.127 34.2543L108.127 58.6092C108.127 76.6171 93.5132 91.2114 75.4921 91.2114L34.0006 91.2114C15.2243 91.2114 -1.99985e-05 106.416 -1.91784e-05 125.178L0.000116182 526.773C0.000117078 547.29 16.6508 563.929 37.1938 563.929L705.852 563.929C725.989 563.929 742.313 547.621 742.313 527.504L742.313 397.172L742.313 237.493C742.313 219.383 757.011 204.7 775.139 204.7Z" fill="#F39325"/>
                 <text className="titulos" x="100" y="173" fontSize="35" fontWeight="900" fill="#000000">{t('solucoes.tis.svg.title')}</text>
                 <text className="titulos" x="100" y="230" fontSize="20" fontWeight="900" fill="#000000">{t('solucoes.tis.svg.subtitle')}</text>
