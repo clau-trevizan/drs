@@ -1090,4 +1090,7 @@ html, body {
 .espanhol text.botao.cursor-pointer {
     transform: translateX(6px);
 }
+.ingles .svg-team rect {
+  width: 210px;
+}
 }
