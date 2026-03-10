@@ -208,6 +208,7 @@ export const strapiService = {
   getDRS360Page,
   getGroupPage,
   getContactPage,
+  getPrivacyPolicy,
   getInsights,
   getInsight,
   getInsightCategories,
