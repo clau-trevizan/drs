@@ -43,6 +43,12 @@ export default function Insights() {
     return acc;
   }, {} as Record<string, string>);
 
+  // Map documentId to localized category name for displaying on cards
+  const categoryLocalizedNames = (categoriesData || []).reduce((acc: Record<string, string>, c: any) => {
+    if (c?.documentId && c?.name) acc[c.documentId] = c.name;
+    return acc;
+  }, {} as Record<string, string>);
+
 
   const { data: insightsData, isLoading } = useInsights({
     page: currentPage,
