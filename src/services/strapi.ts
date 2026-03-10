@@ -123,10 +123,10 @@ export async function getContactPage(): Promise<ContactPage> {
 export async function getPrivacyPolicy(locale?: string): Promise<{ title: string; content: string }> {
   const strapiLocale = locale === 'en' ? 'en' : locale === 'es' ? 'es-ES' : 'pt-BR';
   const query = buildQuery({ locale: strapiLocale });
-  const response = await fetchAPI<StrapiResponse<{ title: string; content: string }>>(
+  const response = await fetchAPI<StrapiResponse<{ Title: string; Texto: string }>>(
     `/politica-de-privacidade${query}`
   );
-  return response.data;
+  return { title: response.data.Title, content: response.data.Texto };
 }
 
 export async function getInsights(params?: {
