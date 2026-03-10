@@ -146,7 +146,7 @@ export default function Insights() {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {insights.map((insight: any) => {
-                    const categories = insight.categories || (insight.category ? [insight.category] : []);
+                    const insightCategories = insight.categories || (insight.category ? [insight.category] : []);
                     const coverUrl = insight.cover?.url;
                     const image = coverUrl ? getStrapiMedia(coverUrl) : undefined;
                     const date = new Date(insight.publishedAt).toLocaleDateString(
