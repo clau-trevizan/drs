@@ -151,7 +151,7 @@ export async function getInsights(params?: {
 
   const query = buildQuery({
     filters,
-    populate: ['cover', 'categories', 'author', 'blocks', 'localizations'],
+    populate: ['cover', 'categories', 'blocks', 'localizations'],
     sort: ['publishedAt:desc', 'createdAt:desc'],
     locale: params?.locale || 'pt-BR',
     pagination: {
