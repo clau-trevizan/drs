@@ -191,7 +191,7 @@ export async function getInsight(slug: string, locale?: string): Promise<Insight
 }
 
 export async function getInsightCategories(locale?: string): Promise<InsightCategory[]> {
-  const strapiLocale = locale === 'en' ? 'en' : locale === 'es' ? 'es-ES' : 'pt-BR';
+  const strapiLocale = locale === 'en' ? 'en' : locale === 'es-ES' || locale === 'es' ? 'es-ES' : 'pt-BR';
   const query = buildQuery({ locale: strapiLocale });
   const response = await fetchAPI<StrapiResponse<InsightCategory[]>>(
     `/categories${query}`
