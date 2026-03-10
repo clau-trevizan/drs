@@ -177,7 +177,6 @@ export default function Insights() {
                               <span key={cat.id || cat.name} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{localizedName}</span>
                               );
                             })}
-                            ))}
                           </div>
                         )}
                       </Link>
