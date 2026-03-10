@@ -156,7 +156,7 @@ export async function getInsights(params?: {
       categories: true,
       blocks: true,
       localizations: true,
-      author: true,
+      authors: true,
     },
     sort: ['publishedAt:desc', 'createdAt:desc'],
     locale: params?.locale || 'pt-BR',
