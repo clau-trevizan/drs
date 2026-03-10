@@ -164,9 +164,9 @@ export default function Insights() {
                         </div>
                         <p style={{ color: '#012025', fontSize: '16px', fontWeight: 400, lineHeight: '21px', marginBottom: '8px' }}>{date}</p>
                         <h3 className="group-hover:opacity-80 transition-opacity insight-card-title" style={{ color: '#000', fontSize: '20px', fontWeight: 700, lineHeight: '28.33px', letterSpacing: '0.55px', marginBottom: '12px' }}>{insight.title}</h3>
-                        {categories.length > 0 && (
+                        {insightCategories.length > 0 && (
                           <div className="flex flex-wrap gap-2">
-                            {categories.map((cat: any) => (
+                            {insightCategories.map((cat: any) => (
                               <span key={cat.id || cat.name} style={{ color: '#000', textAlign: 'center', fontSize: '16px', fontWeight: 400, lineHeight: '24px', padding: '3px 25px', borderRadius: '16px', border: '1px solid #274B41' }}>{cat.name}</span>
                             ))}
                           </div>
