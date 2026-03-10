@@ -343,6 +343,7 @@ export const translations: Translations = {
     'drs360.func3.line2': ' para gestão proativa — incluindo',
     'drs360.func3.line3': 'temperatura, desvios operacionais e',
     'drs360.func3.line4': 'necessidade de reabastecimento.',
+    'drs360.func3.line5': '',
     'drs360.func4.line1': 'Todo seu projeto em um único',
     'drs360.func4.line2': 'ambiente: importação, estoque,',
     'drs360.func4.line3': ' fornecimentos, logística e faturamento',
@@ -1077,6 +1078,7 @@ export const translations: Translations = {
     'drs360.func3.line2': 'for proactive management -',
     'drs360.func3.line3': 'including temperature, operational',
     'drs360.func3.line4': 'deviations and the need for refueling.',
+    'drs360.func3.line5': '',
 
     'drs360.func4.line1': 'Your entire project in a single',
     'drs360.func4.line2': 'environment: import, stock,',
@@ -1822,8 +1824,9 @@ export const translations: Translations = {
 
     'drs360.func3.line1': 'Alertas inteligentes y configurables',
     'drs360.func3.line2': 'para una gestión proactiva — que',
-    'drs360.func3.line3': 'incluyen temperatura, desviaciones o',
-    'drs360.func3.line4': 'perativas y necesidades de reabastecimiento.',
+    'drs360.func3.line3': 'incluyen temperatura, desviaciones ',
+    'drs360.func3.line4': 'operativas y necesidades de ',
+    'drs360.func3.line5': 'reabastecimiento.',
 
     'drs360.func4.line1': 'Todo su proyecto en un único',
     'drs360.func4.line2': 'entorno: importación, stock, suministros,',
