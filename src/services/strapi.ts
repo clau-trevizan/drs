@@ -120,6 +120,15 @@ export async function getContactPage(): Promise<ContactPage> {
   return response.data;
 }
 
+export async function getPrivacyPolicy(locale?: string): Promise<{ title: string; content: string }> {
+  const strapiLocale = locale === 'en' ? 'en' : locale === 'es' ? 'es-ES' : 'pt-BR';
+  const query = buildQuery({ locale: strapiLocale });
+  const response = await fetchAPI<StrapiResponse<{ title: string; content: string }>>(
+    `/politica-de-privacidade${query}`
+  );
+  return response.data;
+}
+
 export async function getInsights(params?: {
   page?: number;
   pageSize?: number;
@@ -199,6 +208,7 @@ export const strapiService = {
   getDRS360Page,
   getGroupPage,
   getContactPage,
+  getPrivacyPolicy,
   getInsights,
   getInsight,
   getInsightCategories,
