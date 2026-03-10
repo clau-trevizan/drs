@@ -35,7 +35,7 @@ export default function Insights() {
   const [currentPage, setCurrentPage] = useState(1);
   const { t, language } = useTranslation();
 
-  const { data: categoriesData } = useInsightCategories();
+  const { data: categoriesData } = useInsightCategories(strapiLocale);
   const categorySlugsMap = (categoriesData || []).reduce((acc: Record<string, string>, c: any) => {
     if (c?.name && c?.slug) acc[c.name] = c.slug;
     return acc;
