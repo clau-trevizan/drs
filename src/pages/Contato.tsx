@@ -53,7 +53,7 @@ export default function Contato() {
     setShowSuccessModal(true);
   };
 
-  const inputStyle = (field?: string) => ({ 
+  const inputStyle = (field?: string) => ({
     borderRadius: '8px', background: '#FFF', padding: '12px 20px', color: '#15AF97',
     border: `1px solid ${field && fieldErrors[field] ? '#ef4444' : '#274B41'}`, fontSize: '16px', fontStyle: 'normal' as const, fontWeight: 400, lineHeight: 'normal'
   });
@@ -125,16 +125,16 @@ export default function Contato() {
                 <input type="tel" placeholder={t('contato.form.phone')} value={formData.telefone} onChange={(e) => { setFormData({...formData, telefone: e.target.value}); setFieldErrors(prev => ({...prev, telefone: false})); }} className="w-full outline-none focus:ring-0" style={inputStyle('telefone')} />
                 <textarea placeholder={t('contato.form.message')} value={formData.mensagem} onChange={(e) => { setFormData({...formData, mensagem: e.target.value}); setFieldErrors(prev => ({...prev, mensagem: false})); }} className="w-full outline-none focus:ring-0 min-h-[120px] resize-none" style={inputStyle('mensagem')} />
                 <label className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors ${privacyError ? 'bg-red-50 ring-1 ring-red-500' : ''}`}>
-                  <Checkbox 
-                    className={`mt-0.5 ${privacyError ? 'border-red-500 data-[state=unchecked]:border-red-500' : ''}`} 
-                    checked={formData.privacidade} 
+                  <Checkbox
+                    className={`mt-0.5 ${privacyError ? 'border-red-500 data-[state=unchecked]:border-red-500' : ''}`}
+                    checked={formData.privacidade}
                     onCheckedChange={(checked) => {
                       setFormData({...formData, privacidade: checked as boolean});
                       if (checked) setPrivacyError(false);
-                    }} 
+                    }}
                   />
                   <span style={{ color: privacyError ? '#ef4444' : '#666', fontSize: '14px' }}>
-                    {t('contato.form.privacy')} <a href="#" className="underline" style={{ color: '#274B41' }}>{t('contato.form.privacy.link')}</a>.
+                    {t('contato.form.privacy')} <a href="/politica-privacidade" className="underline" style={{ color: '#274B41' }}>{t('contato.form.privacy.link')}</a>.
                   </span>
                 </label>
                 <button type="submit" className="drs-btn" style={{ backgroundColor: '#274B41', width: 'fit-content' }}>
