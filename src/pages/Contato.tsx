@@ -119,9 +119,16 @@ export default function Contato() {
                 <input type="text" placeholder={t('contato.form.company')} value={formData.empresa} onChange={(e) => setFormData({...formData, empresa: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle} />
                 <input type="tel" placeholder={t('contato.form.phone')} value={formData.telefone} onChange={(e) => setFormData({...formData, telefone: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle} />
                 <textarea placeholder={t('contato.form.message')} value={formData.mensagem} onChange={(e) => setFormData({...formData, mensagem: e.target.value})} className="w-full outline-none focus:ring-0 min-h-[120px] resize-none" style={inputStyle} />
-                <label className="flex items-start gap-2 text-sm">
-                  <Checkbox className="mt-0.5" checked={formData.privacidade} onCheckedChange={(checked) => setFormData({...formData, privacidade: checked as boolean})} />
-                  <span style={{ color: '#666', fontSize: '14px' }}>
+                <label className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors ${privacyError ? 'bg-red-50 ring-1 ring-red-500' : ''}`}>
+                  <Checkbox 
+                    className={`mt-0.5 ${privacyError ? 'border-red-500 data-[state=unchecked]:border-red-500' : ''}`} 
+                    checked={formData.privacidade} 
+                    onCheckedChange={(checked) => {
+                      setFormData({...formData, privacidade: checked as boolean});
+                      if (checked) setPrivacyError(false);
+                    }} 
+                  />
+                  <span style={{ color: privacyError ? '#ef4444' : '#666', fontSize: '14px' }}>
                     {t('contato.form.privacy')} <a href="#" className="underline" style={{ color: '#274B41' }}>{t('contato.form.privacy.link')}</a>.
                   </span>
                 </label>
