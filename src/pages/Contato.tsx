@@ -11,6 +11,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 export default function Contato() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [privacyError, setPrivacyError] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, boolean>>({});
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     nome: '',
