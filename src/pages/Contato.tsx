@@ -53,10 +53,10 @@ export default function Contato() {
     setShowSuccessModal(true);
   };
 
-  const inputStyle = { 
+  const inputStyle = (field?: string) => ({ 
     borderRadius: '8px', background: '#FFF', padding: '12px 20px', color: '#15AF97',
-    border: '1px solid #274B41', fontSize: '16px', fontStyle: 'normal' as const, fontWeight: 400, lineHeight: 'normal'
-  };
+    border: `1px solid ${field && fieldErrors[field] ? '#ef4444' : '#274B41'}`, fontSize: '16px', fontStyle: 'normal' as const, fontWeight: 400, lineHeight: 'normal'
+  });
 
   return (
     <Layout>
