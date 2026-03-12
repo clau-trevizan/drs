@@ -119,11 +119,11 @@ export default function Contato() {
             </div>
             <div className="col-span-1 lg:col-span-5" style={{ padding: 'clamp(1rem, 2vw, 4rem) clamp(1rem, 2vw, 4rem) 0 clamp(1rem, 2vw, 4rem)' }}>
               <form className="space-y-4 contato-form" onSubmit={handleSubmit}>
-                <input type="text" placeholder={t('contato.form.name')} value={formData.nome} onChange={(e) => setFormData({...formData, nome: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle} />
-                <input type="email" placeholder={t('contato.form.email')} value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle} />
-                <input type="text" placeholder={t('contato.form.company')} value={formData.empresa} onChange={(e) => setFormData({...formData, empresa: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle} />
-                <input type="tel" placeholder={t('contato.form.phone')} value={formData.telefone} onChange={(e) => setFormData({...formData, telefone: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle} />
-                <textarea placeholder={t('contato.form.message')} value={formData.mensagem} onChange={(e) => setFormData({...formData, mensagem: e.target.value})} className="w-full outline-none focus:ring-0 min-h-[120px] resize-none" style={inputStyle} />
+                <input type="text" placeholder={t('contato.form.name')} value={formData.nome} onChange={(e) => { setFormData({...formData, nome: e.target.value}); setFieldErrors(prev => ({...prev, nome: false})); }} className="w-full outline-none focus:ring-0" style={inputStyle('nome')} />
+                <input type="email" placeholder={t('contato.form.email')} value={formData.email} onChange={(e) => { setFormData({...formData, email: e.target.value}); setFieldErrors(prev => ({...prev, email: false})); }} className="w-full outline-none focus:ring-0" style={inputStyle('email')} />
+                <input type="text" placeholder={t('contato.form.company')} value={formData.empresa} onChange={(e) => setFormData({...formData, empresa: e.target.value})} className="w-full outline-none focus:ring-0" style={inputStyle()} />
+                <input type="tel" placeholder={t('contato.form.phone')} value={formData.telefone} onChange={(e) => { setFormData({...formData, telefone: e.target.value}); setFieldErrors(prev => ({...prev, telefone: false})); }} className="w-full outline-none focus:ring-0" style={inputStyle('telefone')} />
+                <textarea placeholder={t('contato.form.message')} value={formData.mensagem} onChange={(e) => { setFormData({...formData, mensagem: e.target.value}); setFieldErrors(prev => ({...prev, mensagem: false})); }} className="w-full outline-none focus:ring-0 min-h-[120px] resize-none" style={inputStyle('mensagem')} />
                 <label className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors ${privacyError ? 'bg-red-50 ring-1 ring-red-500' : ''}`}>
                   <Checkbox 
                     className={`mt-0.5 ${privacyError ? 'border-red-500 data-[state=unchecked]:border-red-500' : ''}`} 
