@@ -33,10 +33,14 @@ export default function Contato() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.privacidade) {
-      setPrivacyError(true);
-      return;
-    }
+    const errors: Record<string, boolean> = {};
+    if (!formData.nome.trim()) errors.nome = true;
+    if (!formData.email.trim()) errors.email = true;
+    if (!formData.telefone.trim()) errors.telefone = true;
+    if (!formData.mensagem.trim()) errors.mensagem = true;
+    if (!formData.privacidade) setPrivacyError(true);
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0 || !formData.privacidade) return;
     setPrivacyError(false);
     sendToRDStation({
       nome: formData.nome,
