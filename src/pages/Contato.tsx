@@ -10,6 +10,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Contato() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [privacyError, setPrivacyError] = useState(false);
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     nome: '',
@@ -31,6 +32,11 @@ export default function Contato() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.privacidade) {
+      setPrivacyError(true);
+      return;
+    }
+    setPrivacyError(false);
     sendToRDStation({
       nome: formData.nome,
       email: formData.email,
