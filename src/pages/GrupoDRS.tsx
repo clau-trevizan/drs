@@ -196,7 +196,7 @@ export default function GrupoDRS() {
       </SwiperSlide>
     ))}
     </Swiper>
-    <div className="flex items-center justify-center gap-4 mt-8">
+    <div className={`flex items-center justify-center gap-4 mt-8 ${dupNavHidden ? 'hidden' : ''}`}>
     <button onClick={() => duplicatedCarouselRef.current?.slidePrev()} className="hover:opacity-80 transition-opacity rotate-180"><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
     <div className="flex gap-2">
     {[0, 1].map((dotIndex) => (
