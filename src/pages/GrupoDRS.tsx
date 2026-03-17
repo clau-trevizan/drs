@@ -14,6 +14,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+// @ts-ignore
 import 'swiper/css/effect-creative';
 import { DRS360Section } from '@/components/sections';
 import { useTranslation } from '@/hooks/useTranslation';
