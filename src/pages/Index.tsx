@@ -475,7 +475,7 @@ const Index = () => {
                   })}
                 </Swiper>
                 {/* Pagination dots + arrows */}
-                <div className="flex items-center justify-center gap-3 mt-8">
+                <div className={`flex items-center justify-center gap-3 mt-8 ${insightsNavHidden ? 'hidden' : ''}`}>
                   <button onClick={() => insightsSwiperRef.current?.slidePrev()} className="transition-opacity w-[40px] h-[40px] flex items-center justify-center border border-[#274B41] rounded-[8px]" style={{ opacity: insightsActiveSlide === 0 ? 0.3 : 1 }}>
                     <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#274B41" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </button>
