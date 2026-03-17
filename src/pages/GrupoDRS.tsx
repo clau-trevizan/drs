@@ -9,11 +9,12 @@ import imgSlide from '@/assets/img-slide.png';
 import { useState, useRef } from 'react';
 import { SolutionModal, SolutionModalData } from '@/components/ui/SolutionModal';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, EffectCreative } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-creative';
 import { DRS360Section } from '@/components/sections';
 import { useTranslation } from '@/hooks/useTranslation';
 
