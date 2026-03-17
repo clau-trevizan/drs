@@ -43,7 +43,7 @@ export function SolutionsCarouselMobile({ solutions, className = '' }: Solutions
       </Swiper>
       
       {/* Navigation Arrows */}
-      <div className="flex gap-4 mt-4 justify-center pl-[60px]">
+      <div className={`flex gap-4 mt-4 justify-center pl-[60px] ${navHidden ? 'hidden' : ''}`}>
         <button 
           onClick={() => swiperRef.current?.slidePrev()}
           className="transition-opacity rotate-180"

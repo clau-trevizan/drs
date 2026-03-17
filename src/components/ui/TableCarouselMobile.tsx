@@ -75,6 +75,7 @@ export function TableCarouselMobile({ images, className = '' }: TableCarouselMob
           <img src={arrowSlide} alt="Próximo" className="w-[50px] h-[38px]" />
         </button>
       </div>
+      </div>
     </div>
   );
 }
