@@ -30,11 +30,13 @@ import { getStrapiMedia } from '@/services/strapi';
 const Index = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [drsNavHidden, setDrsNavHidden] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { t, language } = useTranslation();
   const insightsSwiperRef = useRef<SwiperType | null>(null);
   const [insightsActiveSlide, setInsightsActiveSlide] = useState(0);
+  const [insightsNavHidden, setInsightsNavHidden] = useState(false);
   const strapiLocale = language === 'en' ? 'en' : language === 'es' ? 'es-ES' : 'pt-BR';
   const { data: insightsData } = useInsights({ pageSize: 10, locale: strapiLocale });
   const insights = insightsData?.data || [];
