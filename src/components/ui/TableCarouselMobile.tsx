@@ -16,6 +16,7 @@ export function TableCarouselMobile({ images, className = '' }: TableCarouselMob
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = images.length;
+  const [navHidden, setNavHidden] = useState(false);
 
   return (
     <div className={`lg:hidden ${className}`}>
