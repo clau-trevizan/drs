@@ -433,8 +433,9 @@ const Index = () => {
               <div className="col-span-12 lg:col-span-12">
                 <Swiper
                   modules={[Navigation]}
-                  onSwiper={(swiper) => { insightsSwiperRef.current = swiper; }}
+                  onSwiper={(swiper) => { insightsSwiperRef.current = swiper; setInsightsNavHidden(swiper.isLocked); }}
                   onSlideChange={(swiper) => setInsightsActiveSlide(swiper.activeIndex)}
+                  onResize={(swiper) => setInsightsNavHidden(swiper.isLocked)}
                   spaceBetween={24}
                   slidesPerView={1.15}
                   breakpoints={{
