@@ -20,6 +20,7 @@ export function SolutionsCarouselMobile({ solutions, className = '' }: Solutions
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = solutions.length;
+  const [navHidden, setNavHidden] = useState(false);
 
   return (
     <div className={`lg:hidden ${className}`}>
