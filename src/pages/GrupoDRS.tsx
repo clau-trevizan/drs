@@ -31,6 +31,9 @@ export default function GrupoDRS() {
   const [certActiveSlide, setCertActiveSlide] = useState(0);
   const missaoCarouselRef = useRef<SwiperType | null>(null);
   const [missaoActiveSlide, setMissaoActiveSlide] = useState(0);
+  const [missaoNavHidden, setMissaoNavHidden] = useState(false);
+  const [dupNavHidden, setDupNavHidden] = useState(false);
+  const [certNavHidden, setCertNavHidden] = useState(false);
 
   return (
     <Layout mainClassName="pagina-grupo-drs">
