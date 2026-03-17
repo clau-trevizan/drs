@@ -130,7 +130,7 @@ export default function GrupoDRS() {
     </div>
     </SwiperSlide>
     </Swiper>
-    <div className="flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0">
+    <div className={`flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0 ${missaoNavHidden ? 'hidden' : ''}`}>
     <button onClick={() => missaoCarouselRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: missaoActiveSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
     <button onClick={() => missaoCarouselRef.current?.slideNext()} className="transition-opacity" style={{ opacity: missaoActiveSlide === 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
     </div>
