@@ -112,7 +112,7 @@ export default function GrupoDRS() {
     <div className="col-span-12 lg:col-start-3 lg:col-span-5 relative min-h-[470px] lg:min-h-[550px] flex flex-wrap justify-center items-center p-[4rem_1rem_4rem_2rem] lg:p-0 carousel-container-offset">
     <div className="absolute inset-0 lg:hidden" style={{ backgroundImage: 'url(/images/fundo_mobile_modificado.svg)', backgroundPosition: 'top left', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}></div>
     <div className="absolute inset-0 hidden lg:block" style={{ backgroundImage: 'url(/images/fundo2-modificado.svg)', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div>
-    <Swiper modules={[Navigation]} onSwiper={(swiper) => { missaoCarouselRef.current = swiper; }} onSlideChange={(swiper) => setMissaoActiveSlide(swiper.activeIndex)} spaceBetween={24} slidesPerView={1} className="drs360-swiper h-full w-full mt-0 lg:mt-[-100px] relative z-10">
+    <Swiper modules={[Navigation, EffectCreative]} effect="creative" creativeEffect={{ prev: { translate: ['-100%', 0, 0], opacity: 0 }, next: { translate: ['100%', 0, 0], opacity: 0 } }} onSwiper={(swiper) => { missaoCarouselRef.current = swiper; }} onSlideChange={(swiper) => setMissaoActiveSlide(swiper.activeIndex)} spaceBetween={24} slidesPerView={1} className="drs360-swiper h-full w-full mt-0 lg:mt-[-100px] relative z-10">
     <SwiperSlide>
     <div className="h-full flex flex-col p-4 lg:p-0">
     <h3 className="mb-4 text-[24px] md:text-[28px] lg:text-[35px] leading-[30px] md:leading-[35px] lg:leading-[40px]" style={{ color: '#FFF', fontWeight: 900 }}>{t('grupo.missao.title')}</h3>
