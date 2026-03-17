@@ -233,7 +233,7 @@ const Index = () => {
               ></div>
 
               <Swiper
-                modules={[Navigation]}
+                modules={[Navigation, EffectCreative]} effect="creative" creativeEffect={{ prev: { translate: [0, 0, 0], opacity: 0 }, next: { translate: [0, 0, 0], opacity: 0 } }} 
                 onSwiper={(swiper) => { swiperRef.current = swiper; setDrsNavHidden(swiper.isLocked); }}
                 onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
                 onResize={(swiper) => setDrsNavHidden(swiper.isLocked)}
