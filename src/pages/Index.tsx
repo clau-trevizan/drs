@@ -264,7 +264,7 @@ const Index = () => {
               </Swiper>
 
               {/* Custom navigation buttons at bottom left - with margin-left on mobile */}
-              <div className="flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0">
+              <div className={`flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0 ${drsNavHidden ? 'hidden' : ''}`}>
                 <button
                   onClick={() => swiperRef.current?.slidePrev()}
                   className="transition-opacity rotate-180"
