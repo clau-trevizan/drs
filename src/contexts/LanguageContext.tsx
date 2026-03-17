@@ -159,27 +159,42 @@ export const translations: Translations = {
     'grupo.text3': 'Com presença no Brasil, Argentina e Europa, operamos com uma infraestrutura que amplia nossa capacidade de inovação e assegura padrões internacionais de qualidade. Movemos produtos e entregamos confiança, rastreabilidade e adesão ao tratamento — gerando impacto real na vida dos pacientes.',
     'grupo.text4': 'Excelência validada, visão de futuro e compromisso absoluto com o cuidado.\nEssa é a nossa essência.',
     'grupo.impact.tag': 'Impacto e Capacidade',
+
     'grupo.impact.card1.number': '+30',
     'grupo.impact.card1.unit': 'mil',
     'grupo.impact.card1.title': 'pacientes',
     'grupo.impact.card1.desc1': 'atendidos com suporte clínico e',
     'grupo.impact.card1.desc2': 'logístico',
+
     'grupo.impact.card2.number': '+400',
     'grupo.impact.card2.title': 'estudos clínicos',
     'grupo.impact.card2.desc1': 'apoiados em todas as fases',
+
     'grupo.impact.card3.number': '+50',
     'grupo.impact.card3.unit': 'mil',
     'grupo.impact.card3.title': 'kits clínicos',
     'grupo.impact.card3.desc1': 'montados e rastreados',
 
-    'grupo.impact.card4.number': '+30',
-    'grupo.impact.card4.unit': 'mil',
-    'grupo.impact.card4.title': 'pacientes',
-    'grupo.impact.card4.desc1': 'atendidos com suporte clínico e',
-    'grupo.impact.card4.desc2': 'logístico',
-    'grupo.impact.card5.number': '+400',
-    'grupo.impact.card5.title': 'estudos clínicos',
-    'grupo.impact.card5.desc1': 'apoiados em todas as fases',
+    'grupo.impact.card4.number': '+2',
+    'grupo.impact.card4.unit': 'milhões',
+    'grupo.impact.card4.title': 'de produtos',
+    'grupo.impact.card4.desc1': 'armazenados com controle',
+    'grupo.impact.card4.desc2': 'térmico validado',
+
+    'grupo.impact.card5.number': '+95%',
+    'grupo.impact.card5.title': 'das entregas',
+    'grupo.impact.card5.desc1': 'realizadas em até 24 horas',
+
+    'grupo.impact.card6.number': 'Presença',
+    'grupo.impact.card6.unit': '',
+    'grupo.impact.card6.title': '',
+    'grupo.impact.card6.desc1': 'nacional e internacional',
+    'grupo.impact.card6.desc2': 'SP, DF, SC, Dublin e Argentina',
+
+    'grupo.impact.card7.number': 'Faixas',
+    'grupo.impact.card7.title': 'térmicas',
+    'grupo.impact.card7.desc1': 'operacionais de +25 °C a -196 °C',
+    'grupo.impact.card7.desc2': '',
 
     'grupo.nossotime': 'Nosso time',
     'grupo.certificacoes': 'Certificações',
@@ -338,12 +353,13 @@ export const translations: Translations = {
     'grupo.cert.title': 'Certificações e Conformidades',
     'grupo.cert.subtitle': 'Excelência reconhecida, com qualidade validada em cada etapa.',
     'grupo.cert.desc': 'A DRS opera em conformidade com os mais altos padrões regulatórios nacionais e internacionais, garantindo segurança, rastreabilidade e confiança em toda a cadeia da saúde',
-    'grupo.cert2.title': 'Certificações e Conformidades',
-    'grupo.cert2.subtitle': 'Excelência reconhecida, com qualidade validada em cada etapa.',
-    'grupo.cert2.desc': 'A DRS opera em conformidade com os mais altos padrões regulatórios nacionais e internacionais, garantindo segurança, rastreabilidade e confiança em toda a cadeia da saúde',
-    'grupo.cert3.title': 'Certificações e Conformidades',
-    'grupo.cert3.subtitle': 'Excelência reconhecida, com qualidade validada em cada etapa.',
-    'grupo.cert3.desc': 'A DRS opera em conformidade com os mais altos padrões regulatórios nacionais e internacionais, garantindo segurança, rastreabilidade e confiança em toda a cadeia da saúde',
+    
+    'grupo.cert2.title': 'Licenciamento Sanitário',
+    'grupo.cert2.desc': 'Carta IATA - CEIV Pharma / LGPD e Padrões Internacionais de Proteção de Dados / ISO 9001:2015 - Sistema de Gestão da Qualidade / EcoVadis - Avaliação de Sustentabilidade (ESG)',
+    
+    'grupo.cert3.title': 'GDP',
+    'grupo.cert3.subtitle': 'Boas práticas de armazenamento e distribuição',
+    'grupo.cert3.desc': 'SBTi - ESG / ISO 27001 / Licença de Dangerous Good / Operador de CAR-T',
 
     // DRS360 Page - Functionalities SVG
     'drs360.func1.line1': 'Rastreamento em tempo real de',
@@ -548,8 +564,8 @@ export const translations: Translations = {
     'grupo.area3.desc4': 'de segurança.',
 
     // CTS SVG text keys
-    'cts.svg1.line1': 'Fornecimento de',
-    'cts.svg1.line2': 'medicamentos',
+    'cts.svg1.line1': 'Fornecimento',
+    'cts.svg1.line2': 'de medicamentos',
     'cts.svg1.line3': 'comparadores',
     'cts.svg1.desc1': 'Sourcing e importação de',
     'cts.svg1.desc2': 'medicamentos de referência',
@@ -560,10 +576,10 @@ export const translations: Translations = {
     'cts.svg2.desc1': 'Depósito especializado com',
     'cts.svg2.desc2': 'temperatura controlada para',
     'cts.svg2.desc3': 'produtos investigacionais.',
-    'cts.svg3.line1': 'Serviços globais',
-    'cts.svg3.line2': 'de importador',
-    'cts.svg3.line3': 'oficial',
-    'cts.svg3.line4': '',
+    'cts.svg3.line1': 'Serviços',
+    'cts.svg3.line2': 'globais de',
+    'cts.svg3.line3': 'importador',
+    'cts.svg3.line4': 'oficial',
     'cts.svg3.desc1': 'Importação e registro de',
     'cts.svg3.desc2': 'produtos para pesquisa clínica.',
     'cts.svg4.line1': 'Embalagem,',
@@ -703,30 +719,25 @@ export const translations: Translations = {
     'tis.svg1.desc2': 'alta performance para',
     'tis.svg1.desc3': 'transporte em temperatura',
     'tis.svg1.desc4': 'controlada.',
-    'tis.svg1.desc5': '',
-    'tis.svg1.desc6': '',
+  
     'tis.svg2.line1': 'Transporte de',
     'tis.svg2.line2': 'cadeia fria',
     'tis.svg2.desc1': 'Logística especializada em',
     'tis.svg2.desc2': 'transporte de produtos',
     'tis.svg2.desc3': 'termossensíveis.',
-    'tis.svg2.desc4': '',
-    'tis.svg2.desc5': '',
+   
     'tis.svg3.line1': 'Gestão de',
     'tis.svg3.line2': 'importação',
     'tis.svg3.desc1': 'Gestão completa de processos',
     'tis.svg3.desc2': 'de importação e exportação',
     'tis.svg3.desc3': 'de produtos sensíveis.',
-    'tis.svg3.desc4': '',
-    'tis.svg3.desc5': '',
+    
     'tis.svg4.line1': 'Telemetria e',
     'tis.svg4.line2': 'Data Loggers',
     'tis.svg4.desc1': 'Monitoramento contínuo de',
     'tis.svg4.desc2': 'temperatura, umidade e',
     'tis.svg4.desc3': 'localização em tempo real.',
-    'tis.svg4.desc4': '',
-    'tis.svg4.desc5': '',
-    'tis.svg4.desc6': '',
+   
 
     // TIS Solution Modal keys
     'tis.sol1.title': 'Cadeia fria e embalagens sustentáveis',
@@ -792,8 +803,8 @@ export const translations: Translations = {
     'home.drs360.slide2.description': 'Manage all processes in an integrated and efficient manner.',
 
     // Home - Solutions SVG
-    'home.solutions.svg.title1': 'Intelligent solutions for every stage',
-    'home.solutions.svg.title2': 'of the healthcare chain',
+    'home.solutions.svg.title1': 'Intelligent solutions for every',
+    'home.solutions.svg.title2': 'stage of the healthcare chain',
     'home.solutions.svg.desc1': 'We combine innovation, technology and care to',
     'home.solutions.svg.desc2': 'drive essential health projects.',
     'home.solutions.svg.desc3': 'We work in three complementary areas, connected by',
@@ -898,18 +909,43 @@ export const translations: Translations = {
     'grupo.text3': 'With a presence in Brazil, Argentina and Europe, we operate with an infrastructure that expands our capacity for innovation and ensures international quality standards. We move products and deliver trust, traceability and adherence to treatment - generating real impact on patients’ lives.',
     'grupo.text4': 'Validated excellence, a vision of the future and an absolute commitment to care. That is our essence.',
     'grupo.impact.tag': 'IMPACT AND CAPACITY',
+
     'grupo.impact.card1.number': '+30',
     'grupo.impact.card1.unit': 'attended ',
     'grupo.impact.card1.title': 'with clinical',
     'grupo.impact.card1.desc1': 'and logistical',
     'grupo.impact.card1.desc2': 'support',
+
     'grupo.impact.card2.number': '+400',
     'grupo.impact.card2.title': 'clinical studies',
     'grupo.impact.card2.desc1': 'supported at all stages',
+
     'grupo.impact.card3.number': '+50',
     'grupo.impact.card3.unit': 'thousand',
     'grupo.impact.card3.title': 'clinical kits',
     'grupo.impact.card3.desc1': 'assembled and tracked',
+
+    'grupo.impact.card4.number': '+2',
+    'grupo.impact.card4.unit': 'million',
+    'grupo.impact.card4.title': 'products stored',
+    'grupo.impact.card4.desc1': 'with validated temperature control',
+    'grupo.impact.card4.desc2': '',
+
+    'grupo.impact.card5.number': '+95%',
+    'grupo.impact.card5.title': 'of deliveries',
+    'grupo.impact.card5.desc1': 'made within 24 hours',
+
+    'grupo.impact.card6.number': 'National and',
+    'grupo.impact.card6.unit': 'international presence,',
+    'grupo.impact.card6.title': 'with bases in',
+    'grupo.impact.card6.desc1': 'São Paulo, Brasília, Santa Catarina,',
+    'grupo.impact.card6.desc2': 'Dublin, and Argentina',
+
+    'grupo.impact.card7.number': 'Operating',
+    'grupo.impact.card7.title': 'temperature ranges',
+    'grupo.impact.card7.desc1': 'from +25 °C to -196 °C',
+    'grupo.impact.card7.desc2': '',
+
     'grupo.nossotime': 'Our Team',
     'grupo.certificacoes': 'Certifications and Conformities',
 
@@ -1052,7 +1088,7 @@ export const translations: Translations = {
 
     // Grupo DRS extra keys
     'grupo.missao.title': 'Mission',
-    'grupo.missao.text': 'ransforming innovation and technology into strategic solutions that guarantee the efficient delivery of essential health products, promoting the well-being of patients and supporting the development of innovative therapies with excellence. We are committed to sustainable practices, responsible governance and positive social impact, contributing to a more ethical, inclusive and environmentally conscious healthcare ecosystem.',
+    'grupo.missao.text': 'Transforming innovation and technology into strategic solutions that guarantee the efficient delivery of essential health products, promoting the well-being of patients and supporting the development of innovative therapies with excellence. We are committed to sustainable practices, responsible governance and positive social impact, contributing to a more ethical, inclusive and environmentally conscious healthcare ecosystem.',
     'grupo.visao.title': 'Vision',
     'grupo.visao.text': 'To be a global benchmark in the development of innovative technologies and intelligent health information management, becoming a strategic partner for the biopharmaceutical industry, CROs, logistics operators and the scientific community.',
 
@@ -1079,6 +1115,13 @@ export const translations: Translations = {
     'grupo.cert.title': 'Certifications and Conformities',
     'grupo.cert.subtitle': 'Recognized excellence, with quality validated at every stage.',
     'grupo.cert.desc': 'DRS operates in compliance with the highest national and international regulatory standards, guaranteeing safety, traceability and trust throughout the healthcare chain',
+
+    'grupo.cert2.title': 'Health Licensing',
+    'grupo.cert2.desc': 'IATA Letter - CEIV Pharma / LGPD (General Personal Data Protection Law) and International Data Protection Standards / ISO 9001:2015 - Quality Management System / EcoVadis - Sustainability Assessment (ESG)',
+    
+    'grupo.cert3.title': 'GDP',
+    'grupo.cert3.subtitle': 'Good storage and distribution practices',
+    'grupo.cert3.desc': 'SBTi - ESG / ISO 27001 / Dangerous Good License / CAR-T operator',
 
     // DRS360 Page - Functionalities SVG
     'drs360.func1.line1': 'Real-time tracking of shipments',
@@ -1313,10 +1356,10 @@ export const translations: Translations = {
     'cts.svg2.desc1': 'Storage and clinical',
     'cts.svg2.desc2': 'logistics with global',
     'cts.svg2.desc3': 'quality standards.',
-    'cts.svg3.line1': 'Global official',
-    'cts.svg3.line2': 'importer',
-    'cts.svg3.line3': 'services',
-    'cts.svg3.line4': '',
+    'cts.svg3.line1': 'Global',
+    'cts.svg3.line2': 'official',
+    'cts.svg3.line3': 'importer',
+    'cts.svg3.line4': 'services',
     'cts.svg3.desc1': 'IOR and EOR for global',
     'cts.svg3.desc2': 'clinical research.',
 
@@ -1408,10 +1451,10 @@ export const translations: Translations = {
     'pcs.svg1.line1': 'Patient',
     'pcs.svg1.line2': 'support',
     'pcs.svg1.line3': 'program (PSP)',
-    'pcs.svg1.desc1': 'An intelligent support journey that expands',
-    'pcs.svg1.desc2': 'access, strengthens adherence and puts the patient',
-    'pcs.svg1.desc3': 'at the center of everything.',
-    'pcs.svg1.desc4': '',
+    'pcs.svg1.desc1': 'An intelligent support journey',
+    'pcs.svg1.desc2': 'that expands access, strengthens',
+    'pcs.svg1.desc3': 'adherence and puts the patient',
+    'pcs.svg1.desc4': ' at the center of everything.',
     'pcs.svg2.line1': 'Services for',
     'pcs.svg2.line2': 'consumers',
     'pcs.svg2.line3': 'and patients',
@@ -1465,7 +1508,6 @@ export const translations: Translations = {
     'tis.svg1.desc3': 'control and total traceability to ',
     'tis.svg1.desc4': 'guarantee safety and performance ',
     'tis.svg1.desc5': 'throughout the cold chain.',
-    'tis.svg1.desc6': '',
     'tis.svg2.line1': 'Cold chain',
     'tis.svg2.line2': 'transportation',
     'tis.svg2.desc1': 'Specialized cold chain transport ',
@@ -1581,7 +1623,7 @@ export const translations: Translations = {
 
     // Home - DRS 360 Section
     'home.drs360section.tag': 'DRS 360',
-    'home.drs360section.title': 'Planning, control, traceability and real-time decisions - all in one place',
+    'home.drs360section.title': 'Planificación, control, trazabilidad y decisiones en tiempo real - todo en un sólo lugar',
 
     // Home - World Map
     'home.worldmap.tag': 'NUESTRA RED GLOBAL',
@@ -1655,18 +1697,45 @@ export const translations: Translations = {
     'grupo.text3': 'Con presencia en Brasil, Argentina y Europa, operamos con una infraestructura que amplía nuestra capacidad de innovación y asegura estándares internacionales de calidad. Movemos productos y entregamos confianza, trazabilidad y adherencia al tratamiento — generando impacto real en la vida de los pacientes.',
     'grupo.text4': 'Excelencia comprobada, visión de futuro y un compromiso absoluto con la atención médica. Esa es nuestra esencia.',
     'grupo.impact.tag': 'IMPACTO Y CAPACIDAD',
+
     'grupo.impact.card1.number': '+30',
     'grupo.impact.card1.unit': 'mil',
     'grupo.impact.card1.title': 'pacientes',
     'grupo.impact.card1.desc1': 'atendidos con soporte clínico y',
     'grupo.impact.card1.desc2': 'logístico',
+
     'grupo.impact.card2.number': '+400',
     'grupo.impact.card2.title': 'estudios clínicos',
     'grupo.impact.card2.desc1': 'apoyados en todas las fases',
+
     'grupo.impact.card3.number': '+50',
     'grupo.impact.card3.unit': 'mil',
     'grupo.impact.card3.title': 'kits clínicos',
     'grupo.impact.card3.desc1': 'montados y rastreados',
+
+    'grupo.impact.card4.number': 'Más de',
+    'grupo.impact.card4.unit': '',
+    'grupo.impact.card4.title': '2 millones',
+    'grupo.impact.card4.desc1': 'de productos almacenados',
+    'grupo.impact.card4.desc2': 'con control térmico validado',
+
+    'grupo.impact.card5.number': '95%',
+    'grupo.impact.card5.title': 'de las entregas',
+    'grupo.impact.card5.desc1': 'realizadas en un plazo',
+    'grupo.impact.card5.desc2': 'máximo de 24 horas',
+
+    'grupo.impact.card6.number': 'Presencia nacional',
+    'grupo.impact.card6.unit': 'e internacional',
+    'grupo.impact.card6.title': 'con bases en São Paulo',
+    'grupo.impact.card6.desc1': 'Distrito Federal, Santa Catarina,',
+    'grupo.impact.card6.desc2': 'Dublín y Argentina',
+
+    'grupo.impact.card7.number': 'Rangos térmicos',
+    'grupo.impact.card7.title': 'operativos de',
+    'grupo.impact.card7.desc1': '+25 °C a -196 °C',
+    'grupo.impact.card7.desc2': '',
+
+
     'grupo.nossotime': 'Nuestro equipo',
     'grupo.certificacoes': 'Certificaciones y Conformidades',
 
@@ -1825,6 +1894,14 @@ export const translations: Translations = {
     'grupo.cert.subtitle': 'Excelencia reconocida, con calidad validada en cada etapa.',
     'grupo.cert.desc': 'DRS opera de acuerdo con los más altos estándares regulatorios nacionales e internacionales, garantizando seguridad, trazabilidad y confiabilidad en toda la cadena de atención médica',
 
+    'grupo.cert2.title': 'Licencia Sanitaria',
+    'grupo.cert2.desc': 'Carta IATA - CEIV Pharma / LGPD y Estándares Internacionales de Protección de Datos / ISO 9001:2015 - Sistema de Gestión de la Calidad / EcoVadis – Evaluación de la Sostenibilidad (ESG)',
+    
+    'grupo.cert3.title': 'GDP',
+    'grupo.cert3.subtitle': 'Buenas prácticas de almacenamiento y distribución',
+    'grupo.cert3.desc': 'ISO 27001 / Licencia de Dangerous Good / Operador de CAR-T',
+    
+
     // DRS360 Page - Functionalities SVG
     'drs360.func1.line1': 'Seguimiento de envíos en tiempo',
     'drs360.func1.line2': 'real con geolocalización, ',
@@ -1872,8 +1949,8 @@ export const translations: Translations = {
     'drs360.benefit4.line1': 'Optimización de los procesos',
     'drs360.benefit4.line2': 'operativos',
 
-    'drs360.benefit5.line1': 'Mejor gestión de riesgos y contingencias',
-    'drs360.benefit5.line2': 'y contingencias',
+    'drs360.benefit5.line1': 'Mejor gestión de riesgos y',
+    'drs360.benefit5.line2': 'contingencias y contingencias',
 
     'drs360.security.title': 'Seguridad de la información',
     'drs360.security.line1': 'La plataforma sigue estrictos protocolos de seguridad',
@@ -2056,8 +2133,8 @@ export const translations: Translations = {
 
     'cts.svg3.line1': 'Servicios',
     'cts.svg3.line2': 'globales de ',
-    'cts.svg3.line3': 'importador oficial',
-    'cts.svg3.line4': '',
+    'cts.svg3.line3': 'importador',
+    'cts.svg3.line4': 'oficial',
     'cts.svg3.desc1': 'IOR y EOR para la',
     'cts.svg3.desc2': 'investigación clínica global.',
 
@@ -2144,10 +2221,10 @@ export const translations: Translations = {
     'pcs.svg1.line1': 'Programa de',
     'pcs.svg1.line2': 'soporte al',
     'pcs.svg1.line3': 'paciente (PSP)',
-    'pcs.svg1.desc1': 'Una jornada de apoyo inte-ligente que amplía el acceso,',
-    'pcs.svg1.desc2': 'fortalece la adherencia y coloca al paciente',
-    'pcs.svg1.desc3': 'en el centro de todo.',
-    'pcs.svg1.desc4': '',
+    'pcs.svg1.desc1': 'Una jornada de apoyo inte-ligente',
+    'pcs.svg1.desc2': 'que amplía el acceso, fortalece',
+    'pcs.svg1.desc3': 'la adherencia y coloca al paciente',
+    'pcs.svg1.desc4': 'en el centro de todo.',
     'pcs.svg2.line1': 'Servicios para',
     'pcs.svg2.line2': 'consumidores y',
     'pcs.svg2.line3': 'pacientes',
@@ -2170,16 +2247,16 @@ export const translations: Translations = {
     'pcs.svg4.desc4': '',
     'pcs.svg5.line1': 'Montaje de',
     'pcs.svg5.line2': 'Patient Kits',
-    'pcs.svg5.desc1': 'Creación de kits de pacientes personalizados,',
-    'pcs.svg5.desc2': 'con seguridad, instrucciones precisas y ',
-    'pcs.svg5.desc3': 'logística planificada.',
-    'pcs.svg5.desc4': '',
+    'pcs.svg5.desc1': 'Creación de kits de pacientes,',
+    'pcs.svg5.desc2': 'personalizados con seguridad,',
+    'pcs.svg5.desc3': 'instrucciones precisas y',
+    'pcs.svg5.desc4': 'logística planificada.',
     'pcs.svg6.line1': 'Transporte',
     'pcs.svg6.line2': 'especializado',
-    'pcs.svg6.desc1': 'Los medicamentos y materiales biológicos',
-    'pcs.svg6.desc2': 'se transportan con rigor técnico y seguridad',
-    'pcs.svg6.desc3': 'para apoyar los programas.',
-    'pcs.svg6.desc4': '',
+    'pcs.svg6.desc1': 'Los medicamentos y materiales',
+    'pcs.svg6.desc2': 'biológicos se transportan con',
+    'pcs.svg6.desc3': 'rigor técnico y seguridad',
+    'pcs.svg6.desc4': 'para apoyar los programas.',
     'pcs.sol1.title': 'Programa de soporte al paciente (PSP) ',
     'pcs.sol1.desc': 'Una jornada de apoyo inte-ligente que amplía el acceso, fortalece la adherencia y coloca al paciente en el centro de todo.',
     'pcs.sol2.title': 'Servicios para consumidores y pacientes',
@@ -2202,15 +2279,14 @@ export const translations: Translations = {
     'tis.svg1.desc3': 'temperatura y trazabilidad total para ',
     'tis.svg1.desc4': 'garantizar la seguridad y el desempeño ',
     'tis.svg1.desc5': 'en toda la cadena fría.',
-    'tis.svg1.desc6': '',
+  
     'tis.svg2.line1': 'Transporte de',
     'tis.svg2.line2': 'cadena fría',
     'tis.svg2.desc1': 'Servicios especializados de transporte ',
     'tis.svg2.desc2': 'en cadena fría. Simplifique su logística ',
     'tis.svg2.desc3': 'integrando transporte, logística inversa, ',
     'tis.svg2.desc4': 'embalaje y monitoreo.',
-    'tis.svg2.desc5': '',
-    'tis.svg2.desc6': '',
+   
     'tis.svg3.line1': 'Telemetría',
     'tis.svg3.line2': 'Data loggers',
     'tis.svg3.desc1': 'Soluciones avanzadas de monitoreo, ',
