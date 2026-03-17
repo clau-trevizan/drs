@@ -23,9 +23,11 @@ export default function Contato() {
   });
 
   // useEffect para carregar o script
+  // https://d335luupugsy2.cloudfront.net/js/loader-scripts/fa00a752-5447-4a30-897d-331dc3190154-loader.js
+
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://d335luupugsy2.cloudfront.net/js/loader-scripts/fa00a752-5447-4a30-897d-331dc3190154-loader.js";
+    script.src = "https://d335luupugsy2.cloudfront.net/js/loader-scripts/4e9895f2-2f93-4769-b58e-0db6e0272da2-loader.js";
     script.type = "text/javascript";
     script.async = true;
 
