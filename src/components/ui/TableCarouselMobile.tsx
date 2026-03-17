@@ -42,6 +42,7 @@ export function TableCarouselMobile({ images, className = '' }: TableCarouselMob
         ))}
       </Swiper>
       
+      <div className={`${navHidden ? 'hidden' : ''}`}>
       {/* Slide indicator */}
       <div className="flex justify-center gap-2 mt-4">
         {images.map((_, index) => (
