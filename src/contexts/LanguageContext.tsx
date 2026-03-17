@@ -338,6 +338,12 @@ export const translations: Translations = {
     'grupo.cert.title': 'Certificações e Conformidades',
     'grupo.cert.subtitle': 'Excelência reconhecida, com qualidade validada em cada etapa.',
     'grupo.cert.desc': 'A DRS opera em conformidade com os mais altos padrões regulatórios nacionais e internacionais, garantindo segurança, rastreabilidade e confiança em toda a cadeia da saúde',
+    'grupo.cert2.title': 'Certificações e Conformidades',
+    'grupo.cert2.subtitle': 'Excelência reconhecida, com qualidade validada em cada etapa.',
+    'grupo.cert2.desc': 'A DRS opera em conformidade com os mais altos padrões regulatórios nacionais e internacionais, garantindo segurança, rastreabilidade e confiança em toda a cadeia da saúde',
+    'grupo.cert3.title': 'Certificações e Conformidades',
+    'grupo.cert3.subtitle': 'Excelência reconhecida, com qualidade validada em cada etapa.',
+    'grupo.cert3.desc': 'A DRS opera em conformidade com os mais altos padrões regulatórios nacionais e internacionais, garantindo segurança, rastreabilidade e confiança em toda a cadeia da saúde',
 
     // DRS360 Page - Functionalities SVG
     'drs360.func1.line1': 'Rastreamento em tempo real de',
