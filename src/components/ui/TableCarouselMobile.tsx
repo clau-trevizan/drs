@@ -22,8 +22,9 @@ export function TableCarouselMobile({ images, className = '' }: TableCarouselMob
     <div className={`lg:hidden ${className}`}>
       <Swiper
         modules={[Navigation, Pagination]}
-        onSwiper={(swiper) => { swiperRef.current = swiper; }}
+        onSwiper={(swiper) => { swiperRef.current = swiper; setNavHidden(swiper.isLocked); }}
         onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+        onResize={(swiper) => setNavHidden(swiper.isLocked)}
         spaceBetween={0}
         slidesPerView={1}
         className="w-full"
