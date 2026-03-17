@@ -14,7 +14,7 @@ import videoBox from '@/assets/video-box.mp4';
 import videoModal from '@/assets/video-modal.mp4';
 import topoVideoNova from '@/assets/topo_video_nova.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination, EffectCreative } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import type { Swiper as SwiperType } from 'swiper';
@@ -233,7 +233,7 @@ const Index = () => {
               ></div>
 
               <Swiper
-                modules={[Navigation, EffectCreative]} effect="creative" creativeEffect={{ prev: { translate: [0, 0, 0], opacity: 0 }, next: { translate: [0, 0, 0], opacity: 0 } }} 
+                modules={[Navigation, EffectCreative]} effect="creative" creativeEffect={{ prev: { translate: [0, 0, 0], opacity: 0 }, next: { translate: [0, 0, 0], opacity: 0 } }}
                 onSwiper={(swiper) => { swiperRef.current = swiper; setDrsNavHidden(swiper.isLocked); }}
                 onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
                 onResize={(swiper) => setDrsNavHidden(swiper.isLocked)}
