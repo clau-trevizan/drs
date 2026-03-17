@@ -234,8 +234,9 @@ const Index = () => {
 
               <Swiper
                 modules={[Navigation]}
-                onSwiper={(swiper) => { swiperRef.current = swiper; }}
+                onSwiper={(swiper) => { swiperRef.current = swiper; setDrsNavHidden(swiper.isLocked); }}
                 onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+                onResize={(swiper) => setDrsNavHidden(swiper.isLocked)}
                 spaceBetween={24}
                 slidesPerView={1}
                 className="drs360-swiper h-full w-full mt-0 lg:mt-[-100px] relative z-10"
