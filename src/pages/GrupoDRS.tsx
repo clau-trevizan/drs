@@ -203,7 +203,7 @@ export default function GrupoDRS() {
     <button onClick={() => duplicatedCarouselRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: duplicatedActiveSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
     <div className="flex gap-2">
     {Array.from({ length: dupPages }, (_, i) => i).map((dotIndex) => (
-      <button key={dotIndex} onClick={() => { const spg = (duplicatedCarouselRef.current?.params.slidesPerGroup as number) || 1; duplicatedCarouselRef.current?.slideTo(dotIndex * spg); setDuplicatedActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: duplicatedActiveSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
+      <button key={dotIndex} onClick={() => { const spg = (duplicatedCarouselRef.current?.params.slidesPerGroup as number) || 1; duplicatedCarouselRef.current?.slideTo(dotIndex * spg); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: duplicatedActiveSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
     ))}
     </div>
     <button onClick={() => duplicatedCarouselRef.current?.slideNext()} className="transition-opacity" style={{ opacity: duplicatedActiveSlide === dupPages - 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
