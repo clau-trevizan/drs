@@ -83,7 +83,7 @@ export default function GrupoDRS() {
     </div>
     <div className="col-span-12">
     <div className="relative mt-8">
-    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; }} onSlideChange={(swiper) => setActiveSlide(Math.floor(swiper.activeIndex / 3))} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
+    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; const spg = (swiper.params.slidesPerGroup as number) || 1; setImpactPages(Math.ceil(swiper.slides.length / spg)); setImpactNavHidden(swiper.isLocked); }} onResize={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setImpactPages(Math.ceil(swiper.slides.length / spg)); setImpactNavHidden(swiper.isLocked); }} onSlideChange={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setActiveSlide(Math.floor(swiper.activeIndex / spg)); }} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
     {[1,2,3,4,5].map((i, idx) => (
       <SwiperSlide key={idx}>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
