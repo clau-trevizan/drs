@@ -283,7 +283,7 @@ export default function DRS360() {
     <span style={{ color: '#000', fontSize: '20px', fontStyle: 'normal', fontWeight: 400, lineHeight: '40px', borderRadius: '30px', background: '#69C0AC', padding: '3px 30px', display: 'inline-block', textTransform: 'uppercase', marginLeft: '10%' }}>{t('drs360.beneficios')}</span>
 
     <div className="relative mt-8">
-    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; const spg = (swiper.params.slidesPerGroup as number) || 1; setBenefitPages(Math.ceil(swiper.slides.length / spg)); setBenefitNavHidden(swiper.isLocked); }} onResize={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setBenefitPages(Math.ceil(swiper.slides.length / spg)); setBenefitNavHidden(swiper.isLocked); }} onSlideChange={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setActiveSlide(Math.floor(swiper.activeIndex / spg)); }} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
+    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; setBenefitPages(swiper.snapGrid.length); setBenefitNavHidden(swiper.isLocked); }} onResize={(swiper) => { setBenefitPages(swiper.snapGrid.length); setBenefitNavHidden(swiper.isLocked); }} onSlideChange={(swiper) => { setActiveSlide(swiper.snapIndex); }} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
     {[1,2,3,4,5].map((i, idx) => {
 
       const benefits = [
@@ -333,7 +333,7 @@ export default function DRS360() {
     <button onClick={() => benefitsCarouselRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: activeSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
     <div className="flex gap-2">
     {Array.from({ length: benefitPages }, (_, i) => i).map((dotIndex) => (
-      <button key={dotIndex} onClick={() => { const spg = (benefitsCarouselRef.current?.params.slidesPerGroup as number) || 1; benefitsCarouselRef.current?.slideTo(dotIndex * spg); setActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
+      <button key={dotIndex} onClick={() => { const spg = (benefitsCarouselRef.current?.params.slidesPerGroup as number) || 1; benefitsCarouselRef.current?.slideTo(dotIndex * spg); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
     ))}
     </div>
     <button onClick={() => benefitsCarouselRef.current?.slideNext()} className="transition-opacity" style={{ opacity: activeSlide === benefitPages - 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
