@@ -364,7 +364,7 @@ export default function GrupoDRS() {
     </Swiper>
     <div className={`flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0 grupo-drs-section13-arrows margin-top-mobile ${certNavHidden ? 'hidden' : ''}`}>
     <button onClick={() => swiperRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: certActiveSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
-    <button onClick={() => swiperRef.current?.slideNext()} className="transition-opacity" style={{ opacity: certActiveSlide === 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
+    <button onClick={() => swiperRef.current?.slideNext()} className="transition-opacity" style={{ opacity: certActiveSlide === 2 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
     </div>
     </div>
     <div className="col-span-12 lg:col-span-3 hidden lg:flex justify-center h-full pb-4 lg:pb-[70px]">

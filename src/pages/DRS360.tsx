@@ -329,14 +329,14 @@ export default function DRS360() {
     })}
     </Swiper>
 
-    <div className="flex items-center justify-center gap-4 mt-8">
-    <button onClick={() => benefitsCarouselRef.current?.slidePrev()} className="hover:opacity-80 transition-opacity rotate-180"><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
+    <div className={`flex items-center justify-center gap-4 mt-8 ${benefitNavHidden ? 'hidden' : ''}`}>
+    <button onClick={() => benefitsCarouselRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: activeSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
     <div className="flex gap-2">
-    {[0, 1].map((dotIndex) => (
-      <button key={dotIndex} onClick={() => { benefitsCarouselRef.current?.slideTo(dotIndex * 3); setActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
+    {Array.from({ length: benefitPages }, (_, i) => i).map((dotIndex) => (
+      <button key={dotIndex} onClick={() => { const spg = (benefitsCarouselRef.current?.params.slidesPerGroup as number) || 1; benefitsCarouselRef.current?.slideTo(dotIndex * spg); setActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
     ))}
     </div>
-    <button onClick={() => benefitsCarouselRef.current?.slideNext()} className="hover:opacity-80 transition-opacity"><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
+    <button onClick={() => benefitsCarouselRef.current?.slideNext()} className="transition-opacity" style={{ opacity: activeSlide === benefitPages - 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
     </div>
     </div>
     </div>
