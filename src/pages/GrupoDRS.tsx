@@ -27,7 +27,10 @@ export default function GrupoDRS() {
   const duplicatedCarouselRef = useRef<SwiperType | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [impactPages, setImpactPages] = useState(2);
+  const [impactNavHidden, setImpactNavHidden] = useState(false);
   const [duplicatedActiveSlide, setDuplicatedActiveSlide] = useState(0);
+  const [dupPages, setDupPages] = useState(1);
   const [certActiveSlide, setCertActiveSlide] = useState(0);
   const missaoCarouselRef = useRef<SwiperType | null>(null);
   const [missaoActiveSlide, setMissaoActiveSlide] = useState(0);
