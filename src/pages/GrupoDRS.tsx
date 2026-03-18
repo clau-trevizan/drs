@@ -27,7 +27,10 @@ export default function GrupoDRS() {
   const duplicatedCarouselRef = useRef<SwiperType | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [impactPages, setImpactPages] = useState(2);
+  const [impactNavHidden, setImpactNavHidden] = useState(false);
   const [duplicatedActiveSlide, setDuplicatedActiveSlide] = useState(0);
+  const [dupPages, setDupPages] = useState(1);
   const [certActiveSlide, setCertActiveSlide] = useState(0);
   const missaoCarouselRef = useRef<SwiperType | null>(null);
   const [missaoActiveSlide, setMissaoActiveSlide] = useState(0);
@@ -80,7 +83,7 @@ export default function GrupoDRS() {
     </div>
     <div className="col-span-12">
     <div className="relative mt-8">
-    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; }} onSlideChange={(swiper) => setActiveSlide(Math.floor(swiper.activeIndex / 3))} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
+    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { benefitsCarouselRef.current = swiper; const spg = (swiper.params.slidesPerGroup as number) || 1; setImpactPages(Math.ceil(swiper.slides.length / spg)); setImpactNavHidden(swiper.isLocked); }} onResize={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setImpactPages(Math.ceil(swiper.slides.length / spg)); setImpactNavHidden(swiper.isLocked); }} onSlideChange={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setActiveSlide(Math.floor(swiper.activeIndex / spg)); }} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
     {[1,2,3,4,5].map((i, idx) => (
       <SwiperSlide key={idx}>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
@@ -94,14 +97,14 @@ export default function GrupoDRS() {
       </SwiperSlide>
     ))}
     </Swiper>
-    <div className="flex items-center justify-center gap-4 mt-8">
-    <button onClick={() => benefitsCarouselRef.current?.slidePrev()} className="hover:opacity-80 transition-opacity rotate-180"><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
+    <div className={`flex items-center justify-center gap-4 mt-8 ${impactNavHidden ? 'hidden' : ''}`}>
+    <button onClick={() => benefitsCarouselRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: activeSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
     <div className="flex gap-2">
-    {[0, 1].map((dotIndex) => (
-      <button key={dotIndex} onClick={() => { benefitsCarouselRef.current?.slideTo(dotIndex * 3); setActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
+    {Array.from({ length: impactPages }, (_, i) => i).map((dotIndex) => (
+      <button key={dotIndex} onClick={() => { const spg = (benefitsCarouselRef.current?.params.slidesPerGroup as number) || 1; benefitsCarouselRef.current?.slideTo(dotIndex * spg); setActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: activeSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
     ))}
     </div>
-    <button onClick={() => benefitsCarouselRef.current?.slideNext()} className="hover:opacity-80 transition-opacity"><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
+    <button onClick={() => benefitsCarouselRef.current?.slideNext()} className="transition-opacity" style={{ opacity: activeSlide === impactPages - 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
     </div>
     </div>
     </div>
@@ -181,7 +184,7 @@ export default function GrupoDRS() {
     <div className="grid grid-cols-12 gap-8 items-center">
     <div className="col-span-12 grupo-drs-section7-carousel">
     <div className="relative mt-8">
-    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { duplicatedCarouselRef.current = swiper; setDupNavHidden(swiper.isLocked); }} onResize={(swiper) => setDupNavHidden(swiper.isLocked)} onSlideChange={(swiper) => setDuplicatedActiveSlide(Math.floor(swiper.activeIndex / 3))} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel-duplicated" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
+    <Swiper modules={[Navigation, Pagination]} onSwiper={(swiper) => { duplicatedCarouselRef.current = swiper; setDupNavHidden(swiper.isLocked); const spg = (swiper.params.slidesPerGroup as number) || 1; setDupPages(Math.ceil(swiper.slides.length / spg)); }} onResize={(swiper) => { setDupNavHidden(swiper.isLocked); const spg = (swiper.params.slidesPerGroup as number) || 1; setDupPages(Math.ceil(swiper.slides.length / spg)); }} onSlideChange={(swiper) => { const spg = (swiper.params.slidesPerGroup as number) || 1; setDuplicatedActiveSlide(Math.floor(swiper.activeIndex / spg)); }} spaceBetween={24} slidesPerView={3} slidesPerGroup={3} className="benefits-carousel-duplicated" breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } }}>
     {[1,2,3].map((i, idx) => (
       <SwiperSlide key={idx}>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
@@ -197,13 +200,13 @@ export default function GrupoDRS() {
     ))}
     </Swiper>
     <div className={`flex items-center justify-center gap-4 mt-8 ${dupNavHidden ? 'hidden' : ''}`}>
-    <button onClick={() => duplicatedCarouselRef.current?.slidePrev()} className="hover:opacity-80 transition-opacity rotate-180"><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
+    <button onClick={() => duplicatedCarouselRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: duplicatedActiveSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[66px] h-[50px]" /></button>
     <div className="flex gap-2">
-    {[0, 1].map((dotIndex) => (
-      <button key={dotIndex} onClick={() => { duplicatedCarouselRef.current?.slideTo(dotIndex * 3); setDuplicatedActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: duplicatedActiveSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
+    {Array.from({ length: dupPages }, (_, i) => i).map((dotIndex) => (
+      <button key={dotIndex} onClick={() => { const spg = (duplicatedCarouselRef.current?.params.slidesPerGroup as number) || 1; duplicatedCarouselRef.current?.slideTo(dotIndex * spg); setDuplicatedActiveSlide(dotIndex); }} className="w-3 h-3 hover:opacity-80 transition-opacity" style={{ borderRadius: '5px', backgroundColor: duplicatedActiveSlide === dotIndex ? '#274B41' : '#69C0AC' }} />
     ))}
     </div>
-    <button onClick={() => duplicatedCarouselRef.current?.slideNext()} className="hover:opacity-80 transition-opacity"><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
+    <button onClick={() => duplicatedCarouselRef.current?.slideNext()} className="transition-opacity" style={{ opacity: duplicatedActiveSlide === dupPages - 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[66px] h-[50px]" /></button>
     </div>
     </div>
     </div>
@@ -361,7 +364,7 @@ export default function GrupoDRS() {
     </Swiper>
     <div className={`flex gap-4 mt-[120px] lg:mt-4 lg:absolute lg:bottom-12 lg:left-16 justify-center lg:justify-start relative z-10 pl-0 lg:pl-[60px] ml-[-90px] lg:ml-0 grupo-drs-section13-arrows margin-top-mobile ${certNavHidden ? 'hidden' : ''}`}>
     <button onClick={() => swiperRef.current?.slidePrev()} className="transition-opacity rotate-180" style={{ opacity: certActiveSlide === 0 ? 0.6 : 1 }}><img src={arrowSlide} alt="Previous" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
-    <button onClick={() => swiperRef.current?.slideNext()} className="transition-opacity" style={{ opacity: certActiveSlide === 1 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
+    <button onClick={() => swiperRef.current?.slideNext()} className="transition-opacity" style={{ opacity: certActiveSlide === 2 ? 0.6 : 1 }}><img src={arrowSlide} alt="Next" className="w-[50px] h-[38px] lg:w-[66px] lg:h-[50px]" /></button>
     </div>
     </div>
     <div className="col-span-12 lg:col-span-3 hidden lg:flex justify-center h-full pb-4 lg:pb-[70px]">
