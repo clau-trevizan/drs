@@ -89,7 +89,7 @@ export default function GrupoDRS() {
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 422 379" fill="none">
       <path d="M341.007 0.5C352.778 0.500198 362.317 10.0574 362.317 21.8457V48.5039C362.318 60.3575 371.912 69.9714 383.752 69.9717H399.392C411.264 69.9717 420.887 79.609 420.888 91.502V354.364C420.888 367.288 410.427 377.761 397.528 377.761H271.695C260.023 377.761 250.561 368.285 250.561 356.593V331.591H250.552C250.287 319.899 240.739 310.5 229 310.5H228.998L23.3887 311.499C10.7482 311.498 0.5 301.236 0.5 288.573V24.8965C0.500217 11.9732 10.9583 1.5 23.8594 1.5H23.8613L341.007 0.5Z" stroke="#274B41"/>
       <text className="titulo1" x="57" y="116" fontSize="50" fontWeight="900" fill="#F39325">{t(`grupo.impact.card${i}.number`)}</text>
-      {t(`grupo.impact.card${i}.unit`) !== `grupo.impact.card${i}.unit` && <text className="titulo2" x="{i === 4 ? "135" : "168"}" y="116" fontSize="35" fontWeight="400" fill="#274B41">{t(`grupo.impact.card${i}.unit`)}</text>}
+      {t(`grupo.impact.card${i}.unit`) !== `grupo.impact.card${i}.unit` && <text className="titulo2" x={i === 4 ? "135" : "168"} y="116" fontSize="35" fontWeight="400" fill="#274B41">{t(`grupo.impact.card${i}.unit`)}</text>}
       <text className="titulo2" x="57" y="151" fontSize="35" fontWeight="400" fill="#274B41">{t(`grupo.impact.card${i}.title`)}</text>
       <text className="botao" x="57" y="195" fontSize="20" fontWeight="400" fill="#008C79">{t(`grupo.impact.card${i}.desc1` in {} ? `grupo.impact.card${i}.desc1` : `grupo.impact.card${i}.desc1`)}</text>
       {i === 1 && <text className="botao" x="57" y="220" fontSize="20" fontWeight="400" fill="#008C79">{t(`grupo.impact.card${i}.desc2`)}</text>}
