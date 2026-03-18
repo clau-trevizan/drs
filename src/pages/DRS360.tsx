@@ -23,6 +23,8 @@ export default function DRS360() {
   const [selectedSolution, setSelectedSolution] = useState<SolutionModalData | null>(null);
   const benefitsCarouselRef = useRef<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [benefitPages, setBenefitPages] = useState(2);
+  const [benefitNavHidden, setBenefitNavHidden] = useState(false);
   const functionalitiesSwiperRef = useRef<SwiperType | null>(null);
   const [activeFuncSlide, setActiveFuncSlide] = useState(0);
 
