@@ -70,6 +70,8 @@ const App = () => {
                 <Route path="/insights/:slug" element={<InsightPost />} />
                 <Route path="/contato" element={<Contato />} />
                 <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
+                <Route path="/termos-de-uso" element={<TermosDeUso />} />
+                <Route path="/politica-cookies" element={<PoliticaCookies />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
