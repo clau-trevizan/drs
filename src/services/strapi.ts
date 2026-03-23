@@ -244,6 +244,8 @@ export const strapiService = {
   getGroupPage,
   getContactPage,
   getPrivacyPolicy,
+  getTermsOfUse,
+  getCookiesPolicy,
   getInsights,
   getInsight,
   getInsightCategories,
