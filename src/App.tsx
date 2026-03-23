@@ -24,6 +24,8 @@ const Insights = lazy(() => import("./pages/Insights"));
 const InsightPost = lazy(() => import("./pages/InsightPost"));
 const Contato = lazy(() => import("./pages/Contato"));
 const PoliticaPrivacidade = lazy(() => import("./pages/PoliticaPrivacidade"));
+const TermosDeUso = lazy(() => import("./pages/TermosDeUso"));
+const PoliticaCookies = lazy(() => import("./pages/PoliticaCookies"));
 
 const queryClient = new QueryClient();
 
